@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="pgaPU" transaction-type="JTA">
+		<description>pga Persistence Unit</description>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/datasources/pgaDS</jta-data-source>
+		<class>br.gov.ac.seap.pga.model.AnaliseSolo</class>
+		<class>br.gov.ac.seap.pga.model.Authority</class>
+		<class>br.gov.ac.seap.pga.model.Bairro</class>
+		<class>br.gov.ac.seap.pga.model.CadeiaProdutiva</class>
+		<class>br.gov.ac.seap.pga.model.CategoriaFormento</class>
+		<class>br.gov.ac.seap.pga.model.CategoriaMaterial</class>
+		<class>br.gov.ac.seap.pga.model.Cidade</class>
+		<class>br.gov.ac.seap.pga.model.Endereco</class>
+		<class>br.gov.ac.seap.pga.model.Estado</class>
+		<class>br.gov.ac.seap.pga.model.Material</class>
+		<class>br.gov.ac.seap.pga.model.Ocupacao</class>
+		<class>br.gov.ac.seap.pga.model.OrganizacaoSocial</class>
+		<class>br.gov.ac.seap.pga.model.Patrimonio</class>
+		<class>br.gov.ac.seap.pga.model.PreparoArea</class>
+		<class>br.gov.ac.seap.pga.model.Producao</class>
+		<class>br.gov.ac.seap.pga.model.ProducaoEquipamentos</class>
+		<class>br.gov.ac.seap.pga.model.ProducaoFormento</class>
+		<class>br.gov.ac.seap.pga.model.Produtor</class>
+		<class>br.gov.ac.seap.pga.model.Propriedade</class>
+		<class>br.gov.ac.seap.pga.model.Recurso</class>
+		<class>br.gov.ac.seap.pga.model.RegionalEstadual</class>
+		<class>br.gov.ac.seap.pga.model.RegionalMunicipal</class>
+		<class>br.gov.ac.seap.pga.model.ServicoMecanizacao</class>
+		<class>br.gov.ac.seap.pga.model.Setor</class>
+		<class>br.gov.ac.seap.pga.model.UnidadeMedida</class>
+		<class>br.gov.ac.seap.pga.model.User</class>	
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+<!-- 			<property name="hibernate.show_sql" value="true" /> -->
+<!-- 			<property name="hibernate.format_sql" value="true" /> -->
+<!-- 			<property name="hibernate.transaction.flush_before_completion"	value="true" /> -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+			<property name="hibernate.transaction.jta.platform" 	value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			
+		</properties>
+
+
+
+
+		<!-- <persistence-unit name="pgaPU" -->
+		<!-- transaction-type="RESOURCE_LOCAL"> -->
+		<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
+		<!-- <non-jta-data-source>java:jboss/datasources/pgaDS</non-jta-data-source> -->
+		<!-- <class>br.gov.ac.seap.pga.model.AnaliseSolo</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Authority</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Bairro</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.CadeiaProdutiva</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Cidade</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Endereco</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Estado</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Material</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Ocupacao</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Papel</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.PreparoArea</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Producao</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.ProducaoEquipamentos</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Produtor</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.Propriedade</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.PropriedadeEquipamentos</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.ServicoMecanizacao</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.UnidadeMedida</class> -->
+		<!-- <class>br.gov.ac.seap.pga.model.User</class> -->
+
+
+
+		<!-- <properties> -->
+		 <!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+		
+		<!-- <property name="hibernate.show_sql" value="true" /> -->
+		<!-- <property name="hibernate.format_sql" value="true" /> -->
+		<!-- <property name="hibernate.transaction.flush_before_completion" value="true" 
+			/> -->
+		<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" 
+			/> -->
+
+		<!-- </properties> -->
+		
+		
+		
+		</persistence-unit>
+
+
+
+</persistence>

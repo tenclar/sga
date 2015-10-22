@@ -1,0 +1,221 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<b:container>
+		<b:well>
+			<!--      <div class="well bs-component"> -->
+			<h:form id="frmCadUser" prependId="false"
+				styleClass="form-horizontal">
+				<fieldset>
+					<!-- 				<legend>Perfil do Usuário</legend> -->
+					<p:outputPanel id="opCadUser">
+						<div class="form-group">
+							<label for="inputCPF" class="col-lg-2 control-label">CPF:</label>
+							<div class="col-lg-10">
+								<p:inputText value="#{userController.user.cpf}"
+									styleClass="form-control" id="inputCPF"
+									maxlength="11" onkeypress="mascara(this,soNumeros)"
+									placeholder="Somente Números" required="true" />
+								<p:message for="inputCPF" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputfullName"
+								class="col-lg-2 control-label">Nome:</label>
+							<div class="col-lg-10">
+								<p:inputText value="#{userController.user.fullName}"
+									styleClass="form-control" id="inputFullName"
+									onkeydown="this.value = this.value.toUpperCase();"
+									onkeyup="this.value = this.value.toUpperCase();"
+									placeholder="Descrição" required="true" />
+								<p:message for="inputFullName" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputUsername"
+								class="col-lg-2 control-label">Usuário:</label>
+							<div class="col-lg-10">
+								<p:inputText value="#{userController.user.username}"
+									styleClass="form-control" id="inputUsername"
+									onkeydown="this.value = this.value.toLowerCase();"
+									onkeyup="this.value = this.value.toLowerCase();"
+									placeholder="Usuário" required="true" />
+								<p:message for="inputUsername" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword"
+								class="col-lg-2 control-label">Senha:</label>
+							<div class="col-lg-10">
+								<p:inputText value="#{userController.user.password}"
+									styleClass="form-control" id="inputPassword"
+									placeholder="***" required="true" type="password" />
+								<p:message for="inputPassword" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputSetor"
+								class="col-lg-2 control-label">Setor:</label>
+							<div class="col-lg-10">
+								<p:selectOneMenu
+									value="#{userController.user.setor}"
+									styleClass="form-control"
+									converter="omnifaces.SelectItemsIndexConverter"
+									id="inputSetor"
+									style="width:100%;margin:0;padding:2px;">
+
+									<f:selectItem itemLabel="Selecione"
+										noSelectionOption="true" />
+
+									<f:selectItems
+										value="#{setorController.selectItens}" />
+								</p:selectOneMenu>
+								<p:message for="inputSetor" />
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<label for="inputStatus"
+								class="col-lg-2 control-label">Status:</label>
+							<div class="col-lg-10">
+								<p:selectOneMenu id="inputStatus"
+									value="#{userController.user.enabled}"
+									styleClass="form-control"
+									style="width:100%; margin:0; padding:2px;">
+									<f:selectItem itemLabel="Selecione" />
+									<f:selectItem itemLabel="Ativo" itemValue="true" />
+									<f:selectItem itemLabel="Inativo" itemValue="false" />
+								</p:selectOneMenu>
+								<p:message for="inputStatus" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="inputEmail"
+								class="col-lg-2 control-label">Email:</label>
+							<div class="col-lg-10">
+								<p:inputText value="#{userController.user.email}"
+									styleClass="form-control" id="inputEmail"
+									placeholder="xxxxxx@xxxxxxx.xxx.xx "
+									required="true" />
+								<p:message for="inputEmail" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPhoneNumber"
+								class="col-lg-2 control-label">Celular:</label>
+							<div class="col-lg-10">
+								<p:inputMask mask="(99)9999-9999"
+									value="#{userController.user.phoneNumber}"
+									styleClass="form-control" id="inputPhoneNumber"
+									placeholder="(99)9999-9999" required="true" />
+								<p:message for="inputPhoneNumber" />
+							</div>
+						</div>
+					</p:outputPanel>
+					<p:outputPanel id="opAuth">
+						<b:panel id="panelAuth">
+							<div class="form-group">
+								<label for="inputAuth"
+									class="col-lg-2 control-label">Autorização:</label>
+								<div class="col-lg-9">
+									<p:selectOneMenu id="inputAuth"
+										converter="omnifaces.SelectItemsIndexConverter"
+										value="#{userController.authority}"
+										required="true" styleClass="form-control"
+										style="width:100%; margin:1px; padding:3px;">
+										<f:selectItem itemLabel="Selecione"
+											noSelectionOption="true" />
+										<f:selectItems
+											value="#{permissionController.selects}" />
+
+									</p:selectOneMenu>
+									<p:message for="inputAuth" />
+								</div>
+								<div class="col-lg-1">
+									<p:commandButton id="btAddAuth"
+										process="@this, opAuth"
+										update="@this, :frmCadUser:panelAuth"
+										styleClass="btn btn-primary"
+										action="#{userController.addAuth}"
+										icon="ui-icon-plus" />
+								</div>
+							</div>
+							<p:outputPanel id="opDataTable">
+								<h:dataTable styleClass="table table-striped"
+									value="#{userController.user.authorities}"
+									var="auth">
+									<h:column id="clHeader">
+									
+										<f:facet name="header">
+											<h:outputText value="#" />
+										</f:facet>
+
+										<p:commandButton icon="ui-icon-close"
+											update="@this, opDataTable" onclick="if(!confirm('Deseja realmente remover?')) {return false;}"   >
+											<p:collector unique="true" value="#{auth}"
+												removeFrom="#{userController.user.authorities}" />
+											<f:setPropertyActionListener value="#{user}"
+												target="#{userController.user}" />
+										</p:commandButton>
+										
+									</h:column>
+
+									<h:column id="cldescr">
+										<f:facet name="header">
+											<h:outputText value="Descrição" />
+										</f:facet>
+										<h:outputText value="#{auth.authority}" />
+									</h:column>
+									<h:column id="clauth">
+										<f:facet name="header">
+											<h:outputText value="Autorização" />
+										</f:facet>
+										<h:outputText value="#{auth.authority}" />
+									</h:column>
+								</h:dataTable>
+							</p:outputPanel>
+
+						</b:panel>
+					</p:outputPanel>
+
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-3">
+						
+							<p:commandButton id="btSalvar" value="Salvar"
+								ajax="true" process="@this, opCadUser"
+								update="@this, opCadUser, frmListaUsers, msgs, grmsg"
+								oncomplete="if(!args.validationFailed){PF('panelList').show();PF('panelForm').close();}"
+								styleClass="btn btn-primary"
+								action="#{userController.salvar}" />
+
+							<p:spacer width="5" />
+
+							<p:commandButton id="btCancelar" value="Cancelar"
+								process="@this" ajax="true"
+								update="frmCadUser, frmListaUsers"
+								styleClass="btn btn-danger"
+								oncomplete="  PF('panelForm').close(); PF('panelList').show(); "
+								action="#{userController.volta}" />
+
+
+
+
+						</div>
+					</div>
+				</fieldset>
+
+				<p:messages id="msgs" showDetail="true" />
+			</h:form>
+			<!-- 	</div> -->
+		</b:well>
+	</b:container>
+</ui:component>

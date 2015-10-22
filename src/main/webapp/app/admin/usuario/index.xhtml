@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui" template="/templates/default/main.xhtml">
+	<ui:define name="content">
+		<h1 class="page-header ">
+			<i class="fa fa-pencil-square-o "></i> Usuários
+		</h1>
+
+
+		
+			<p:panel id="panelform"  visible="false"  widgetVar="panelForm" closable="true" closeSpeed="10" >
+				<ui:include src="form.xhtml" />
+			</p:panel>
+				
+
+			<p:panel id="panelList" visible="true" widgetVar="panelList"  closable="true">
+				<ui:include src="list.xhtml" />
+			</p:panel>
+		
+
+
+
+	</ui:define>
+
+
+</ui:composition>
+

@@ -1,0 +1,108 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<h:form id="frmNewProdutor" prependId="false"
+		styleClass="form-horizontal">
+		<b:well>
+			<fieldset>
+
+				<p:selectOneRadio
+					value="#{produtorController.produtor.tipopessoa}"
+					style="width: 80%;">
+
+					<f:selectItems
+						value="#{produtorController.selectItemsEnumTipoPessoa}"
+						var="pessoa" itemValue="#{pessoa}"
+						itemLabel="#{pessoa}" />
+
+
+					<p:ajax update="opTipoPessoa"
+						listener="#{produtorController.handleSelectTipoPessoa()}" />
+
+				</p:selectOneRadio>
+
+				<p:separator />
+				
+				<p:outputPanel id="opTipoPessoa">
+				    
+				    <p:outputLabel for="inputCpfNew" value="CPF" rendered="#{produtorController.tipopessoafisica}" />
+					<p:inputText styleClass="form-control" id="inputCpfNew"
+						value="#{produtorController.produtor.cpf}"
+						required="true" placeholder="CPF Somente números"
+						maxlength="11" label="CPF"
+						onkeypress="mascara(this, soNumeros)"
+						rendered="#{produtorController.tipopessoafisica}">
+
+						<f:validator validatorId="cpfvalidator" />
+					</p:inputText>
+				
+					<p:outputLabel for="inputCNPJNew" value="CNPJ" rendered="#{produtorController.tipopessoajuridica}" />   	
+					<p:inputText styleClass="form-control"
+						id="inputCNPJNew"
+						value="#{produtorController.produtor.cpf}"
+						required="true" placeholder="CNPJ Somente números"
+						maxlength="14" label="CNPJ" autocomplete="false" 
+						onkeypress="mascara(this, soNumeros)"
+						rendered="#{produtorController.tipopessoajuridica}">
+
+						<f:validator validatorId="cnpjvalidator" />
+					</p:inputText>
+
+
+
+				</p:outputPanel>
+
+
+				<div class="form-group">
+					<label for="inputNomeNew"
+						class="col-lg-1 control-label">Nome</label>
+					<div class="col-lg-12">
+						<p:inputText styleClass="form-control"
+							id="inputNomeNew" label="Nome"
+							value="#{produtorController.produtor.name}"
+							required="true" placeholder="Nome Completo"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							type="text" />
+						<p:message for="inputNomeNew" />
+					</div>
+				</div>
+
+				<p:messages showDetail="true" />
+				<hr />
+
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+						<p:commandButton class="btn btn-danger"
+							value="Cancelar"
+							update="@this, frmNewProdutor, :frmListaProdutores"
+							immediate="true"
+							action="#{produtorController.actlimpa()}"
+							oncomplete="PF('panelList').show();PF('dlg_new_produtor').hide();" />
+
+						<p:commandButton class="btn btn-primary"
+							value="Salvar"
+							oncomplete="handleNewProdutor(args)"
+							update="frmNewProdutor, frmCadProdutor, grmsg"
+							action="#{produtorController.actSalvarNew()}" />
+					</div>
+				</div>
+			</fieldset>
+		</b:well>
+
+
+	</h:form>
+
+
+
+
+
+
+</ui:component>
+

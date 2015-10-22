@@ -1,0 +1,41 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+	<h:form id="frmListaPermission" prependId="false" styleClass="form-horizontal" >
+		<b:commandButton id="btPermissionnovo" ajax="true" update="@this frmCadPermission" icon="glyphicon glyphicon-plus" styleClass="btn btn-default" value="" actionListener="#{permissionController.novo}" oncomplete="PF('dlg_permission').show();" />
+
+	</h:form>
+	
+	<p:outputPanel id="dtPermission">
+	<h:form>
+		<h:dataTable styleClass="table table-striped" value="#{permissionController.list}" var="permission">
+			<h:column id="clHeader">
+				<f:facet name="header">
+					<h:outputText value="#" />
+				</f:facet>
+				<p:commandLink value="#{permission.id}" update="@this" >
+					<f:setPropertyActionListener value="#{permission}" target="#{permissionController.authority}" oncomplete="PF('dlg_permission').show();" />
+				</p:commandLink>
+			</h:column>
+			<h:column id="cldescr">
+				<f:facet name="header">
+					<h:outputText value="Descrição" />
+				</f:facet>
+				<h:outputText value="#{permission.description}" />
+			</h:column>
+			<h:column id="clPermission">
+				<f:facet name="header">
+					<h:outputText value="Permissão" />
+				</f:facet>
+				<h:outputText value="#{permission.authority}" />
+			</h:column>
+		</h:dataTable>
+		</h:form>
+	</p:outputPanel>
+
+
+
+
+</ui:component>
+

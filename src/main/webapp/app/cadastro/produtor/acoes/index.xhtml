@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	
+	
+
+
+		<!-- 		<p:panel id="panelView" visible="false" widgetVar="panelView"  closable="true"> -->
+		<!-- 				<ui:include src="view.xhtml" /> -->
+		<!-- 			</p:panel>		 -->
+
+		<p:panel id="panelForm_acao" visible="false" widgetVar="panelForm_acao"
+			closable="true">
+			<ui:include src="form.xhtml" />
+		</p:panel>
+
+
+
+		<p:panel id="panelList_acao" visible="true" widgetVar="panelList_acao"
+			closable="true">
+			<ui:include src="list.xhtml" />
+		</p:panel>
+
+
+
+		<!-- 		caixa de dialogo -->
+		<!-- 		<p:dialog header="Novo Cidade" widgetVar="dlg_regionalMunicipal"  modal="true" resizable="false" styleClass="modal-dialog"  width="600" closable="true"   > -->
+		<!-- 				<ui:include src="form.xhtml" /> -->
+
+		<!-- 		</p:dialog> -->
+
+
+
+
+</ui:composition>
+

@@ -1,0 +1,69 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	
+
+		<h:form id="frmCadRegionalMunicipal" prependId="false"
+			styleClass="form-horizontal">
+			<fieldset>
+
+				<p:tabView>
+					<p:tab title="Dados">
+						<ui:include src="info.xhtml" />
+					</p:tab>
+					<p:tab title="Equipamentos Agrícola" >
+						<ui:include src="equipamentos.xhtml" />
+					</p:tab>
+					<p:tab title="Mecanização">
+						<ui:include src="mecanizacao.xhtml" />
+					</p:tab>
+					<p:tab title="Dados da Cultura">
+						<p:tabView>
+							<p:tab title="Análise de Solo" >
+								<ui:include src="analisesolo.xhtml" />
+							</p:tab>
+							<p:tab title="Insumos e Tratos Culturais">
+								<ui:include src="insumostratos.xhtml" />
+							</p:tab>
+							<p:tab title="Plantio">
+								<ui:include src="plantio.xhtml" />
+							</p:tab>
+							<p:tab title="Colheita">
+								<ui:include src="colheita.xhtml" />
+							</p:tab>
+
+						</p:tabView>
+
+					</p:tab>
+				</p:tabView>
+				
+				<p:messages id="msgs" showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="btSalvar" value="Salvar"
+							ajax="true" update="@this"
+							oncomplete="PF('panelForm').close();PF('panelList').show();"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="btCancelar" value="Cancelar"
+							immediate="true" styleClass="btn btn-danger"
+							oncomplete="PF('panelForm').close();PF('panelList').show();" />
+
+
+
+
+					</div>
+				</div>
+			</fieldset>
+
+
+		</h:form>
+	
+</ui:component>

@@ -1,0 +1,168 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/default/main.xhtml">
+	<ui:define name="content">
+		<!-- 		<h1 class="page-header "> -->
+		<!-- 			<i class="fa fa-tachometer"></i> Dashboard -->
+		<!-- 		</h1> -->
+		<div class="page-header">
+			<h1>
+				<i class="fa fa-tachometer"></i> PGA
+			</h1>
+		</div>
+
+
+		<b:container>
+			<b:panel>
+				<p class="lead">Perfil do Usuário</p>
+				<hr />
+
+
+				<div class="well bs-component">
+					<h:form id="frmPerfil" prependId="false"
+						styleClass="form-horizontal">
+						<fieldset>
+							<!-- 						<legend>Perfil do Usuário</legend> -->
+
+
+							<div class="form-group">
+								<label for="inputCPF" class="col-lg-2 control-label">CPF:</label>
+								<div class="col-lg-10">
+									<p:inputText readonly="true"
+										value="#{loginController.user.cpf}"
+										styleClass="form-control" id="inputCPF"
+										maxlength="11"
+										onkeypress="mascara(this,soNumeros)"
+										placeholder="Somente Números" required="true" />
+									<p:message for="inputCPF" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputfullName"
+									class="col-lg-2 control-label">Nome:</label>
+								<div class="col-lg-10">
+									<h:outputText
+										value="#{loginController.user.fullName}"
+										styleClass="form-control" id="inputFullName"
+										onkeydown="this.value = this.value.toUpperCase();"
+										onkeyup="this.value = this.value.toUpperCase();"
+										placeholder="Descrição" required="true" />
+									<p:message for="inputFullName" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputUsername"
+									class="col-lg-2 control-label">Usuário:</label>
+								<div class="col-lg-10">
+									<h:outputText
+										value="#{loginController.user.username}"
+										styleClass="form-control" id="inputUsername"
+										onkeydown="this.value = this.value.toLowerCase();"
+										onkeyup="this.value = this.value.toLowerCase();"
+										placeholder="Usuário" required="true" />
+									<p:message for="inputUsername" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword"
+									class="col-lg-2 control-label">Senha:</label>
+								<div class="col-lg-10">
+									<h:inputSecret readonly="true"
+										value="#{loginController.user.password}"
+										styleClass="form-control" id="inputPassword" />
+									<p:message for="inputPassword" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="inputSetor"
+									class="col-lg-2 control-label">Setor:</label>
+								<div class="col-lg-10">
+									<h:outputText
+										value="#{loginController.user.setor.description}"
+										styleClass="form-control" id="inputSetor" />
+									<p:message for="inputSetor" />
+								</div>
+
+							</div>
+
+							<div class="form-group">
+								<label for="inputStatus"
+									class="col-lg-2 control-label">Status:</label>
+								<div class="col-lg-10">
+									<h:outputText id="inputStatus"
+										value="#{loginController.user.enabled}"
+										styleClass="form-control" />
+
+									<p:message for="inputStatus" />
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="inputEmail"
+									class="col-lg-2 control-label">Email:</label>
+								<div class="col-lg-10">
+									<h:outputText value="#{loginController.user.email}"
+										styleClass="form-control" id="inputEmail" />
+									<p:message for="inputEmail" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPhoneNumber"
+									class="col-lg-2 control-label">Celular:</label>
+								<div class="col-lg-10">
+									<h:outputText
+										value="#{loginController.user.phoneNumber}"
+										styleClass="form-control" id="inputPhoneNumber" />
+									<p:message for="inputPhoneNumber" />
+								</div>
+							</div>
+
+							<p:outputPanel id="opAuth">
+								<b:panel id="panelAuth">
+
+									<p:outputPanel id="opDataTable">
+										<h:dataTable styleClass="table table-striped"
+											value="#{loginController.user.authorities}"
+											var="auth">
+											<h:column id="cldescr">
+												<f:facet name="header">
+													<h:outputText value="Descrição" />
+												</f:facet>
+												<h:outputText value="#{auth.authority}" />
+											</h:column>
+											<h:column id="clauth">
+												<f:facet name="header">
+													<h:outputText value="Autorização" />
+												</f:facet>
+												<h:outputText value="#{auth.authority}" />
+											</h:column>
+										</h:dataTable>
+									</p:outputPanel>
+
+								</b:panel>
+							</p:outputPanel>
+							<p:messages id="msgs" showDetail="true" />
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-3">
+									<p:commandButton id="btAlterar" value="Alterar" />
+									<p:spacer width="5" />
+								</div>
+							</div>
+						</fieldset>
+					</h:form>
+				</div>
+			</b:panel>
+		</b:container>
+
+
+
+
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,64 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<b:well>
+
+		<h:form id="frmCadUnidadeMedida" prependId="false"
+			styleClass="form-horizontal">
+					<fieldset>
+				<div class="form-group">
+					<label for="inputfullName"
+						class="col-lg-2 control-label">Nome:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{unidadeMedidaController.unidadeMedida.nome}"
+							styleClass="form-control" id="inputFullName"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Nome do UnidadeMedida" required="true" />
+						<p:message for="inputFullName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputSigla" class="col-lg-2 control-label">Sigla:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{unidadeMedidaController.unidadeMedida.sigla}"
+							styleClass="form-control" id="inputSigla"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Sigla" required="true" />
+						<p:message for="inputSigla" />
+					</div>
+				</div>
+				<p:messages id="msgs" showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="btSalvar" value="Salvar"
+							update="frmCadUnidadeMedida, frmListaUnidadeMedidas, grmsg"
+							oncomplete="if(!args.validationFailed){PF('dlg_unidadeMedida').hide();}"
+							styleClass="btn btn-primary"
+							action="#{unidadeMedidaController.actsalvar}" />
+						
+						<p:commandButton id="btCancelar" value="Cancelar"
+							process="@this"
+							update="frmCadUnidadeMedida, frmListaUnidadeMedidas"
+							styleClass="btn btn-danger"
+							oncomplete="PF('dlg_unidadeMedida').hide();"
+							action="#{unidadeMedidaController.actlimpa()}" />
+
+					</div>
+				</div>
+			</fieldset>
+
+			
+		</h:form>
+	
+	</b:well>
+
+</ui:component>

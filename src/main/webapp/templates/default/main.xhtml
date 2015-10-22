@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+			<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+			<title>PGA</title>
+		</f:facet>
+
+		<f:facet name="middle">
+		
+			<h:outputStylesheet name="themes/primefaces-bootstrap/theme.css" />
+			
+			<link href="#{request.contextPath}/resources/img/logo-gov.ico" rel="shortcut icon" type="image/x-icon" />
+			<h:outputScript  name="js/jquery-1.10.2.js" />
+<!-- 			<script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
+
+			<!--  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" /> -->
+
+			<!--  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+			<!--  <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script> -->
+			<!--  <script src="#{request.contextPath}/resources/themes/ui-metro/js/jquery-2.1.3.min.js" /> -->
+
+
+			<!-- UI - Metro 3.0 -->
+			<!-- 				<h:outputStylesheet name="themes/ui-metro/css/metro.css" /> -->
+			<!-- 				<h:outputScript name="themes/ui-metro/js/metro.js" 	type="text/javascript" charset="UTF-8" /> -->
+
+			<!-- UI - bootStrap Padrao -->
+			<!-- 		<h:outputStylesheet  name="bootstrap/css/bootstrap.css" /> -->
+			<!-- 		<h:outputStylesheet  name="css/dashboard.css" /> -->
+			<!--             <h:outputScript name="bootstrap/js/bootstrap.js" /> -->
+
+			<!-- UI - bootStrap Cosmos -->
+			<h:outputStylesheet name="themes/cosmo/theme/bootstrap.css" />
+			<h:outputStylesheet name="themes/cosmo/theme/usebootstrap.css" />
+			<h:outputScript name="themes/cosmo/bootstrap/bootstrap.min.js" />
+			<h:outputScript name="themes/cosmo/bootstrap/usebootstrap.js" />
+
+
+			<h:outputStylesheet name="css/master.css" />
+
+		</f:facet>
+
+		<f:facet name="last">
+			<!--	mascaras -->
+			<h:outputScript name="js/mascaras.js" />
+		
+<!-- 			<h:outputStylesheet name="css/font-awesome.css" /> -->
+			<link href="${request.contextPath}/resources/css/font-awesome2.css" rel="stylesheet" />
+			<link href="${request.contextPath}/resources/css/dashboard.css" rel="stylesheet" />
+
+			<!-- Datepicker -->
+			<script type="text/javascript" src="${request.contextPath}/resources/bootstrap/js/bootstrap-datepicker.js"></script>
+			<link href="${request.contextPath}/resources/bootstrap/css/bootstrap-datepicker3.css" rel="stylesheet" />
+			<link href="${request.contextPath}/resources/bootstrap/css/bootstrap-datepicker3.standalone.css" rel="stylesheet" />
+			<script type="text/javascript" src="${request.contextPath}/resources/bootstrap/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+
+
+			<!-- Configurações Personalizadas -->
+			<!-- 		<h:outputStylesheet name="css/personal.css" /> -->
+			<script type="text/javascript" src="${request.contextPath}/resources/js/personal.js"></script>
+			<link href="${request.contextPath}/resources/css/personal.css" rel="stylesheet" />
+			
+			<h:outputScript name="js/primefaces.js" />
+		
+		</f:facet>
+
+	</h:head>
+
+	<h:body>
+	 <p:growl  id="grmsg" showDetail="true"  />
+	 
+	 <f:loadBundle basename="Messages" var="msg" /> 
+	 
+	 
+		<ui:include src="header.xhtml" />
+
+		<!-- Part 1: Wrap all page content here -->
+		<div id="wrap">
+
+			<!-- Begin page content -->
+			<div class="container-fluid">
+			
+			
+				
+
+				<ui:include src="content.xhtml" />
+			</div>
+			
+
+			<div id="push"></div>
+		</div>
+
+
+		<ui:include src="footer.xhtml" />
+
+
+	</h:body>
+</f:view>
+</html>

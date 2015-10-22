@@ -1,0 +1,34 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+	<h:form id="frmListaSetor" prependId="false" styleClass="form-horizontal" >
+		<b:commandButton id="btSetornovo" ajax="true" update="@this frmCadSetor" icon="glyphicon glyphicon-plus" styleClass="btn btn-default" value="" action="#{setorController.novo}" oncomplete="PF('dlg_setor').show();" />
+<!-- 	<b:commandButton id="btSetornovo" icon="glyphicon glyphicon-plus" styleClass="btn btn-default" value="" action="# { setorController.novo}"  /> -->
+	</h:form>
+
+	<p:outputPanel id="dtPapeis">
+		<h:dataTable styleClass="table table-striped" value="#{setorController.list}" var="setor">
+			<h:column id="clHeader">
+				<f:facet name="header">
+					<h:outputText value="#" />
+				</f:facet>
+				<p:commandLink value="#{setor.id}" update="@this frmCadSetor" oncomplete="PF('dlg_setor').show();" >
+					<f:setPropertyActionListener value="#{setor}" target="#{setorController.setor}" />
+				</p:commandLink>
+			</h:column>
+			<h:column id="cldescr">
+				<f:facet name="header">
+					<h:outputText value="Descrição" />
+				</f:facet>
+				<h:outputText value="#{setor.description}" />
+			</h:column>
+			
+		</h:dataTable>
+	</p:outputPanel>
+
+
+
+
+</ui:component>
+

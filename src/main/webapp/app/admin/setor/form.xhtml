@@ -1,0 +1,35 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+
+
+	
+     <b:well>
+<!--      <div class="well bs-component"> -->
+		<h:form id="frmCadSetor" prependId="false" styleClass="form-horizontal">
+			<fieldset>
+<!-- 				<legend>Perfil do Usuário</legend> -->
+
+				<div class="form-group">
+					<label for="inputDesc" class="col-lg-2 control-label">Descrição:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{setorController.setor.description}" styleClass="form-control" id="inputDesc" placeholder="Descrição" onkeydown="this.value = this.value.toUpperCase();" onkeyup="this.value = this.value.toUpperCase();" required="true" />
+						<p:message for="inputDesc" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">					
+					<p:commandButton id="btSalvarPanel" value="Salvar"  update="@this frmCadSetor dtPapeis grmsg" styleClass="btn btn-primary"  action="#{setorController.salvar}" oncomplete="if(!args.validationFailed) { PF('dlg_setor').hide(); }" />
+					<p:commandButton value="Cancelar"  update="frmCadSetor grmsg" process="@this" styleClass="btn btn-default"  action="#{setorController.novo}" oncomplete="PF('dlg_setor').hide()" />
+					</div>
+				</div>
+			</fieldset>
+	
+
+		</h:form>
+<!-- 	</div> -->
+	</b:well>
+
+</ui:component>

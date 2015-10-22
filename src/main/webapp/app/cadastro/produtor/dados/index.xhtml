@@ -1,0 +1,227 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+
+	<b:well>
+		<fieldset>
+			<p:outputPanel id="opDados">
+				<!-- 				<legend>Dados Pessoais</legend> -->
+
+				<div class="form-group">
+					<label for="inputNome" class="col-lg-1 control-label">Nome</label>
+					<div class="col-lg-11">
+						<p:inputText styleClass="form-control" id="inputNome"
+							value="#{produtorController.produtor.name}"
+							required="true" placeholder="Nome Completo"
+							label="Nome" readonly="true"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							type="text" />
+						<p:message for="inputNome" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-group col-lg-4">
+						<label for="inputCpf" class="col-lg-2 control-label">CPF:</label>
+						<div class="col-lg-11">
+							<p:inputText styleClass="form-control" id="inputCpf"
+								readonly="true"
+								value="#{produtorController.produtor.cpf}"
+								required="true" placeholder="CPF Somente números"
+								label="CPF" onkeypress="mascara(this, soNumeros)">
+								<f:validator validatorId="cpfvalidator" />
+							</p:inputText>
+							<p:message for="inputCpf" />
+						</div>
+					</div>
+					<div class="form-group col-lg-4">
+						<label for="inputEmail" class="col-lg-2 control-label">RG:</label>
+						<div class="col-lg-11">
+							<p:inputText styleClass="form-control" id="inputRG"
+								label="RG" value="#{produtorController.produtor.rg}"
+								required="true" placeholder="R. G. " type="text" />
+							<p:message for="inputRG" />
+						</div>
+					</div>
+
+					<div class="form-group col-lg-4">
+						<label for="inputExpedidor"
+							class="col-lg-2 control-label">Org.Exp.: </label>
+						<div class="col-lg-11">
+							<p:inputText styleClass="form-control"
+								value="#{produtorController.produtor.orgexp}"
+								required="true" id="inputExpedidor"
+								label="Orgão Expedidor"
+								onkeydown="this.value = this.value.toUpperCase();"
+								onkeyup="this.value = this.value.toUpperCase();"
+								placeholder="SSP" type="text" />
+							<p:message for="inputExpedidor" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+
+
+					<div class="form-group col-lg-4">
+						<label for="inputDataNasc"
+							class="col-lg-2 control-label">Dt.Nasc:</label>
+						<div class="col-lg-11">
+							<div id="datepicker2" class="input-group date">
+								<p:inputText styleClass="form-control"
+									label="Data de Nascimento"
+									value="#{produtorController.produtor.datanasc}"
+									required="true" id="inputDataNasc"
+									placeholder="dd/MM/yyyy">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:inputText>
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-th" /></span>
+
+							</div>
+							<p:message for="inputDataNasc" />
+							<script type="text/javascript">
+
+$(function() {
+	$("#datepicker2").datepicker({
+	    format: "dd/mm/yyyy",
+	    todayBtn: "linked",
+	    language: "pt-BR",
+	    autoclose: true,
+	    todayHighlight: true
+
+	});
+});
+</script>
+						</div>
+					</div>
+
+					<div class="form-group col-lg-4">
+						<label for="inputGenero"
+							class="col-lg-3 control-label">Gênero</label>
+						<div class="col-lg-10">
+							<p:selectOneMenu
+								style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
+								styleClass="form-control" required="true"
+								value="#{produtorController.produtor.genero}"
+								requiredMessage="Selecione Gênero" id="inputGenero">
+								<f:selectItem itemLabel="Selecione"
+									noSelectionOption="true" />
+								<f:selectItem itemLabel="Masculino" itemValue="M" />
+								<f:selectItem itemLabel="Feminino" itemValue="F" />
+							</p:selectOneMenu>
+							<p:message for="inputGenero" />
+						</div>
+					</div>
+					<div class="form-group col-lg-4">
+						<label for="inputFone" class="col-lg-2 control-label">Cel.:</label>
+						<div class="col-lg-11">
+							<p:inputText styleClass="form-control" id="inputFone"
+								required="true" label="Celular"
+								value="#{produtorController.produtor.phoneNumber}"
+								placeholder="Número" type="text" />
+							<p:message for="inputFone" />
+						</div>
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<label for="inputEmail" class="col-lg-1 control-label">Email</label>
+					<div class="col-lg-7">
+						<p:inputText styleClass="form-control" id="inputEmail"
+							label="E-mail"
+							value="#{produtorController.produtor.email}"
+							required="true" placeholder="xxxxxxxx@xxxxxx.xxx.br"
+							type="text" />
+						<p:message for="inputEmail" />
+					</div>
+
+				</div>
+
+				<p:outputPanel id="opEndereco">
+					<div class="form-group">
+						<label for="inputEndereco"
+							class="col-lg-1 control-label">Endereço</label>
+
+						<div class="col-lg-9">
+
+							<!-- 							<p:inputText styleClass="form-control" -->
+							<!-- 								value="# { produtorController.produtor.endereco.logradouro}" -->
+							<!-- 								id="inputEndereco" readonly="true" placeholder="Endereço" -->
+							<!-- 								type="text" /> -->
+
+							<p:inputTextarea id="inputEndProp"
+								styleClass="form-control" autoResize="false"
+								value="#{produtorController.produtor.endereco.logradouro}, #{produtorController.produtor.endereco.bairro.nome}, #{produtorController.produtor.endereco.bairro.cidade.nome}-#{produtorController.produtor.endereco.bairro.cidade.estado.sigla}"
+								onkeydown="this.value = this.value.toUpperCase();"
+								readonly="true" required="true"
+								onkeyup="this.value = this.value.toUpperCase();"
+								placeholder="Endereço" />
+							<p:message for="inendereco" />
+						</div>
+						<div class="col-lg-2">
+							<p:commandButton styleClass="btn btn-success"
+								ajax="true" id="btEndereco"
+								update="@this, frmBuscaEndProp" value="Localizar"
+								process="@this"
+								action="#{pesquisaEnderecoController.actlimpa()}"
+								icon="ui-icon-search"
+								oncomplete="PF('dlg_localidade').show()" />
+
+						</div>
+
+
+					</div>
+
+					<!-- 					<div class="form-group"> -->
+					<!-- 						<div class="form-group col-lg-3"> -->
+					<!-- 							<label for="inputBairro" class="col-lg-1 control-label">Bairro</label> -->
+					<!-- 							<div class="col-lg-12"> -->
+					<!-- 								<p:inputText styleClass="form-control" -->
+					<!-- 									value="# { produtorController.produtor.endereco.bairro.nome}" -->
+					<!-- 									id="inputBairro" readonly="true" placeholder="Endereço" -->
+					<!-- 									type="text" /> -->
+					<!-- 							</div> -->
+					<!-- 						</div> -->
+					<!-- 						<div class="form-group col-lg-8"> -->
+					<!-- 							<label for="inputCidade" class="col-lg-1 control-label">Cidade</label> -->
+					<!-- 							<div class="col-lg-12"> -->
+					<!-- 								<p:inputText styleClass="form-control" -->
+					<!-- 									value="# { produtorController.produtor.endereco.bairro.cidade.nome}" -->
+					<!-- 									id="inputCidade" readonly="true" placeholder="Endereço" -->
+					<!-- 									type="text" /> -->
+					<!-- 							</div> -->
+					<!-- 						</div> -->
+					<!-- 						<div class="form-group col-lg-1"> -->
+					<!-- 							<label for="inputUF" class="col-lg-1 control-label">UF</label> -->
+					<!-- 							<div class="col-lg-11"> -->
+					<!-- 								<p:inputText styleClass="form-control" id="inputUF" -->
+					<!-- 									value="#  {produtorController.produtor.endereco.bairro.cidade.estado.sigla}" -->
+					<!-- 									readonly="true" placeholder="UF" type="text" /> -->
+					<!-- 							</div> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
+
+					<h:inputHidden id="inendereco"
+						value="#{produtorController.produtor.endereco.logradouro}"
+						required="true"
+						requiredMessage="Endereço não Selecionado" />
+				</p:outputPanel>
+				
+			</p:outputPanel>
+
+
+		</fieldset>
+
+
+	</b:well>
+
+
+
+</ui:component>

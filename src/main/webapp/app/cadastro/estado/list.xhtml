@@ -1,0 +1,91 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<h:form id="frmPesquisaEstados" prependId="false"
+		styleClass="form-horizontal">
+
+		<p:selectOneRadio value="#{estadoController.tipopesquisa}"
+			style="width:10%;">
+			<f:selectItem itemValue="nome" itemLabel="Nome" />
+			<f:selectItem itemValue="sigla" itemLabel="Sigla" />
+			
+		</p:selectOneRadio>		
+
+			<p:inputText id="cbArg" label="Argumemento" autocomplete="off"
+				value="#{estadoController.argumento}" style="Width:60%"
+				required="true"
+				onkeydown="this.value = this.value.toUpperCase();"
+				onkeyup="this.value = this.value.toUpperCase();" />
+
+			<p:commandButton value="Localizar" icon="ui-icon-search"
+				update="frmPesquisaEstados, frmListaEstados"
+				styleClass="btn btn-success"
+				action="#{estadoController.actpesquisa()}" />
+		
+		<p:messages id="mes" showDetail="true" />
+		<p:separator />
+
+	</h:form>
+	<h:form id="frmListaEstados" prependId="false">
+		<p:outputPanel id="dtEstados">
+			<h:dataTable styleClass="table table-striped"
+				value="#{estadoController.list}" var="estado">
+				<h:column id="clActions" headerClass="colbotao">
+					<f:facet name="header">
+						<b:commandButton id="btEstadonovo" ajax="true"
+							icon="glyphicon glyphicon-plus" look="primary"
+							value="" update="@this, frmCadEstado"
+							oncomplete="PF('dlg_estado').show();"
+							action="#{estadoController.actnovo}">
+
+						</b:commandButton>
+					</f:facet>
+					<b:commandButton value="" ajax="true"
+						update="@this, frmCadEstado"
+						icon="glyphicon glyphicon-refresh" look="warning"
+						action="#{estadoController.acteditar()}"
+						oncomplete="PF('dlg_estado').show();">
+						<f:setPropertyActionListener value="#{estado}"
+							target="#{estadoController.estado}" />
+
+					</b:commandButton>
+
+				</h:column>
+				<h:column id="clHeader">
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:outputText value="#{estado.id}" />
+				</h:column>
+				<h:column id="cldescr">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{estado.nome}" />
+				</h:column>
+				<h:column id="clEstado">
+					<f:facet name="header">
+						<h:outputText value="Sigla" />
+					</f:facet>
+					<h:outputText value="#{estado.sigla}" />
+				</h:column>		
+				<h:column id="clUser"   rendered="#{p:ifGranted('ROLE_ADMIN')}">
+					<f:facet name="header">
+						<h:outputText value="User" />
+					</f:facet>
+					<h:outputText value="#{estado.user.username}" />
+				</h:column>			
+				
+			</h:dataTable>
+		</p:outputPanel>
+	</h:form>
+
+
+</ui:component>
+

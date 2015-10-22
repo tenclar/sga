@@ -1,0 +1,81 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+
+
+	<!--      <div class="well bs-component"> -->
+	<h:form id="frmCadProdutor" prependId="false"
+		styleClass="form-horizontal">
+
+
+		<p:tabView id="tabVewProdutor">
+			<p:tab title="Dados Pessoais">
+				<!-- 							 <h4 class="badge">Etapa 1 <span class="light"></span></h4> -->
+				<!--            				 <br/> -->
+
+				<ui:include src="dados/index.xhtml" />
+
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+						<p:commandButton class="btn btn-danger" value="Cancelar"
+							process="@this" update="@this, frmCadProdutor"
+							action="#{produtorController.actlimpa()}"
+							oncomplete="PF('panelList').show();PF('panelForm').close();" />
+
+						<p:commandButton class="btn btn-primary" value="Avançar"
+							oncomplete="if(!args.validationFailed){PF('panelList').show();PF('panelForm').close();}"
+							process="@this, opDados" update="opDados, frmPesquisaProdutores, grmsg"
+							action="#{produtorController.actsalvar()}" />
+					</div>
+				</div>
+
+			</p:tab>
+			<p:tab title="Propriedade">
+				<ui:include src="propriedade/index.xhtml" />
+			</p:tab>
+			<p:tab title="Produção">
+				<ui:include src="producao/index.xhtml" />
+			</p:tab>
+			<p:tab title="Ações">
+				<ui:include src="acoes/index.xhtml" />
+			</p:tab>
+		</p:tabView>
+
+
+
+
+		<!-- 					<div class="form-group"> -->
+		<!-- 						<div class="col-lg-10 col-lg-offset-3"> -->
+
+		<!-- 							<p:commandButton value="Salvar" -->
+		<!-- 								ajax="true"  -->
+
+		<!-- 								oncomplete="if(!args.validationFailed){PF('panelList').show();PF('panelForm').close();}" -->
+		<!-- 								styleClass="btn btn-primary" -->
+		<!-- 								 /> -->
+
+		<!-- 							<p:spacer width="5" /> -->
+
+		<!-- 							<p:commandButton  value="Cancelar" -->
+		<!-- 								process="@this" ajax="true" -->
+
+		<!-- 								styleClass="btn btn-danger" -->
+		<!-- 								oncomplete="  PF('panelForm').close(); PF('panelList').show(); " -->
+		<!-- 								/> -->
+
+
+
+
+		<!-- 						</div> -->
+		<!-- 					</div> -->
+
+
+
+	</h:form>
+	<!-- 	</div> -->
+
+</ui:component>

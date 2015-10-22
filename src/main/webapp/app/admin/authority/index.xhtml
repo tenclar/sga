@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui" template="/templates/default/main.xhtml">
+	<ui:define name="content">
+		<h1 class="page-header ">
+			<i class="fa fa-pencil-square-o"></i> Permissões do Usuário
+		</h1>
+
+		<b:panel id="panelAuthority">
+			<ui:include src="list.xhtml" />
+		</b:panel>
+
+
+		<!-- 		caixa de dialogo -->
+		<p:dialog header="Nova Autorização" widgetVar="dlg_authority" modal="true" styleClass="modal-dialog"  width="600" closable="true"   >
+				<ui:include src="form.xhtml" />
+			
+		</p:dialog>
+
+	</ui:define>
+
+
+</ui:composition>
+

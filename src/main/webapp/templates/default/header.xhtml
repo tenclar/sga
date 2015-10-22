@@ -1,0 +1,134 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"  
+                xmlns:sec="http://www.springframework.org/security/tags"
+                >
+                
+                
+                
+   <div class="navbar navbar-inverse navbar-fixed-top" style="z-index: 1001">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="${request.contextPath}/app/" class="navbar-brand">PGA</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          
+		  <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Cadastro <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="${request.contextPath}/app/cadastro/estado/">Estado</a></li>
+                <li><a href="${request.contextPath}/app/cadastro/cidade/">Cidade</a></li>
+                <li><a href="${request.contextPath}/app/cadastro/bairro/">Bairro</a></li>
+                <li><a href="${request.contextPath}/app/cadastro/endereco/">Endereco</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/regional/">Regional Municipal</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/regionalestadual/">Regional Estadual</a></li>       
+                <li class="divider"></li>  
+                <li><a href="#{request.contextPath}/app/cadastro/orgsocial/">Organização Social</a></li>                
+                <li><a href="#{request.contextPath}/app/cadastro/cadeiaprod/">Cadeia Produtiva</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/unmedida/">Unidade de Medida</a></li>                
+                <li class="divider"></li>  
+                <li><a href="#{request.contextPath}/app/cadastro/formento/">Categoria Formento</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/recurso/">Recurso</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/patrimonio/">Patrimônio</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/material/">Material</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/categoriamaterial/">Categoria Material</a></li>
+<!--                 <li><a href="#">Example 2</a></li> -->
+<!--                 <li><a href="#">Example 3</a></li> -->
+<!--                 <li><a href="#">Example 4</a></li> -->
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Expediente <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+              <li><a href="${request.contextPath}/app/cadastro/acoes/">Ações</a></li>
+              <li><a href="${request.contextPath}/app/cadastro/producao/">Produção</a></li>
+              	<li class="divider"></li>     
+                <li><a href="${request.contextPath}/app/cadastro/produtor/">Produtor</a></li>
+                <li><a href="${request.contextPath}/app/cadastro/propriedade/">Propriedade</a></li>
+                <li><a href="#">Formento</a></li>
+                <li class="divider"></li>  
+                <li><a href="${request.contextPath}/app/painel/">Painel</a></li>
+                <li><a href="${request.contextPath}/app/painel/">Evolução Meta</a></li>
+              </ul>
+            </li>
+             <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Relatórios <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="${request.contextPath}/app/relatorios/">Produção período</a></li>
+                <li><a href="#">Produtor investimento</a></li>
+
+              </ul>
+          	</li>
+               
+          
+            <h:panelGroup  rendered="#{p:ifGranted('ROLE_ADMIN')}" >
+              <li class="dropdown"   >
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Administração<span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="#{request.contextPath}/app/admin/usuario/">Usuário</a></li>
+                <li><a href="#{request.contextPath}/app/admin/authority/">Permissões</a></li>                 
+                  <li><a href="#{request.contextPath}/app/admin/setor/">Setor</a></li>
+                  <li><a href="#">Configurações</a></li>
+              </ul>
+            </li>
+            </h:panelGroup>
+         
+<!--             <li> -->
+<!--               <a href="#">Themes</a> -->
+<!--             </li> -->
+		  </ul>
+<!-- 		   <h:outputText value="${request.getRemoteUser()}" /> -->
+		  <ul class="nav navbar-nav navbar-right">
+		   <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">#{loginController.userLogin.username} <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="${request.contextPath}/app/perfil">Perfil</a></li>
+                <li><a href="#">Alterar Senha</a></li>                 
+                  <li><a href="#">Mensagens</a></li>
+                <li class="divider"></li>
+                <li><a href="${request.contextPath}/logout">Sair</a></li>
+                
+                
+              </ul>
+            </li>
+<!--             <li><a href="http://usebootstrap.com/" target="_blank">Use Bootstrap</a></li> -->
+<!--             <li><a href="http://usebootstrap.com/" target="_blank">Bootstrap Themes</a></li> -->
+		  </ul>
+		  
+        </div>
+      </div>
+    </div>
+                 
+<!--     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
+<!--         <div class="container-fluid"> -->
+<!--             <div class="navbar-header"> -->
+<!--                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> -->
+<!--                     <span class="sr-only">Toggle navigation</span> -->
+<!--                     <span class="icon-bar"></span> -->
+<!--                     <span class="icon-bar"></span> -->
+<!--                     <span class="icon-bar"></span> -->
+<!--                 </button> -->
+<!--                 <a class="navbar-brand" href="#">Project name</a> -->
+<!--             </div> -->
+<!--             <div class="navbar-collapse collapse"> -->
+<!--                 <ul class="nav navbar-nav navbar-right"> -->
+<!--                     <li><a href="#">Dashboard</a></li> -->
+<!--                     <li><a href="#">Settings</a></li> -->
+<!--                     <li><a href="#">Profile</a></li> -->
+<!--                     <li><a href="#">Help</a></li> -->
+<!--                 </ul> -->
+<!--                 <form class="navbar-form navbar-right"> -->
+<!--                     <input type="text" class="form-control" placeholder="Search..." /> -->
+<!--                 </form> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+</ui:composition>
+

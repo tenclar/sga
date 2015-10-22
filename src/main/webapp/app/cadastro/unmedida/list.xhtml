@@ -1,0 +1,91 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<h:form id="frmPesquisaUnidadeMedidas" prependId="false"
+		styleClass="form-horizontal">
+
+		<p:selectOneRadio value="#{unidadeMedidaController.tipopesquisa}"
+			style="width:10%;">
+			<f:selectItem itemValue="nome" itemLabel="Nome" />
+			<f:selectItem itemValue="sigla" itemLabel="Sigla" />
+			
+		</p:selectOneRadio>		
+
+			<p:inputText id="cbArg" label="Argumemento" autocomplete="off"
+				value="#{unidadeMedidaController.argumento}" style="Width:60%"
+				required="true"
+				onkeydown="this.value = this.value.toUpperCase();"
+				onkeyup="this.value = this.value.toUpperCase();" />
+
+			<p:commandButton value="Localizar" icon="ui-icon-search"
+				update="frmPesquisaUnidadeMedidas, frmListaUnidadeMedidas"
+				styleClass="btn btn-success"
+				action="#{unidadeMedidaController.actpesquisa}" />
+		
+		<p:messages id="mes" showDetail="true" />
+		<p:separator />
+
+	</h:form>
+	<h:form id="frmListaUnidadeMedidas" prependId="false">
+		<p:outputPanel id="dtUnidadeMedidas">
+			<h:dataTable styleClass="table table-striped"
+				value="#{unidadeMedidaController.list}" var="unidadeMedida">
+				<h:column id="clActions" headerClass="colbotao">
+					<f:facet name="header">
+						<b:commandButton id="btUnidadeMedidanovo" ajax="true"
+							icon="glyphicon glyphicon-plus" look="primary"
+							value="" update="@this, frmCadUnidadeMedida"
+							oncomplete=" PF('dlg_unidadeMedida').hide();PF('dlg_unidadeMedida').show();"
+							action="#{unidadeMedidaController.actnovo}">
+
+						</b:commandButton>
+					</f:facet>
+					<b:commandButton value="" ajax="true"
+						update="@this, frmCadUnidadeMedida"
+						icon="glyphicon glyphicon-refresh" look="warning"
+						action="#{unidadeMedidaController.acteditar()}"
+						oncomplete="PF('dlg_unidadeMedida').show();PF('dlg_unidadeMedida').hide()">
+						<f:setPropertyActionListener value="#{unidadeMedida}"
+							target="#{unidadeMedidaController.unidadeMedida}" />
+
+					</b:commandButton>
+
+				</h:column>
+				<h:column id="clHeader">
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:outputText value="#{unidadeMedida.id}" />
+				</h:column>
+				<h:column id="cldescr">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{unidadeMedida.nome}" />
+				</h:column>
+				<h:column id="clUnidadeMedida">
+					<f:facet name="header">
+						<h:outputText value="Sigla" />
+					</f:facet>
+					<h:outputText value="#{unidadeMedida.sigla}" />
+				</h:column>		
+				<h:column id="clUser"   rendered="#{p:ifGranted('ROLE_ADMIN')}">
+					<f:facet name="header">
+						<h:outputText value="User" />
+					</f:facet>
+					<h:outputText value="#{cidade.user.username}" />
+				</h:column>			
+				
+			</h:dataTable>
+		</p:outputPanel>
+	</h:form>
+
+
+</ui:component>
+

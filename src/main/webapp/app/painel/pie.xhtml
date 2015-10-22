@@ -1,0 +1,17 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	>
+	
+	
+	 <p:chart type="pie" model="#{chartViewInterate.pieModel1}" style="width:400px;height:300px">
+            <p:ajax event="itemSelect" listener="#{chartViewInterate.itemSelect}" update=":grmsg" />
+        </p:chart>
+	
+	
+	
+	
+</ui:composition>
+

@@ -1,0 +1,111 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<h:form id="frmPesquisaPatrimonios" prependId="false"
+		styleClass="form-horizontal">
+
+		<p:selectOneRadio value="#{patrimonioController.tipopesquisa}"
+			style="width:10%;">
+			<f:selectItem itemValue="nome" itemLabel="Nome" />
+			<f:selectItem itemValue="sigla" itemLabel="Sigla" />
+			
+		</p:selectOneRadio>		
+
+			<p:inputText id="cbArg" label="Argumemento" autocomplete="off"
+				value="#{patrimonioController.argumento}" style="Width:60%"
+				required="true"
+				onkeydown="this.value = this.value.toUpperCase();"
+				onkeyup="this.value = this.value.toUpperCase();" />
+
+			<p:commandButton value="Localizar" icon="ui-icon-search"
+				update="frmPesquisaPatrimonios, frmListaPatrimonios"
+				styleClass="btn btn-success"
+				action="#{patrimonioController.actpesquisa}" />
+		
+		<p:messages id="mes" showDetail="true" />
+		<p:separator />
+
+	</h:form>
+	<h:form id="frmListaPatrimonios" prependId="false">
+		<p:outputPanel id="dtPatrimonios">
+			<h:dataTable styleClass="table table-striped"
+				value="#{patrimonioController.list}" var="patrimonio">
+				<h:column id="clActions" headerClass="colbotao">
+					<f:facet name="header">
+						<b:commandButton id="btPatrimonionovo" ajax="true"
+							icon="glyphicon glyphicon-plus" look="primary"
+							value="" update="@this, frmCadPatrimonio"
+							oncomplete=" PF('dlg_patrimonio').hide();PF('dlg_patrimonio').show();"
+							action="#{patrimonioController.actnovo}">
+
+						</b:commandButton>
+					</f:facet>
+					<b:commandButton value="" ajax="true"
+						update="@this, frmCadPatrimonio"
+						icon="glyphicon glyphicon-refresh" look="warning"
+						action="#{patrimonioController.acteditar()}"
+						oncomplete="PF('dlg_patrimonio').show();PF('dlg_patrimonio').hide()">
+						<f:setPropertyActionListener value="#{patrimonio}"
+							target="#{patrimonioController.patrimonio}" />
+
+					</b:commandButton>
+
+				</h:column>
+				<h:column id="clHeader">
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:outputText value="#{patrimonio.id}" />
+				</h:column>
+				<h:column id="cldescr">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{patrimonio.name}" />
+				</h:column>
+				<h:column id="clDescricao">
+					<f:facet name="header">
+						<h:outputText value="Descricao" />
+					</f:facet>
+					<h:outputText value="#{patrimonio.description}" />
+				</h:column>	
+				<h:column id="clMaterial">
+					<f:facet name="header">
+						<h:outputText value="Material" />
+					</f:facet>
+					<h:outputText value="#{patrimonio.material.name}" />
+				</h:column>		
+<!-- 				<h:column id="clQuantidade"> -->
+<!-- 					<f:facet name="header"> -->
+<!-- 						<h:outputText value="Quantidade" /> -->
+<!-- 					</f:facet> -->
+<!-- 					<h:outputText value="#{patrimonio.quantidade}" /> -->
+<!-- 				</h:column>		 -->
+				<h:column id="clTipo">
+					<f:facet name="header">
+						<h:outputText value="Tipo" />
+					</f:facet>
+					<h:outputText value="#{patrimonio.quantidade}" />
+				</h:column>		
+					
+				
+				<h:column id="clUser"   rendered="#{p:ifGranted('ROLE_ADMIN')}">
+					<f:facet name="header">
+						<h:outputText value="User" />
+					</f:facet>
+					<h:outputText value="#{patrimonio.user.username}" />
+				</h:column>			
+				
+			</h:dataTable>
+		</p:outputPanel>
+	</h:form>
+
+
+</ui:component>
+

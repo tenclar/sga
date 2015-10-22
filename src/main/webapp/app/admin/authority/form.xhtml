@@ -1,0 +1,42 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+
+
+	
+     <b:well>
+<!--      <div class="well bs-component"> -->
+		<h:form id="frmCadPermission" prependId="false" styleClass="form-horizontal">
+		
+			<fieldset>
+<!-- 				<legend>Perfil do Usuário</legend> -->
+
+				<div class="form-group">
+					<label for="inputDesc" class="col-lg-2 control-label">Descrição:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{permissionController.authority.description}" styleClass="form-control" onkeydown="this.value = this.value.toUpperCase();" onkeyup="this.value = this.value.toUpperCase();" id="inputDesc" placeholder="Descrição" required="true" />
+						<p:message for="inputDesc" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputNivel" class="col-lg-2 control-label">Autorização:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{permissionController.authority.authority}"  styleClass="form-control" onkeydown="this.value = this.value.toUpperCase();" onkeyup="this.value = this.value.toUpperCase();"  id="inputNivel" placeholder=" ROLE_ " required="true" />
+							<p:message for="inputNivel" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+					<p:commandButton value="Cancelar"  update="frmCadPermission" process="@this" styleClass="btn btn-default"  actionListener="#{permissionController.novo}" oncomplete="PF('dlg_permission').hide()" />
+					<p:commandButton id="btSalvar" value="Salvar"  update="frmCadPermission dtPermission" styleClass="btn btn-primary"  action="#{permissionController.salvar}" oncomplete="if(!args.validationFailed) { PF('dlg_permission').hide(); }" />
+					</div>
+				</div>
+			</fieldset>
+	
+
+		</h:form>
+<!-- 	</div> -->
+	</b:well>
+
+</ui:component>

@@ -1,0 +1,84 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+	<b:well>
+
+		<p:panel header="Analise Solo">
+						<h:dataTable styleClass="table table-striped" value="#{dados}"
+							var="equip">
+							<h:column headerClass="colbotao">
+								<f:facet name="header">
+									<b:commandButton id="btRegionalnovo" ajax="true"
+										icon="glyphicon glyphicon-plus" look="primary" value=""
+										update="@this">
+
+									</b:commandButton>
+								</f:facet>
+								<b:commandButton value="" ajax="true" update="@this"
+									icon="glyphicon glyphicon-refresh" look="warning">
+
+
+								</b:commandButton>
+
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Data" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+							<h:column id="cldescr">
+								<f:facet name="header">
+									<h:outputText value="Local" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Calcario(t)" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Aplicado" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Adubo" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="aplicado" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="aplicado" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Uréia" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="aplicado" />
+								</f:facet>
+								<h:outputText value="#{equip}" />
+							</h:column>
+						</h:dataTable>
+					</p:panel>
+	</b:well>
+</ui:component>

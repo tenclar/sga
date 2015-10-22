@@ -1,0 +1,138 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+	<b:well>
+
+<!-- 		<h:form id="frmCadRegionalMunicipal" prependId="false" -->
+<!-- 			styleClass="form-horizontal"> -->
+
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Propriedade:</label>
+					<div class="col-lg-8">
+						<p:inputText readonly="true" styleClass="form-control" />
+
+					</div>
+					<div class="col-lg-1">
+						<p:commandButton icon="ui-icon-search" />
+					</div>
+				</div>
+							<fieldset>
+
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Produção:</label>
+					<div class="col-lg-8">
+						<p:inputText readonly="true" styleClass="form-control" />
+
+					</div>
+					<div class="col-lg-1">
+						<p:commandButton icon="ui-icon-search" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Data Inicio:</label>
+					<div class="col-lg-10">
+						<p:calendar styleClass="form-control"
+						
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();" required="true" />
+
+
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Data Fim:</label>
+					<div class="col-lg-10">
+						<p:calendar styleClass="form-control" 
+						
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();" required="true" />
+
+
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-lg-2 control-label">Descrição:</label>
+					<div class="col-lg-10">
+						<p:inputTextarea styleClass="form-control"
+							onkeypress="mascara(this, uppercase)"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();" required="true" />
+
+					</div>
+				</div>
+
+				
+
+				
+
+		<p:separator />
+				<p:panel header="Anexos ">
+					<h:dataTable styleClass="table table-striped" value="#{dados}"
+						var="equip">
+						<h:column headerClass="colbotao">
+							<f:facet name="header">
+								<b:commandButton  ajax="true"
+									icon="glyphicon glyphicon-plus" look="primary" value=""
+									oncomplete="PF('dlg_anexos_acao').show()"
+									update="@this">
+
+								</b:commandButton>
+							</f:facet>
+							<b:commandButton value="" ajax="true" update="@this"
+								icon="glyphicon glyphicon-refresh" look="warning">
+							</b:commandButton>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#" />
+							</f:facet>
+							<h:outputText value="#{equip}" />
+						</h:column>
+						<h:column id="cldescr">
+							<f:facet name="header">
+								<h:outputText value="Arquivo" />
+							</f:facet>
+							<h:outputText value="#{equip}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Descricao" />
+							</f:facet>
+							<h:outputText value="#{equip}" />
+						</h:column>
+					</h:dataTable>
+				</p:panel>
+
+		<p:messages id="msgs_acao" showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton  value="Salvar" ajax="true"
+							update="@this"
+							oncomplete="PF('panelForm_acao').close();PF('panelList_acao').show();"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton  value="Cancelar" immediate="true"
+							styleClass="btn btn-danger"
+							oncomplete="PF('panelForm_acao').close();PF('panelList_acao').show();" />
+
+
+
+
+					</div>
+				</div>
+			</fieldset>
+
+
+<!-- 		</h:form> -->
+	</b:well>
+</ui:component>

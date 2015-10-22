@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/default/main.xhtml">
+
+
+	<ui:define name="content">
+
+		<h2 class="page-header ">
+			<i class="fa fa-pencil-square-o"></i> Cadastro Produtor
+		</h2>
+
+
+
+
+		<p:panel widgetVar="panelForm" visible="false" closable="true"
+			closeSpeed="10">
+			<ui:include src="form.xhtml" />
+		</p:panel>
+
+
+		<p:panel widgetVar="panelList" visible="true" closable="true">
+			<ui:include src="list.xhtml" />
+		</p:panel>
+
+
+
+
+		<!-- 		caixa de dialogo -->
+		
+			<p:dialog widgetVar="dlg_new_produtor" header="Novo Produtor" modal="true"
+			closable="true" resizable="false" position="center" width="600"
+			minHeight="500">
+			<ui:include src="new.xhtml" />
+		</p:dialog>
+		
+		<p:dialog widgetVar="dlg_localidade" header="Localizar Endereço"
+			closable="true" resizable="true" position="top" width="800"
+			minHeight="400">
+			<ui:include src="localidade/index.xhtml" />
+		</p:dialog>
+		
+		<p:dialog widgetVar="dlg_propriedade" header="nova Propriedade"
+			closable="true" resizable="false" position="top" width="1000">
+			<ui:include src="propriedade/form.xhtml" />
+		</p:dialog>
+		
+		
+		<p:dialog widgetVar="dlg_loc_prop" header="Localizar Endereço"
+			closable="true" resizable="false" position="top" width="1000"  height="500" >
+			<ui:include src="propriedade/localidade/index.xhtml" />
+		</p:dialog>
+		
+			<p:dialog widgetVar="dlg_anexos_acao" header="Anexos"
+			closable="true" resizable="false" position="top" width="500"  height="300" >
+			<ui:include src="acoes/anexos.xhtml" />
+		</p:dialog>
+		
+
+
+		<!-- 		<b:modal id="amodal" title="Endereço" -->
+		<!-- 			styleClass="modalPseudoClass" closable="false" -->
+		<!-- 			close-on-escape="false" backdrop="false"> -->
+		<!-- 			<p>Consulta de Endereço</p> -->
+
+		<!-- 			<f:facet name="footer"> -->
+		<!-- 				<b:button id="btModalClose" value="close" -->
+		<!-- 					dismiss="modal" onclick="return false;" /> -->
+		<!-- 				<b:button id="btModalOk" value="Ok" look="primary" -->
+		<!-- 					dismiss="modal" onclick="return false;" /> -->
+		<!-- 			</f:facet> -->
+		<!-- 		</b:modal> -->
+
+
+
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/default/main.xhtml">
+	<ui:define name="content">
+		<!-- 		<h1 class="page-header "> -->
+		<!-- 			<i class="fa fa-tachometer"></i> Dashboard -->
+		<!-- 		</h1> -->
+		<div class="page-header">
+			<h3>
+				<i class="fa fa-bar-chart"></i> <i class="fa fa-line-chart"></i>
+				Painel
+			</h3>
+		</div>
+
+		<!-- 	<p class="lead">Plataforma de Gestão Agropecuária</p> -->
+
+		<!-- 		<div style="height:500px;width: 100%; "> -->
+		<p:panel>
+			<h:form>
+				<!--         <p:growl id="msgs" showDetail="true" /> -->
+
+				<p:dashboard id="board" model="#{dashboardView.model}" 
+					>
+					<p:ajax event="reorder" listener="#{dashboardView.handleReorder}"
+						update=":grmsg" />
+
+
+					<p:panel id="sports" header="Investimentos">
+						<h:outputText value="Sports Content" />
+						<ui:include src="bar.xhtml" />
+
+					</p:panel>
+
+					<p:panel id="finance" header="Financeiro">
+						<h:outputText value="Finance Content" />
+						<ui:include src="pie.xhtml" />
+					</p:panel>
+
+					<p:panel id="lifestyle" header="Produção Agrícola">
+						<h:outputText value="Lifestyle Content" />
+						<ui:include src="line.xhtml" />
+					</p:panel>
+
+					<p:panel id="weather" header="Evolução Anual"  >
+						<h:outputText value="Weather Content" />]
+               <ui:include src="combinate.xhtml" />
+					</p:panel>
+
+					<p:panel id="politics" header="Cadeias produtivas">
+						<h:outputText value="Politics Content" />
+						<p:chart type="line" model="#{chartView.areaModel}" style="width:400px;" />
+						<!--                 <ui:include src="line2.xhtml" /> -->
+					</p:panel>
+				</p:dashboard>
+
+				<div style="clear: both" />
+			</h:form>
+			<!-- </div> -->
+
+
+		</p:panel>
+
+
+
+	</ui:define>
+</ui:composition>
+
