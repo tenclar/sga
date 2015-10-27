@@ -66,7 +66,7 @@ public class ProdutorController extends BaseController {
 	}
 
 	public void handleSelectPesquisa() {
-
+		actlimpa();
 		if ("cpf".equals(this.tipopesquisa)) {
 			pesquisacpf = true;
 			pesquisacnpj = false;
@@ -89,7 +89,7 @@ public class ProdutorController extends BaseController {
 			this.argumento = new String();
 
 		}
-		actlimpa();
+		
 	}
 
 	public void handleSelectTipoPessoa() {
@@ -211,6 +211,9 @@ public class ProdutorController extends BaseController {
 				this.list = this.produtorService.findListByNameLike(argumento);
 			}
 			if ("cpf".equals(this.tipopesquisa)) {
+				this.list = this.produtorService.findListByCpf(argumento);
+			}
+			if ("cnpj".equals(this.tipopesquisa)) {
 				this.list = this.produtorService.findListByCpf(argumento);
 			}
 

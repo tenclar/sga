@@ -26,10 +26,12 @@
 
 		<p:outputPanel id="opTipo">
 
-			<p:inputText id="cbNome" label="Nome" autocomplete="off"
+			<p:inputText id="cbNome" 
+			    label="Nome" autocomplete="off"
 				style="width:60%;" required="true"
 				onkeydown="this.value = this.value.toUpperCase();"
 				onkeyup="this.value = this.value.toUpperCase();"
+				value="#{produtorController.argumento}"
 				rendered="#{produtorController.pesquisanome}" />
 
 			<p:inputText id="arCpf" label="Campo CPF"
@@ -37,17 +39,21 @@
 				onkeyup="this.value = this.value.toUpperCase();"
 				required="true" maxlength="11"
 				onkeypress="mascara(this, soNumeros)"
+				value="#{produtorController.argumento}"
 				rendered="#{produtorController.pesquisacpf}">
 				<f:validator validatorId="cpfvalidator" />
 
 			</p:inputText>
 
-			<p:inputText id="arCnpj" label="Campo CNPJ"
-				autocomplete="off" style="width:30%;"
+			<p:inputText id="arCnpj" 
+				label="Campo CNPJ"
+				autocomplete="off" 
+				style="width:30%;"
 				onkeyup="this.value = this.value.toUpperCase();"
 				required="true" maxlength="11"
 				onkeypress="mascara(this, soNumeros)"
-				rendered="#{produtorController.pesquisacnpj}">
+				value="#{produtorController.argumento}"					
+				rendered="#{produtorController.pesquisacnpj}" >
 				<f:validator validatorId="cnpjvalidator" />
 
 			</p:inputText>
@@ -76,14 +82,14 @@
 					<f:facet name="header">
 						<b:commandButton id="btProdNovo" ajax="true"
 							icon="glyphicon glyphicon-plus" look="primary"
-							value="" update="@this, frmNewProdutor"
+							value="" update="@this, frmNewProdutor" title="Novo"
 							oncomplete="PF('dlg_new_produtor').show();"
 							action="#{produtorController.actnovo}">
 
 						</b:commandButton>
 					</f:facet>
 					<b:commandButton value="" ajax="true"
-						update="@this, frmCadProdutor"
+						update="@this, frmCadProdutor" title="Editar"
 						icon="glyphicon glyphicon-refresh" look="warning"
 						action="#{produtorController.acteditar()}"
 						oncomplete="PF('panelForm').show(); PF('panelList').close()">

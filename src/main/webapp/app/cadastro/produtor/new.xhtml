@@ -35,7 +35,7 @@
 					<p:inputText styleClass="form-control" id="inputCpfNew"
 						value="#{produtorController.produtor.cpf}"
 						required="true" placeholder="CPF Somente números"
-						maxlength="11" label="CPF"
+						maxlength="11" label="CPF" autocomplete="false"
 						onkeypress="mascara(this, soNumeros)"
 						rendered="#{produtorController.tipopessoafisica}">
 

@@ -8,13 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import br.gov.ac.seap.pga.model.Produtor;
 
+
 @Repository
 public interface ProdutorRepository extends CrudRepository<Produtor, Integer> {
 
 	Produtor findById(Long arg0);
 	Produtor findByCpf(String arg0);
 	Produtor findByName(String arg0);
-	List<Produtor> findByCpfOrderByCpfDesc(String arg0);
+	List<Produtor> findByCpfOrderByIdDesc(String arg0);
 	List<Produtor> findByNameLike(String arg0);	
 	List<Produtor> findAll(Sort sort);
 	

@@ -50,7 +50,7 @@
 						<!-- <p:commandButton process="@this" tabindex="2" value="+" -->
 						<!-- 						oncomplete=" dlgEndereco.show() " -->
 						<!-- 						action=" # { enderecoBean.newEnd ( enderecoBean. pesquisaEstado, enderecoBean pesquisaCidade, enderecoBean .buscaendereco ) }" /> -->
-						<h:panelGrid columns="3">
+						<h:panelGrid columns="4">
 							<h:outputText value="logradouro: " />
 							<p:inputText value="#{pesquisaEnderecoController.argumento}"
 								style="width:360px"
@@ -58,12 +58,16 @@
 								requiredMessage="Campo em Branco" label="Campo de Busca">
 								<f:validateLength minimum="3" />
 							</p:inputText>
+							
 							<p:commandButton id="itBuscaend" tabindex="0"
 								process="@this, opbuscaend , listaloc" value="Localizar"
 								actionListener="#{pesquisaEnderecoController.actpesquisa()}"
 								update="@this, opBuscaEndInsert, dtListaEndereco"
 								icon="ui-icon-search" />
-
+							<p:commandButton process="@this" tabindex="2" value="+" 
+							oncomplete="PF('dlg_logradouro').hide();"
+							 update=":FrmCadEndreco" 
+							 action="#{enderecoController.actnovo(pesquisaEnderecoController.estado,pesquisaEnderecoController.cidade,pesquisaEnderecoController.argumento)}" />
 
 
 						</h:panelGrid>

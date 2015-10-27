@@ -38,12 +38,9 @@ public class EnderecoController extends BaseController {
 	private CidadeService cidadeService;
 	@Autowired
 	private BairroService bairroService;
-	
+
 	@Autowired
 	private EnderecoService enderecoService;
-
-	
-	
 
 	private Estado estadoselect;
 	private Cidade cidadeselect;
@@ -83,15 +80,13 @@ public class EnderecoController extends BaseController {
 	}
 
 	public void handleEstadoChange() {
-		
 
-		
-		 if (estadoselect.getId() != 0L) {
-		 this.listaselectcidade = this.cidadeService.findListByEstado(this.estadoselect);
-		 } else {
-		 this.listaselectcidade = null;
-		 this.getSelectItemsCidade().clear();
-		 }
+		if (estadoselect.getId() != 0L) {
+			this.listaselectcidade = this.cidadeService.findListByEstado(this.estadoselect);
+		} else {
+			this.listaselectcidade = null;
+			this.getSelectItemsCidade().clear();
+		}
 
 	}
 
@@ -108,19 +103,18 @@ public class EnderecoController extends BaseController {
 		}
 		return toReturn;
 	}
-	
-	public void handleCidadeChange() {
-		
 
-		
-		 if (cidadeselect.getId() != 0L) {
-		 this.listaselectbairro = this.bairroService.findListByCidade(this.cidadeselect);
-		 } else {
-		 this.listaselectbairro = null;
-		 this.getSelectItemsBairro().clear();
-		 }
+	public void handleCidadeChange() {
+
+		if (cidadeselect.getId() != 0L) {
+			this.listaselectbairro = this.bairroService.findListByCidade(this.cidadeselect);
+		} else {
+			this.listaselectbairro = null;
+			this.getSelectItemsBairro().clear();
+		}
 
 	}
+
 	public List<SelectItem> getSelectItemsBairro() {
 		List<SelectItem> toReturn = new LinkedList<SelectItem>();
 		Bairro b = new Bairro();
@@ -147,8 +141,24 @@ public class EnderecoController extends BaseController {
 			this.actlimpa();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error")
-					+ e.getMessage());
+			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+		}
+
+	}
+	
+	public void actsalvarLogradouro() {
+		facesUtils = new FacesUtils();
+		try {
+
+			this.endereco.setUser(getUser());
+			this.enderecoService.save(endereco);
+
+			facesUtils.info(facesUtils.mensages("message.save.success"));
+
+			this.actlimpa();
+			this.actpesquisa();
+		} catch (Exception e) {
+			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
 		}
 
 	}
@@ -170,12 +180,22 @@ public class EnderecoController extends BaseController {
 		this.setActionstate(EnumActionState.PESQUISA);
 	}
 
+	public void actnovo(Estado e, Cidade c, String logradouro) {
+		this.actnovo();
+		if ((e != null) || (c != null)) {
+			this.endereco.getBairro().getCidade().setEstado(e);
+			this.handleEstadoChange();
+			this.endereco.getBairro().setCidade(c);
+			this.endereco.setLogradouro(logradouro);
+		}
+	}
+
 	public void actlimpa() {
 		// facesUtils = new FacesUtils();
 		this.endereco = new Endereco();
 		this.estadoselect = new Estado();
 		this.listaselectcidade = null;
-		
+
 		this.list = null;
 
 		// facesUtils.cleanSubmittedValues(form);
@@ -194,13 +214,13 @@ public class EnderecoController extends BaseController {
 
 			if ("nome".equals(this.tipopesquisa)) {
 				this.list = this.enderecoService.findListByLogradouroLike(argumento);
-			}			
+			}
 
 			if (list.isEmpty()) {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("search.not.found")	);
+			facesUtils.erro(facesUtils.mensages("search.not.found"));
 		}
 
 	}
@@ -221,8 +241,6 @@ public class EnderecoController extends BaseController {
 		return EnumActionState.FORM.equals(actionstate);
 	}
 
-	
-
 	public Bairro getBairroselect() {
 		return bairroselect;
 	}
@@ -231,8 +249,6 @@ public class EnderecoController extends BaseController {
 		this.bairroselect = bairroselect;
 	}
 
-	
-	
 	public Cidade getCidadeselect() {
 		return cidadeselect;
 	}

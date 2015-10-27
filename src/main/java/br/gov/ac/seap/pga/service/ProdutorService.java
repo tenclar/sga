@@ -31,7 +31,7 @@ public class ProdutorService {
 	
 	
 	public List<Produtor> findListByCpf(String arg0){
-		return this.produtorRepository.findByCpfOrderByCpfDesc(arg0);
+		return this.produtorRepository.findByCpfOrderByIdDesc(arg0);
 	}
 	public List<Produtor> findListByNameLike(String fullname){
 		fullname = "%"+fullname+"%";
