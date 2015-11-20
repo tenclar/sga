@@ -16,6 +16,7 @@
 		<class>br.gov.ac.seap.pga.model.Cidade</class>
 		<class>br.gov.ac.seap.pga.model.Endereco</class>
 		<class>br.gov.ac.seap.pga.model.Estado</class>
+		<class>br.gov.ac.seap.pga.model.MaoDeObra</class>
 		<class>br.gov.ac.seap.pga.model.Material</class>
 		<class>br.gov.ac.seap.pga.model.Ocupacao</class>
 		<class>br.gov.ac.seap.pga.model.OrganizacaoSocial</class>
@@ -31,13 +32,17 @@
 		<class>br.gov.ac.seap.pga.model.RegionalMunicipal</class>
 		<class>br.gov.ac.seap.pga.model.ServicoMecanizacao</class>
 		<class>br.gov.ac.seap.pga.model.Setor</class>
+		<class>br.gov.ac.seap.pga.model.TipoAdubo</class>
+		<class>br.gov.ac.seap.pga.model.TipoPreparoArea</class>
+		<class>br.gov.ac.seap.pga.model.Topografia</class>
 		<class>br.gov.ac.seap.pga.model.UnidadeMedida</class>
-		<class>br.gov.ac.seap.pga.model.User</class>	
+		<class>br.gov.ac.seap.pga.model.User</class>
+		<class>br.gov.ac.seap.pga.model.Vegetacao</class>	
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+<!-- 			<property name="hibernate.show_sql" value="true" /> -->
+<!-- 			<property name="hibernate.format_sql" value="true" /> -->
 <!-- 			<property name="hibernate.transaction.flush_before_completion"	value="true" /> -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

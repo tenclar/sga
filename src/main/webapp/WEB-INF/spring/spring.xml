@@ -8,8 +8,17 @@
 	<!-- Basic Configurations -->
 	<context:annotation-config />
 
-	<context:component-scan base-package="br.gov.ac.seap.pga"
-		 />
+	<context:component-scan base-package="br.gov.ac.seap.pga" />
+
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="view">
+					<bean class="br.gov.ac.seap.pga.util.ViewScope" />
+				</entry>
+			</map>
+		</property>
+	</bean>
 
 
 	<!-- SpringMVC -->

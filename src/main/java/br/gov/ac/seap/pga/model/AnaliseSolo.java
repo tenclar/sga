@@ -45,17 +45,15 @@ public class AnaliseSolo implements Serializable {
 	private Producao producao;
 	
 	
-	@NotNull
-	@Column(name = "calcario", precision = 4, scale = 2) 
-	private BigDecimal calcario;
+	@ManyToOne
+	@JoinColumn(name="tipoadubo_id")
+	private TipoAdubo tipoadubo;
 	
 	@NotNull
 	@Column(name = "aplicado", precision = 4, scale = 2) 
 	private BigDecimal aplicado;
 	
-	@NotNull
-	@Column(name = "ureia", precision = 4, scale = 2) 
-	private BigDecimal ureia;
+	
 
 	public Long getId() {
 		return id;
@@ -105,13 +103,7 @@ public class AnaliseSolo implements Serializable {
 		this.producao = producao;
 	}
 
-	public BigDecimal getCalcario() {
-		return calcario;
-	}
-
-	public void setCalcario(BigDecimal calcario) {
-		this.calcario = calcario;
-	}
+	
 
 	public BigDecimal getAplicado() {
 		return aplicado;
@@ -121,13 +113,15 @@ public class AnaliseSolo implements Serializable {
 		this.aplicado = aplicado;
 	}
 
-	public BigDecimal getUreia() {
-		return ureia;
+	public TipoAdubo getTipoadubo() {
+		return tipoadubo;
 	}
 
-	public void setUreia(BigDecimal ureia) {
-		this.ureia = ureia;
+	public void setTipoadubo(TipoAdubo tipoadubo) {
+		this.tipoadubo = tipoadubo;
 	}
+
+	
 	
 	
 	

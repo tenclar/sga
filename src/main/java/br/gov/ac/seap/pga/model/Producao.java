@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +23,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import br.gov.ac.seap.pga.enumerator.EnumState;
 
 
 @Entity
@@ -34,7 +38,7 @@ public class Producao implements Serializable {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar datacad;
+	private Calendar datacad = Calendar.getInstance();
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -42,41 +46,40 @@ public class Producao implements Serializable {
 
 	@NotNull
 	private String descricao;	
-	/**
-	 * já produsiu
-	 * 
-	 */
-	@NotNull
-	private boolean produziu;
 
-	@NotNull	
-	private int anos;
+
+	private int tempouso;
+	
+	
 	
 	@NotNull
 	@Column(name = "area", precision = 4, scale = 2)
 	private BigDecimal area;
 
 
-	@NotNull
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private  EnumState status = EnumState.ATIVO;
 	
+	@ManyToOne
+	@JoinColumn(name="topografia_id")
+	private Topografia topografia;
 	
-	private String maodeobra;
+	@ManyToOne
+	@JoinColumn(name="maodeobra_id")
+	private MaoDeObra maodeobra;
 	
+	@ManyToOne
+	@JoinColumn(name="tipopreparoarea_id")
+	private TipoPreparoArea tipopreparoarea;
 
-	/**
-	 * campo , capoeira, mata , outros
-	 * 
-	 */
-	private String vegetacao;
+	@ManyToOne
+	@JoinColumn(name="vegetacao_id")
+	private Vegetacao vegetacao;
 	
-	private int tempouso;
 	
-	private OrganizacaoSocial organizacaosocial;
-
-
-	@NotNull
-	private String plantio;
+	@ManyToOne
+	@JoinColumn(name="organizacaosocial_id")
+	private OrganizacaoSocial organizacaosocial;	
 
 	@ManyToOne
 	@JoinColumn(name = "unidademedida_id")
@@ -123,21 +126,7 @@ public class Producao implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public boolean isProduziu() {
-		return produziu;
-	}
 
-	public void setProduziu(boolean produziu) {
-		this.produziu = produziu;
-	}
-
-	public int getAnos() {
-		return anos;
-	}
-
-	public void setAnos(int anos) {
-		this.anos = anos;
-	}
 
 	public BigDecimal getArea() {
 		return area;
@@ -147,27 +136,39 @@ public class Producao implements Serializable {
 		this.area = area;
 	}
 
-	public String getStatus() {
+	
+
+	public EnumState getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(EnumState status) {
 		this.status = status;
 	}
 
-	public String getMaodeobra() {
+	public TipoPreparoArea getTipopreparoarea() {
+		return tipopreparoarea;
+	}
+
+	public void setTipopreparoarea(TipoPreparoArea tipopreparoarea) {
+		this.tipopreparoarea = tipopreparoarea;
+	}
+
+
+
+	public MaoDeObra getMaodeobra() {
 		return maodeobra;
 	}
 
-	public void setMaodeobra(String maodeobra) {
+	public void setMaodeobra(MaoDeObra maodeobra) {
 		this.maodeobra = maodeobra;
 	}
 
-	public String getVegetacao() {
+	public Vegetacao getVegetacao() {
 		return vegetacao;
 	}
 
-	public void setVegetacao(String vegetacao) {
+	public void setVegetacao(Vegetacao vegetacao) {
 		this.vegetacao = vegetacao;
 	}
 
@@ -187,13 +188,7 @@ public class Producao implements Serializable {
 		this.organizacaosocial = organizacaosocial;
 	}
 
-	public String getPlantio() {
-		return plantio;
-	}
 
-	public void setPlantio(String plantio) {
-		this.plantio = plantio;
-	}
 
 	public UnidadeMedida getUnidademedida() {
 		return unidademedida;
@@ -244,6 +239,15 @@ public class Producao implements Serializable {
 	}
 	
 	
+	
+	public Topografia getTopografia() {
+		return topografia;
+	}
+
+	public void setTopografia(Topografia topografia) {
+		this.topografia = topografia;
+	}
+
 	public User getUser() {
 		return user;
 	}

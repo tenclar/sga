@@ -48,20 +48,20 @@ public class Propriedade implements Serializable{
 		
 	
 	
-	@Column(name = "areatotal", precision = 4, scale = 2) 
+	@Column(name = "areatotal", precision = 20, scale = 2) 
 	private BigDecimal areatotal;
 	
 	@ManyToOne
 	@JoinColumn(name="produtor_id")
-	private Produtor produtor  = new Produtor();
+	private Produtor produtor  ;
 	
 	@ManyToOne
 	@JoinColumn(name="endereco_id")
-	private Endereco endereco = new Endereco();	
+	private Endereco endereco ;	
 
 	@ManyToOne
 	@JoinColumn(name="ocupacao_id")
-	private Ocupacao ocupacao = new Ocupacao();
+	private Ocupacao ocupacao ;
 	
 	
 	@ManyToOne
@@ -199,6 +199,35 @@ public class Propriedade implements Serializable{
 		this.user = user;
 	}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Propriedade other = (Propriedade) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	
+	
 
 	
 	

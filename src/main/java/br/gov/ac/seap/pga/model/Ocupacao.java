@@ -18,6 +18,7 @@ package br.gov.ac.seap.pga.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,23 +42,17 @@ public class Ocupacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Calendar datacad;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date datacad = new Date();
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	private User user;
-	
+	private User user;	
 
-	@NotNull	
-	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")	
+	
 	private String name;
 	
-
-	
-	
-
 	public Long getId() {
 		return id;
 	}
@@ -82,15 +77,41 @@ public class Ocupacao implements Serializable {
 		this.user = user;
 	}
 
-	
-
-	public Calendar getDatacad() {
+	public Date getDatacad() {
 		return datacad;
 	}
 
-	public void setDatacad(Calendar datacad) {
+	public void setDatacad(Date datacad) {
 		this.datacad = datacad;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((datacad == null) ? 0 : datacad.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ocupacao other = (Ocupacao) obj;
+		if (datacad == null) {
+			if (other.datacad != null)
+				return false;
+		} else if (!datacad.equals(other.datacad))
+			return false;
+		return true;
+	}
+
+	
+
 	
 	
 }

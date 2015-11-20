@@ -10,7 +10,12 @@
 	<h:form id="frmPesquisaCadeiaProdutivas" prependId="false"
 		styleClass="form-horizontal">
 
-		
+			<p:selectOneRadio value="#{cadeiaProdutivaController.tipopesquisa}"
+			style="width:10%;">
+			<f:selectItem itemValue="nome" itemLabel="Nome" />
+			<f:selectItem itemValue="descricao" itemLabel="Descrição" />
+			
+		</p:selectOneRadio>		
 
 			<p:inputText id="cbArg" label="Argumemento" autocomplete="off"
 				value="#{cadeiaProdutivaController.argumento}" style="Width:60%"
@@ -30,7 +35,7 @@
 	<h:form id="frmListaCadeiaProdutivas" prependId="false">
 		<p:outputPanel id="dtCadeiaProdutivas">
 			<h:dataTable styleClass="table table-striped"
-				value="#{cadeiPprodutivaController.list}" var="cadeiaprodutiva">
+				value="#{cadeiaProdutivaController.list}" var="cadeiaprodutiva">
 				<h:column id="clActions" headerClass="colbotao">
 					<f:facet name="header">
 						<b:commandButton id="btCadeiaProdutivanovo" ajax="true"
@@ -62,19 +67,19 @@
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
-					<h:outputText value="#{cadeiaprodutiva.nome}" />
+					<h:outputText value="#{cadeiaprodutiva.name}" />
 				</h:column>
 				<h:column id="clCadeiaProdutiva">
 					<f:facet name="header">
 						<h:outputText value="Sigla" />
 					</f:facet>
-					<h:outputText value="#{cadeiaprodutiva.sigla}" />
+					<h:outputText value="#{cadeiaprodutiva.descricao}" />
 				</h:column>		
 				<h:column id="clUser"   rendered="#{p:ifGranted('ROLE_ADMIN')}">
 					<f:facet name="header">
 						<h:outputText value="User" />
 					</f:facet>
-					<h:outputText value="#{cidade.user.username}" />
+					<h:outputText value="#{cadeiaprodutiva.user.username}" />
 				</h:column>			
 				
 			</h:dataTable>

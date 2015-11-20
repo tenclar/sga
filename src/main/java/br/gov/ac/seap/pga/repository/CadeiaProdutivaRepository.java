@@ -15,7 +15,8 @@ public interface CadeiaProdutivaRepository extends CrudRepository<CadeiaProdutiv
 	CadeiaProdutiva findById(Long arg0);
 	
 	List<CadeiaProdutiva> findByName(String arg0);	
-	List<CadeiaProdutiva> findByNameLike(String arg0);	
+	List<CadeiaProdutiva> findByNameLike(String arg0);
+	List<CadeiaProdutiva> findByDescricaoLike(String arg0);
 	List<CadeiaProdutiva> findAll(Sort sort);
 	
 	

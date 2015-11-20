@@ -1,11 +1,9 @@
 package br.gov.ac.seap.pga.model;
 
 import java.io.Serializable;
-
-
-
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +30,7 @@ public class UnidadeMedida implements Serializable {
 	
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar datacad;
+	private Date datacad = new Date();
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -46,7 +44,7 @@ public class UnidadeMedida implements Serializable {
 	private String sigla;
 	
 	
-	@NotNull
+	
 	@Column(name = "valor", precision = 4, scale = 2) 
 	private BigDecimal valor;
 
@@ -61,12 +59,14 @@ public class UnidadeMedida implements Serializable {
 	}
 
 
-	public Calendar getDatacad() {
+	
+
+	public Date getDatacad() {
 		return datacad;
 	}
 
 
-	public void setDatacad(Calendar datacad) {
+	public void setDatacad(Date datacad) {
 		this.datacad = datacad;
 	}
 
@@ -108,6 +108,33 @@ public class UnidadeMedida implements Serializable {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UnidadeMedida other = (UnidadeMedida) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 	

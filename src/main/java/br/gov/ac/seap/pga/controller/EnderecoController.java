@@ -133,7 +133,7 @@ public class EnderecoController extends BaseController {
 		facesUtils = new FacesUtils();
 		try {
 
-			this.endereco.setUser(getUser());
+			this.endereco.setUser(getUserLogin());
 			this.enderecoService.save(endereco);
 
 			facesUtils.info(facesUtils.mensages("message.save.success"));
@@ -150,7 +150,7 @@ public class EnderecoController extends BaseController {
 		facesUtils = new FacesUtils();
 		try {
 
-			this.endereco.setUser(getUser());
+			this.endereco.setUser(getUserLogin());
 			this.enderecoService.save(endereco);
 
 			facesUtils.info(facesUtils.mensages("message.save.success"));
@@ -163,11 +163,7 @@ public class EnderecoController extends BaseController {
 
 	}
 
-	public void actnovo() {
-		this.actlimpa();
-
-		this.setActionstate(EnumActionState.FORM);
-	}
+	
 
 	public void acteditar() {
 		endereco = this.enderecoService.findById(endereco.getId());
@@ -179,13 +175,21 @@ public class EnderecoController extends BaseController {
 		list = this.enderecoService.findAll();
 		this.setActionstate(EnumActionState.PESQUISA);
 	}
+	
+	public void actnovo() {
+		this.actlimpa();
 
+		this.setActionstate(EnumActionState.FORM);
+	}
 	public void actnovo(Estado e, Cidade c, String logradouro) {
 		this.actnovo();
 		if ((e != null) || (c != null)) {
-			this.endereco.getBairro().getCidade().setEstado(e);
+			this.estadoselect = e;
 			this.handleEstadoChange();
-			this.endereco.getBairro().setCidade(c);
+			this.cidadeselect = c;
+			this.handleCidadeChange();
+			//this.endereco.getBairro().getCidade().setEstado(e);			
+			//this.endereco.getBairro().setCidade(c);
 			this.endereco.setLogradouro(logradouro);
 		}
 	}
@@ -194,7 +198,10 @@ public class EnderecoController extends BaseController {
 		// facesUtils = new FacesUtils();
 		this.endereco = new Endereco();
 		this.estadoselect = new Estado();
+		this.cidadeselect = new Cidade();
+		this.bairroselect = new Bairro();
 		this.listaselectcidade = null;
+		this.listaselectbairro = null;
 
 		this.list = null;
 

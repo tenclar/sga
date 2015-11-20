@@ -12,6 +12,18 @@
 			<b:well>
 				<fieldset>
 					<p:outputPanel id="opCadProp">
+					<div class="form-group">
+							<label for="inputNomeProdutor" class="col-lg-1 control-label">Produtor:</label>
+							<div class="col-lg-11">
+								<p:inputText id="inputNomeProdutor"
+									value="#{produtorController.propriedade.produtor.name}"
+									styleClass="form-control" readonly="true"
+									onkeydown="this.value = this.value.toUpperCase();"
+									onkeyup="this.value = this.value.toUpperCase();"
+									placeholder="Nome do Produtor" required="true" />
+								<p:message for="inputNomeProdutor" />
+							</div>
+						</div>
 						<div class="form-group">
 							<label for="inputNomePropriedade" class="col-lg-1 control-label">Nome:</label>
 							<div class="col-lg-11">
@@ -34,20 +46,23 @@
 									placeholder="Área Total" required="true" />
 								<p:message for="inputAreaTotal" />
 							</div>
-							<label for="inputUnidadeMedida" class="col-lg-1 control-label">Un.Med:</label>
+							<label for="inputUnidadeMedida" class="col-lg-1 control-label">U.Medida:</label>
 							<div class="col-lg-3">
 								<p:selectOneMenu styleClass="form-control"
 									style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
 									id="inputUnidadeMedida"
-									value="#{produtorController.propriedade.unidademedida}"
+									value="#{produtorController.propriedade.unidademedida}"							 
+									converter="omnifaces.SelectItemsIndexConverter" 			
+						  			filter="true" filterMatchMode="startsWith"	
 									
 									required="true">
-									<f:selectItem itemLabel="Selecione" />
-									<f:selectItem itemLabel="L" />
-									<f:selectItem itemLabel="Kg" />
-									<f:selectItem itemLabel="hs" />
-									<f:selectItem itemLabel="m2" />
-									<f:selectItem itemLabel="há" />
+									<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+									<f:selectItems value="#{unidadeMedidaController.selectItems}"  />
+<!-- 									<f:selectItem itemLabel="L" /> -->
+<!-- 									<f:selectItem itemLabel="Kg" /> -->
+<!-- 									<f:selectItem itemLabel="hs" /> -->
+<!-- 									<f:selectItem itemLabel="m2" /> -->
+<!-- 									<f:selectItem itemLabel="há" /> -->
 
 								</p:selectOneMenu>
 								<p:message for="inputUnidadeMedida" />
@@ -58,8 +73,11 @@
 									style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
 									id="inputOcupacao"
 									value="#{produtorController.propriedade.ocupacao}"
+									converter="omnifaces.SelectItemsIndexConverter" 			
+						  			filter="true" filterMatchMode="startsWith"	
 									required="true">
-									<f:selectItem itemLabel="item" />
+									<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+									<f:selectItems value="#{ocupacaoController.selectItems}"  />
 								</p:selectOneMenu>
 								<p:message for="inputOcupacao" />
 							</div>
@@ -119,8 +137,8 @@
 					<div class="form-group">
 						<div class="col-lg-10 col-lg-offset-2">
 
-							<p:commandButton value="Salvar" process="@this, opCadProp"
-								update="@this, opCadProp"
+							<p:commandButton value="Salvar" process="@this, opCadProp" id="bt_salvar_Propriedade"
+								update="@this, opCadProp, :frmCadProdutor:tabVewProdutor:dtPropriedades grmsg" action="#{produtorController.actaddprop()}"
 								oncomplete="if(!args.validationFailed){PF('dlg_propriedade').hide();}"
 								styleClass="btn btn-primary" />
 

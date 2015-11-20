@@ -41,7 +41,7 @@
 						<b:commandButton id="btUnidadeMedidanovo" ajax="true"
 							icon="glyphicon glyphicon-plus" look="primary"
 							value="" update="@this, frmCadUnidadeMedida"
-							oncomplete=" PF('dlg_unidadeMedida').hide();PF('dlg_unidadeMedida').show();"
+							oncomplete="PF('dlg_unidadeMedida').show();"
 							action="#{unidadeMedidaController.actnovo}">
 
 						</b:commandButton>
@@ -50,7 +50,7 @@
 						update="@this, frmCadUnidadeMedida"
 						icon="glyphicon glyphicon-refresh" look="warning"
 						action="#{unidadeMedidaController.acteditar()}"
-						oncomplete="PF('dlg_unidadeMedida').show();PF('dlg_unidadeMedida').hide()">
+						oncomplete="PF('dlg_unidadeMedida').show();">
 						<f:setPropertyActionListener value="#{unidadeMedida}"
 							target="#{unidadeMedidaController.unidadeMedida}" />
 

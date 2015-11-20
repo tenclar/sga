@@ -10,15 +10,33 @@
 	<application>
 		<message-bundle>Messages</message-bundle>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-		
+
 		<resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler</resource-handler>
+		
+		
+		<system-event-listener>
+		<system-event-listener-class>br.gov.ac.seap.pga.util.ViewScopeCallbackRegistrer</system-event-listener-class>
+		<system-event-class>javax.faces.event.PostConstructViewMapEvent</system-event-class>
+		<source-class>javax.faces.component.UIViewRoot</source-class>
+	</system-event-listener>
+
+	<system-event-listener>
+		<system-event-listener-class>br.gov.ac.seap.pga.util.ViewScopeCallbackRegistrer</system-event-listener-class>
+		<system-event-class>javax.faces.event.PreDestroyViewMapEvent</system-event-class>
+		<source-class>javax.faces.component.UIViewRoot</source-class>
+	</system-event-listener>
 
 	</application>
+
+
 
 
 	<factory>
 		<exception-handler-factory>org.omnifaces.exceptionhandler.FullAjaxExceptionHandlerFactory</exception-handler-factory>
 		<external-context-factory>org.omnifaces.facesviews.FacesViewsJSF2ExternalContextFactory</external-context-factory>
 	</factory>
+
+
+	
 
 </faces-config>

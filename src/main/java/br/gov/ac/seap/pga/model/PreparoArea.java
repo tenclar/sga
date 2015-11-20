@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table
+@Table(name="preparoarea")
 public class PreparoArea implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

@@ -2,528 +2,247 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
-
-	<b:well>
-
-<!-- 		<h:form id="frmCadRegionalMunicipal" prependId="false" -->
-<!-- 			styleClass="form-horizontal"> -->
-			<fieldset>
-
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Produtor:</label>
-					<div class="col-lg-8">
-						<p:inputText readonly="true" styleClass="form-control" />
-
-					</div>
-					<div class="col-lg-1">
-						<p:commandButton icon="ui-icon-search" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Propriedade:</label>
-					<div class="col-lg-8">
-						<p:inputText readonly="true" styleClass="form-control" />
-
-					</div>
-					<div class="col-lg-1">
-						<p:commandButton icon="ui-icon-search" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Cadeia Produtiva:</label>
-					<div class="col-lg-10">
-						<p:selectOneMenu
-							style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
-							styleClass="form-control" required="true">
-							<f:selectItem itemLabel="Banana" />
-							<f:selectItem itemLabel="Café" />
-							<f:selectItem itemLabel="Milho" />
-						</p:selectOneMenu>
-
-					</div>
-				</div>
-
-
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Descrição Produção:</label>
-					<div class="col-lg-10">
-						<p:inputText styleClass="form-control"
-							onkeypress="mascara(this, uppercase)"
-							onkeydown="this.value = this.value.toUpperCase();"
-							onkeyup="this.value = this.value.toUpperCase();" required="true" />
-
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Area:</label>
-					<div class="col-lg-10">
-						<p:inputText styleClass="form-control"
-							onkeypress="mascara(this, uppercase)"
-							onkeydown="this.value = this.value.toUpperCase();"
-							onkeyup="this.value = this.value.toUpperCase();" required="true" />
-
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Unidade Medida:</label>
-					<div class="col-lg-10">
-						<p:selectOneMenu
-							style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
-							styleClass="form-control" required="true">
-							<f:selectItem itemLabel="L" />
-							<f:selectItem itemLabel="ha" />
-							<f:selectItem itemLabel="t" />
-						</p:selectOneMenu>
-
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Organização Social:</label>
-					<div class="col-lg-10">
-						<p:selectOneMenu styleClass="form-control"
-							style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
-							required="true">
-							<f:selectItem itemLabel="Reserva Extrativista" />
-							<f:selectItem itemLabel="Floresta" />
-							<f:selectItem itemLabel="Assentamento" />
-
-						</p:selectOneMenu>
-
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Vegetação:</label>
-					<div class="col-lg-10">
-						<p:selectOneMenu styleClass="form-control"
-							style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
-							required="true">
-							<f:selectItem itemLabel="Campo" />
-							<f:selectItem itemLabel="Capoeira" />
-							<f:selectItem itemLabel="Mata" />
-
-						</p:selectOneMenu>
-
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Possui Mao de Obra:</label>
-					<div class="col-lg-10">
-						<p:selectOneMenu styleClass="form-control"
-							style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
-							required="true">
-							<f:selectItem itemLabel="sim" />
-							<f:selectItem itemLabel="não" />
-
-						</p:selectOneMenu>
-
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label">Preparo área:</label>
-					<div class="col-lg-10">
-						<p:selectOneMenu styleClass="form-control"
-							style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; width:100%;"
-							required="true">
-							<f:selectItem itemLabel="Convencional" />
-							<f:selectItem itemLabel="Direto" />
-
-						</p:selectOneMenu>
-
-					</div>
-				</div>
-
-
-				<p:panel header="Equipamentos Agricola ">
-					<h:dataTable styleClass="table table-striped" value="#{dados}"
-						var="equip">
-						<h:column headerClass="colbotao">
-							<f:facet name="header">
-								<b:commandButton id="btRegionalnovo" ajax="true"
-									icon="glyphicon glyphicon-plus" look="primary" value=""
-									update="@this">
-
-								</b:commandButton>
-							</f:facet>
-							<b:commandButton value="" ajax="true" update="@this"
-								icon="glyphicon glyphicon-refresh" look="warning">
-							</b:commandButton>
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-						<h:column id="cldescr">
-							<f:facet name="header">
-								<h:outputText value="Nome" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Existente / Necessário" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-					</h:dataTable>
-				</p:panel>
-
-				<p:separator />
-
-				<p:panel header="Serviço Mecanização">
-					<h:dataTable styleClass="table table-striped" value="#{dados}"
-						var="equip">
-						<h:column headerClass="colbotao">
-							<f:facet name="header">
-								<b:commandButton id="btRegionalnovo" ajax="true"
-									icon="glyphicon glyphicon-plus" look="primary" value=""
-									update="@this">
-
-								</b:commandButton>
-							</f:facet>
-							<b:commandButton value="" ajax="true" update="@this"
-								icon="glyphicon glyphicon-refresh" look="warning">
-
-
-							</b:commandButton>
-
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="#" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-						<h:column id="cldescr">
-							<f:facet name="header">
-								<h:outputText value="Serviço" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="H/TA" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Área (ha)" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Data" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Valor" />
-							</f:facet>
-							<h:outputText value="#{equip}" />
-						</h:column>
-					</h:dataTable>
-				</p:panel>
-
-
-				<p:panel header="Dados da Cultura">
-					<p:panel header="Analise Solo">
-						<h:dataTable styleClass="table table-striped" value="#{dados}"
-							var="equip">
-							<h:column headerClass="colbotao">
-								<f:facet name="header">
-									<b:commandButton id="btRegionalnovo" ajax="true"
-										icon="glyphicon glyphicon-plus" look="primary" value=""
-										update="@this">
-
-									</b:commandButton>
-								</f:facet>
-								<b:commandButton value="" ajax="true" update="@this"
-									icon="glyphicon glyphicon-refresh" look="warning">
-
-
-								</b:commandButton>
-
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Data" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column id="cldescr">
-								<f:facet name="header">
-									<h:outputText value="Local" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Calcario(t)" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Aplicado" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Adubo" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="aplicado" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="aplicado" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Uréia" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="aplicado" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-						</h:dataTable>
-					</p:panel>
-
-
-					<p:panel header="Insumos e Tratos Culturais">
-
-						<h:dataTable styleClass="table table-striped" value="#{dados}"
-							var="equip">
-							<h:column headerClass="colbotao">
-								<f:facet name="header">
-									<b:commandButton id="btRegionalnovo" ajax="true"
-										icon="glyphicon glyphicon-plus" look="primary" value=""
-										update="@this">
-
-									</b:commandButton>
-								</f:facet>
-								<b:commandButton value="" ajax="true" update="@this"
-									icon="glyphicon glyphicon-refresh" look="warning">
-
-
-								</b:commandButton>
-
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Data" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column id="cldescr">
-								<f:facet name="header">
-									<h:outputText value="Herbicida" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="inseticida" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Micronutrientes" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Pragas" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Doenças" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-						</h:dataTable>
-					</p:panel>
-
-					<p:panel header="Plantio">
-
-						<h:dataTable styleClass="table table-striped" value="#{dados}"
-							var="equip">
-							<h:column headerClass="colbotao">
-								<f:facet name="header">
-									<b:commandButton id="btRegionalnovo" ajax="true"
-										icon="glyphicon glyphicon-plus" look="primary" value=""
-										update="@this">
-
-									</b:commandButton>
-								</f:facet>
-								<b:commandButton value="" ajax="true" update="@this"
-									icon="glyphicon glyphicon-refresh" look="warning">
-
-
-								</b:commandButton>
-
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Data" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column id="cldescr">
-								<f:facet name="header">
-									<h:outputText value="Cultura" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Fabricante" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Variedade" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Area(ha)" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Ciclo" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Valor Sc" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-						</h:dataTable>
-					</p:panel>
-					
-					
-					<p:panel header="Colheita">
-
-						<h:dataTable styleClass="table table-striped" value="#{dados}"
-							var="equip">
-							<h:column headerClass="colbotao">
-								<f:facet name="header">
-									<b:commandButton id="btRegionalnovo" ajax="true"
-										icon="glyphicon glyphicon-plus" look="primary" value=""
-										update="@this">
-
-									</b:commandButton>
-								</f:facet>
-								<b:commandButton value="" ajax="true" update="@this"
-									icon="glyphicon glyphicon-refresh" look="warning">
-
-
-								</b:commandButton>
-
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Data" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column id="cldescr">
-								<f:facet name="header">
-									<h:outputText value="Cultura" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Area(ha)" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Epoca Colheita" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Estágui Matu" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Umidade" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="destino" />
-								</f:facet>
-								<h:outputText value="#{equip}" />
-							</h:column>
-						</h:dataTable>
-					</p:panel>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
 
 
 
-				</p:panel>
 
-				<p:messages id="msgs" showDetail="true" />
+	<h:form id="frmCadProducao" prependId="false"
+		styleClass="form-horizontal">
+
+		<p:tabView id="tabViewCadProducao"
+			widgetVar="tabViewCadProducao">
+			<p:tab id="tbCadastro" title="Cadastro">
+				<b:well id="wDados">
+					<ui:include src="cadastro/dados.xhtml" />
+				
+				</b:well>				
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
 
-						<p:commandButton id="btSalvar" value="Salvar" ajax="true"
-							update="@this"
-							oncomplete="PF('panelForm_pro').close();PF('panelList_pro').show();"
+						<p:commandButton id="bt_prod_avancar_01"
+							value="Salvar" process="tbCadastro"
+							update="@this, wDados"
+							oncomplete="if(!args.validationFailed){PF('tabViewCadProducao').select(1);}"
 							styleClass="btn btn-primary" />
 
 						<p:spacer width="5" />
 
-						<p:commandButton id="btCancelar" value="Cancelar" immediate="true"
+
+						<p:commandButton id="bt_prod_cancelar_01"
+							value="Cancelar" immediate="true"
 							styleClass="btn btn-danger"
-							oncomplete="PF('panelForm_pro').close();PF('panelList_pro').show();" />
-
-
+							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
 
 
 					</div>
 				</div>
-			</fieldset>
+
+			</p:tab>
+			<!-- 			FIM CADASTRO -->
+
+			<p:tab title="Cultura">
 
 
-<!-- 		</h:form> -->
-	</b:well>
+				<p:tabView id="tvCultura" widgetVar="tvCultura">
+					<p:tab title="Analise de Solo">
+						<ui:include src="cultura/dados.xhtml" />
+
+						
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+
+								<p:commandButton id="bt_prod_voltar_02"
+									value="Voltar" ajax="true" update="@this"
+									oncomplete="PF('tabViewCadProducao').select(0);"
+									styleClass="btn btn-warning" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton id="bt_prod_prox_02" value="Salvar"
+									ajax="true" update="@this"
+									oncomplete="PF('tvCultura').select(1);"
+									styleClass="btn btn-primary" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton id="bt_prod_cancelar_02"
+									value="Cancelar" immediate="true"
+									styleClass="btn btn-danger"
+									oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+
+							</div>
+						</div>
+					</p:tab>
+
+					<p:tab title="Insumos">
+
+						<ui:include src="insumos/dados.xhtml" />
+
+						<p:messages showDetail="true" />
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+
+								<p:commandButton id="bt_prod_voltar_03"
+									value="Voltar" ajax="true" update="@this"
+									oncomplete="PF('tvCultura').select(0);"
+									styleClass="btn btn-warning" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton id="bt_prod_prox_03" value="Salvar"
+									ajax="true" update="@this"
+									oncomplete="PF('tvCultura').select(2);"
+									styleClass="btn btn-primary" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton id="bt_prod_cancelar_03"
+									value="Cancelar" immediate="true"
+									styleClass="btn btn-danger"
+									oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+
+							</div>
+						</div>
+					</p:tab>
+					<p:tab title="Plantio">
+
+						<ui:include src="plantio/dados.xhtml" />
+
+
+						<p:messages showDetail="true" />
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+
+								<p:commandButton id="bt_prod_voltar_04"
+									value="Voltar" ajax="true" update="@this"
+									oncomplete="PF('tvCultura').select(1);"
+									styleClass="btn btn-warning" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton id="bt_prod_prox_04" value="Salvar"
+									ajax="true" update="@this"
+									oncomplete="PF('tvCultura').select(3);"
+									styleClass="btn btn-primary" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton id="bt_prod_cancelar_04"
+									value="Cancelar" immediate="true"
+									styleClass="btn btn-danger"
+									oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+
+							</div>
+						</div>
+					</p:tab>
+					<p:tab title="Colheita">
+
+						<ui:include src="colheita/dados.xhtml" />
+
+
+
+						<p:messages showDetail="true" />
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+
+								<p:commandButton id="bt_prod_voltar_05"
+									value="Voltar" ajax="true" update="@this"
+									oncomplete="PF('tvCultura').select(2);"
+									styleClass="btn btn-warning" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton id="bt_prod_prox_05" value="Salvar"
+									ajax="true" update="@this"
+									oncomplete="PF('tabViewCadProducao').select(2);"
+									styleClass="btn btn-primary" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton id="bt_prod_cancelar_05"
+									value="Cancelar" immediate="true"
+									styleClass="btn btn-danger"
+									oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+
+							</div>
+						</div>
+
+					</p:tab>
+				</p:tabView>
+
+
+			</p:tab>
+			<p:tab title="Equipamentos Acricola">
+
+				<ui:include src="equipamentos/dados.xhtml" />
+
+				<p:messages showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="bt_prod_voltar_06" value="Voltar"
+							ajax="true" update="@this"
+							oncomplete="PF('tabViewCadProducao').select(1);"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="bt_prod_prox_06" value="Salvar"
+							ajax="true" update="@this"
+							oncomplete="PF('tabViewCadProducao').select(3);"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="bt_prod_cancelar_06"
+							value="Cancelar" immediate="true"
+							styleClass="btn btn-danger"
+							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+
+					</div>
+				</div>
+
+			</p:tab>
+			<p:tab title="Preparo da Área">
+				<ui:include src="preparoarea/dados.xhtml" />
+				
+			
+				<p:messages showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="bt_prod_voltar_07" value="Voltar"
+							ajax="true" update="@this"
+							oncomplete="PF('tabViewCadProducao').select(2);"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="bt_prod_prox_07" value="Salvar"
+							ajax="true" update="@this"
+							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="bt_prod_cancelar_07"
+							value="Cancelar" immediate="true"
+							styleClass="btn btn-danger"
+							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+
+					</div>
+				</div>
+
+
+			</p:tab>
+		</p:tabView>
+
+
+
+
+
+	</h:form>
+
 </ui:component>

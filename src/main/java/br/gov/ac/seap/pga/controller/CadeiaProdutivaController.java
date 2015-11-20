@@ -9,6 +9,7 @@ import javax.faces.component.UIForm;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
@@ -18,7 +19,7 @@ import br.gov.ac.seap.pga.util.FacesUtils;
 
 @Controller
 @ManagedBean
-@ViewScoped
+@Scope("view")
 public class CadeiaProdutivaController extends BaseController {
 
 	/**
@@ -126,6 +127,10 @@ public class CadeiaProdutivaController extends BaseController {
 
 			if ("nome".equals(this.tipopesquisa)) {
 				this.list = this.cadeiaprodutivaService.findListByNomeLike(argumento);
+			}
+			
+			if ("descricao".equals(this.tipopesquisa)) {
+				this.list = this.cadeiaprodutivaService.findListByDescricaoLike(argumento);
 			}
 			
 

@@ -83,11 +83,8 @@ public class UnidadeMedidaController extends BaseController {
 	}
 	
 	public void actnovo() {
-		this.unidadeMedida = new UnidadeMedida();
-		
-		this.unidadeMedida.setUser(super.getUserLogin());
-
-		
+		this.unidadeMedida = new UnidadeMedida();		
+		this.unidadeMedida.setUser(super.getUserLogin());		
 		this.setActionstate(EnumActionState.FORM);
 	}
 

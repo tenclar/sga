@@ -50,10 +50,8 @@
 							</p:selectOneMenu>
 
 						</h:panelGrid>
-						<!-- <p:commandButton process="@this" tabindex="2" value="+" -->
-						<!-- 						oncomplete=" dlgEndereco.show() " -->
-						<!-- 						action=" # { enderecoBean.newEnd ( enderecoBean. pesquisaEstado, enderecoBean pesquisaCidade, enderecoBean .buscaendereco ) }" /> -->
-						<h:panelGrid columns="3">
+						
+						<h:panelGrid columns="4">
 							<h:outputText value="logradouro: " />
 							<p:inputText value="#{pesquisaEnderecoController.argumento}"
 								style="width:360px; "
@@ -66,7 +64,10 @@
 								actionListener="#{pesquisaEnderecoController.actpesquisa()}"
 								update="@this, opBuscaEndInsert_p, dtListaEndereco_p"
 								icon="ui-icon-search" />
-
+							<p:commandButton process="@this,  opbuscaend_p " tabindex="2" value="+"  update="@this, opBuscaEndInsert_p, :FrmCadEndreco_prop"
+							oncomplete="if(!args.validationFailed){PF('dlg_logradouro_propriedade').show();}"
+							 
+							 action="#{enderecoController.actnovo(pesquisaEnderecoController.estado, pesquisaEnderecoController.cidade, pesquisaEnderecoController.argumento)}" />
 
 
 						</h:panelGrid>

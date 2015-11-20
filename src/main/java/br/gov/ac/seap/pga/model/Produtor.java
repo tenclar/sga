@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -76,7 +77,7 @@ public class Produtor implements Serializable {
 	private Endereco endereco = new Endereco();		
 	
 	
-	@OneToMany(mappedBy="produtor", cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="produtor", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	private List<Propriedade> propriedades = new ArrayList<Propriedade>() ;
 	
 	public Long getId() {

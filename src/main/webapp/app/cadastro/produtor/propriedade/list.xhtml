@@ -30,43 +30,62 @@
 
 
 	<p:outputPanel id="dtPropriedades">
-		<h:dataTable styleClass="table table-striped" value="#{produtorController.produtor.propriedades}" var="propriedade" >
+		<h:dataTable styleClass="table table-striped"
+			value="#{produtorController.produtor.propriedades}"
+			var="propriedade">
 			<h:column headerClass="colbotao">
 				<f:facet name="header">
-					<p:commandButton ajax="true"
+					<p:commandButton ajax="true" id="bt_add_prop"
 						icon="ui-icon-plus" styleClass="btn btn-primary"
-						 update="@this, frmPropriedade" process="@this"
+						update="@this, frmPropriedade" process="@this"
 						action="#{produtorController.actnovoprop()}"
-						oncomplete=" PF('dlg_propriedade').show();">
+						oncomplete="PF('dlg_propriedade').show();">
 
 					</p:commandButton>
 				</f:facet>
-				<p:commandButton value="" ajax="true"
-					icon="glyphicon glyphicon-refresh" look="warning"
-					oncomplete=" PF('dlg_propriedade').show();">
-					<f:setPropertyActionListener value="#{propriedade}" target="#{produtorController.propriedade}" />
+				<p:commandButton ajax="true" id="bt_edit_prop"
+					styleClass="btn btn-warning" icon="ui-icon-refresh"
+					update="@this, frmPropriedade" process="@this"
+					oncomplete="PF('dlg_propriedade').show();">
+					<f:setPropertyActionListener value="#{propriedade}"
+						target="#{produtorController.propriedade}" />
 
 				</p:commandButton>
 
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="#" />
+					<h:outputText value="Produções" />
 				</f:facet>
-				<h:outputText value="#{propriedade.id}" />
+				<p:commandButton id="bt_Prod_novo" icon="ui-icon-plus"
+					styleClass="btn btn-primary"
+					update="@this, :frmCadProducao" process="@this"
+					oncomplete="PF('dlg_producao').show();"
+					action="#{producaoController.actnovo(propriedade)}">
+
+				</p:commandButton>
+				<p:spacer width="10" />
+				<h:outputText value="#{propriedade.producoes.size()}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="Nome" />
+					<h:outputText value="Nome da Propriedade" />
 				</f:facet>
 				<h:outputText value="#{propriedade.nome}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="Produções" />
+					<h:outputText value="Ocupacao" />
 				</f:facet>
-				<h:outputText value="#{propriedade.producoes.size()}" />
+				<h:outputText value="#{propriedade.ocupacao.name}" />
 			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="UnidadeMedida" />
+				</f:facet>
+				<h:outputText value="#{propriedade.unidademedida.nome}" />
+			</h:column>
+
 
 
 		</h:dataTable>

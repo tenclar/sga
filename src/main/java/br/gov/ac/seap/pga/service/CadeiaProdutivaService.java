@@ -28,6 +28,11 @@ public class CadeiaProdutivaService {
 		return this.cadeiaprodutivaRepository.findByNameLike(arg0);
 	}
 	
+	public List<CadeiaProdutiva> findListByDescricaoLike(String arg0){
+		arg0 = "%"+arg0+"%";
+		return this.cadeiaprodutivaRepository.findByNameLike(arg0);
+	}
+	
 	
 
 	public List<CadeiaProdutiva> findAll() {

@@ -28,7 +28,7 @@ public class CadeiaProdutiva implements Serializable {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar datacad;
+	private Calendar datacad = Calendar.getInstance();
 	
 	
 	@ManyToOne

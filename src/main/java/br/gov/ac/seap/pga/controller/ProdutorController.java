@@ -11,6 +11,7 @@ import javax.faces.model.SelectItem;
 
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
@@ -22,7 +23,7 @@ import br.gov.ac.seap.pga.util.FacesUtils;
 
 @Controller
 @ManagedBean
-@ViewScoped
+@Scope("view")
 public class ProdutorController extends BaseController {
 
 	/**
@@ -107,6 +108,24 @@ public class ProdutorController extends BaseController {
 		}
 
 	}
+	
+	public List<SelectItem> getSelectItems() {
+		List<SelectItem> retorno = new ArrayList<SelectItem>();
+
+		for (Produtor p : this.produtorService.findAll()) {
+			retorno.add(new SelectItem(p, p.getName()));
+
+		}
+		return retorno;
+	}
+
+	public List<SelectItem> getSelectItemsEnumTipoPessoa() {
+		List<SelectItem> toReturn = new LinkedList<SelectItem>();
+		for (EnumTipoPessoa c : EnumTipoPessoa.values()) {
+			toReturn.add(new SelectItem(c.toString(), c.toString()));
+		}
+		return toReturn;
+	}
 
 	public void actSalvarNew() {
 		facesUtils = new FacesUtils();
@@ -146,23 +165,24 @@ public class ProdutorController extends BaseController {
 
 	}
 
-	public List<SelectItem> getSelectItems() {
-		List<SelectItem> retorno = new ArrayList<SelectItem>();
+	public void actaddprop() {
+		facesUtils = new FacesUtils();
+		try {
+			
+			this.produtor.getPropriedades().add(propriedade);
+			this.produtorService.save(produtor);
+			facesUtils.info(facesUtils.mensages("message.save.success"));
 
-		for (Produtor p : this.produtorService.findAll()) {
-			retorno.add(new SelectItem(p, p.getName()));
+		
 
+		} catch (Exception e) {
+			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			System.out.println(e.getMessage());
 		}
-		return retorno;
+
 	}
 
-	public List<SelectItem> getSelectItemsEnumTipoPessoa() {
-		List<SelectItem> toReturn = new LinkedList<SelectItem>();
-		for (EnumTipoPessoa c : EnumTipoPessoa.values()) {
-			toReturn.add(new SelectItem(c.toString(), c.toString()));
-		}
-		return toReturn;
-	}
+	
 
 	public void actnovo() {
 		this.produtor = new Produtor();
@@ -175,12 +195,19 @@ public class ProdutorController extends BaseController {
 	public void actnovoprop() {
 		this.propriedade = new Propriedade();
 		this.propriedade.setUser(getUserLogin());
+		this.propriedade.setProdutor(produtor);
 	}
 
 	public void acteditar() {
 		produtor = this.produtorService.findById(produtor.getId());
 		this.setActionstate(EnumActionState.FORM);
 	}
+	public void acteditarprop() {
+		produtor = this.produtorService.findById(produtor.getId());
+		this.setActionstate(EnumActionState.FORM);
+	}
+	
+	
 
 	public void actlista() {
 		list = this.produtorService.findAll();
