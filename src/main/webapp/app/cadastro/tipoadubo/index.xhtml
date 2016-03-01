@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui" template="/templates/default/main.xhtml">
+	<ui:define name="content">
+		<h1 class="page-header ">
+			<i class="fa fa-pencil-square-o "></i> Lista de Tipos de Adubo
+		</h1>
+
+
+<!-- 		caixa de dialogo -->
+		<p:dialog header="Formulário de Tipo de Adubo" widgetVar="dlg_tipoAdubo" modal="true" resizable="false" styleClass="modal-dialog"  width="600" closable="true"   >
+				<ui:include src="form.xhtml" />
+			
+		</p:dialog>
+
+		
+			
+
+			<p:panel id="panelList" visible="true" widgetVar="panelList"  closable="true">
+				<ui:include src="list.xhtml" />
+			</p:panel>
+		
+			
+
+
+	</ui:define>
+
+
+</ui:composition>
+

@@ -1,0 +1,92 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<h:form id="frmPesquisaTipoInsumoTratos" prependId="false"
+		styleClass="form-horizontal">
+
+		<p:selectOneRadio value="#{tipoInsumoTratoController.tipopesquisa}"
+			style="width:10%;">
+			<f:selectItem itemValue="nome" itemLabel="Nome" />
+			<f:selectItem itemValue="description" itemLabel="Descrição" />
+			
+		</p:selectOneRadio>		
+
+			<p:inputText id="cbArg" label="Argumemento" autocomplete="off"
+				value="#{tipoInsumoTratoController.argumento}" style="Width:60%"
+				required="true"
+				onkeydown="this.value = this.value.toUpperCase();"
+				onkeyup="this.value = this.value.toUpperCase();" />
+
+			<p:commandButton value="Localizar" icon="ui-icon-search"
+				update="frmPesquisaTipoInsumoTratos, frmListaTipoInsumoTratos"
+				styleClass="btn btn-success"
+				action="#{tipoInsumoTratoController.actpesquisa}" />
+		
+		<p:messages id="mes" showDetail="true" />
+		<p:separator />
+
+	</h:form>
+	<h:form id="frmListaTipoInsumoTratos" prependId="false">
+		<p:outputPanel id="dtTipoInsumoTratos">
+			<h:dataTable styleClass="table table-striped"
+				value="#{tipoInsumoTratoController.list}" var="tipoInsumoTrato">
+				<h:column id="clActions" headerClass="colbotao">
+					<f:facet name="header">
+						<b:commandButton id="btTipoInsumoTratonovo" ajax="true"
+							icon="glyphicon glyphicon-plus" look="primary"
+							value="" update="@this, frmCadTipoInsumoTrato"
+							oncomplete=" PF('dlg_tipoInsumoTrato').hide();PF('dlg_tipoInsumoTrato').show();"
+							action="#{tipoInsumoTratoController.actnovo}">
+
+						</b:commandButton>
+					</f:facet>
+					<b:commandButton value="" ajax="true"
+						update="@this, frmCadTipoInsumoTrato"
+						icon="glyphicon glyphicon-refresh" look="warning"
+						action="#{tipoInsumoTratoController.acteditar()}"
+						oncomplete="PF('dlg_tipoInsumoTrato').show();PF('dlg_tipoInsumoTrato').hide()">
+						<f:setPropertyActionListener value="#{tipoInsumoTrato}"
+							target="#{tipoInsumoTratoController.tipoInsumoTrato}" />
+
+					</b:commandButton>
+
+				</h:column>
+				<h:column id="clHeader">
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:outputText value="#{tipoInsumoTrato.id}" />
+				</h:column>
+				<h:column id="cldescr">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{tipoInsumoTrato.name}" />
+				</h:column>
+				<h:column id="clDescription">
+					<f:facet name="header">
+						<h:outputText value="Descrição" />
+					</f:facet>
+					<h:outputText value="#{tipoInsumoTrato.descricao}" />
+				</h:column>		
+				
+				<h:column id="clUser"   rendered="#{p:ifGranted('ROLE_ADMIN')}">
+					<f:facet name="header">
+						<h:outputText value="User" />
+					</f:facet>
+					<h:outputText value="#{tipoInsumoTrato.user.username}" />
+				</h:column>			
+				
+			</h:dataTable>
+		</p:outputPanel>
+	</h:form>
+
+
+</ui:component>
+

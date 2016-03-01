@@ -1,0 +1,58 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<p:panel header="Insumos e Tratos Culturais">
+
+		<h:dataTable  id="dt_InsumoTratos" styleClass="table table-striped"
+			value="#{insumoTratoController.getLista(producaoController.producao)}"
+			var="insumo">
+			<h:column headerClass="colbotao">
+				<f:facet name="header">
+					<p:commandButton process="@this"
+						update="@this, :frmCadInsumoTrato" icon="ui-icon-plus"
+						styleClass="btn btn-warning"
+						oncomplete="PF('dlg_insumoTrato').show();"
+						action="#{insumoTratoController.actnovo(producaoController.producao)}">
+
+					</p:commandButton>
+				</f:facet>
+				<p:commandButton process="@this"
+					update="@this, :frmCadInsumoTrato"
+					oncomplete="PF('dlg_analisesolo').show();"
+					action="#{insumoTratoController.acteditar()}"
+					styleClass="btn btn-warning" icon="ui-icon-refresh">
+					<f:setPropertyActionListener value="#{insumo}"
+						target="#{insumoTratoController.insumoTrato}" />
+
+				</p:commandButton>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data" />
+				</f:facet>
+				<h:outputText value="#{insumo.data_info}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Tipo de Insumo / Trato Cultural" />
+				</f:facet>
+				<h:outputText value="#{insumo.tipoInsumoTrato.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Quantidade" />
+				</f:facet>
+				<h:outputText value="#{insumo.valor}" />
+			</h:column>
+
+
+
+		</h:dataTable>
+	</p:panel>
+
+</ui:component>

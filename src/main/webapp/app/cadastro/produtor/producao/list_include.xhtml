@@ -1,0 +1,67 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+	<p:dataTable styleClass="table table-striped" border="0"
+					value="#{propriedade.producoes}" var="producao">
+
+					<f:facet name="header">
+						<h:outputText value="Lista de Produções" />
+					</f:facet>
+
+					<p:column headerClass="colbotao"
+						style="width:60px; text-align:center;">
+						<f:facet name="header">
+							<p:commandButton id="bt_Prod_novo"
+								icon="ui-icon-plus" styleClass="btn btn-primary"
+								process="@this" update="@this, :frmCadProducao"
+								oncomplete="PF('dlg_producao').show();"
+								action="#{producaoController.actnovo(propriedade)}">
+							</p:commandButton>
+						</f:facet>
+						<p:commandButton icon="ui-icon-refresh" look="warning"
+							action="#{producaoController.acteditar()}"
+							update="@this, :frmCadProducao" process="@this"
+							oncomplete="PF('dlg_producao').show();">
+							<f:setPropertyActionListener value="#{producao}"
+								target="#{producaoController.producao}" />
+						</p:commandButton>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Cadeia Produtiva" />
+						</f:facet>
+						<h:outputText value="#{producao.cadeiaprodutiva.name}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Área" />
+						</f:facet>
+						<h:outputText
+							value="#{producao.area} #{producao.unidademedida.sigla} " />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Descrição" />
+						</f:facet>
+						<h:outputText value="#{producao.descricao}" />
+					</p:column>
+
+					<p:column id="clUser"
+						rendered="#{p:ifGranted('ROLE_AD')}">
+						<f:facet name="header">
+							<h:outputText value="User" />
+						</f:facet>
+						<h:outputText value="#{producao.user.username}" />
+					</p:column>
+
+				</p:dataTable>
+
+
+
+</ui:component>
+

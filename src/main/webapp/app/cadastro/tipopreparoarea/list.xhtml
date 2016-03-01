@@ -1,0 +1,92 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<h:form id="frmPesquisaTipoPreparoAreas" prependId="false"
+		styleClass="form-horizontal">
+
+		<p:selectOneRadio value="#{tipoPreparoAreaController.tipopesquisa}"
+			style="width:10%;">
+			<f:selectItem itemValue="nome" itemLabel="Nome" />
+			<f:selectItem itemValue="description" itemLabel="Descrição" />
+			
+		</p:selectOneRadio>		
+
+			<p:inputText id="cbArg" label="Argumemento" autocomplete="off"
+				value="#{tipoPreparoAreaController.argumento}" style="Width:60%"
+				required="true"
+				onkeydown="this.value = this.value.toUpperCase();"
+				onkeyup="this.value = this.value.toUpperCase();" />
+
+			<p:commandButton value="Localizar" icon="ui-icon-search"
+				update="frmPesquisaTipoPreparoAreas, frmListaTipoPreparoAreas"
+				styleClass="btn btn-success"
+				action="#{tipoPreparoAreaController.actpesquisa}" />
+		
+		<p:messages id="mes" showDetail="true" />
+		<p:separator />
+
+	</h:form>
+	<h:form id="frmListaTipoPreparoAreas" prependId="false">
+		<p:outputPanel id="dtTipoPreparoAreas">
+			<h:dataTable styleClass="table table-striped"
+				value="#{tipoPreparoAreaController.list}" var="tipoPreparoArea">
+				<h:column id="clActions" headerClass="colbotao">
+					<f:facet name="header">
+						<b:commandButton id="btTipoPreparoAreanovo" ajax="true"
+							icon="glyphicon glyphicon-plus" look="primary"
+							value="" update="@this, frmCadTipoPreparoArea"
+							oncomplete=" PF('dlg_tipoPreparoArea').hide();PF('dlg_tipoPreparoArea').show();"
+							action="#{tipoPreparoAreaController.actnovo}">
+
+						</b:commandButton>
+					</f:facet>
+					<b:commandButton value="" ajax="true"
+						update="@this, frmCadTipoPreparoArea"
+						icon="glyphicon glyphicon-refresh" look="warning"
+						action="#{tipoPreparoAreaController.acteditar()}"
+						oncomplete="PF('dlg_tipoPreparoArea').show();PF('dlg_tipoPreparoArea').hide()">
+						<f:setPropertyActionListener value="#{tipoPreparoArea}"
+							target="#{tipoPreparoAreaController.tipoPreparoArea}" />
+
+					</b:commandButton>
+
+				</h:column>
+				<h:column id="clHeader">
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:outputText value="#{tipoPreparoArea.id}" />
+				</h:column>
+				<h:column id="cldescr">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{tipoPreparoArea.name}" />
+				</h:column>
+				<h:column id="clDescription">
+					<f:facet name="header">
+						<h:outputText value="Descrição" />
+					</f:facet>
+					<h:outputText value="#{tipoPreparoArea.descricao}" />
+				</h:column>		
+				
+				<h:column id="clUser"   rendered="#{p:ifGranted('ROLE_ADMIN')}">
+					<f:facet name="header">
+						<h:outputText value="User" />
+					</f:facet>
+					<h:outputText value="#{tipoPreparoArea.user.username}" />
+				</h:column>			
+				
+			</h:dataTable>
+		</p:outputPanel>
+	</h:form>
+
+
+</ui:component>
+

@@ -1,0 +1,120 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<h:form id="frmCadColheita" prependId="false"
+		styleClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Data:</label>
+			<div class="col-lg-3">
+				<p:inputText label="Data"
+					value="#{colheitaController.colheita.data_info}"
+					onkeyup="Formatadata(this, event)"
+					onchange="validaDat(this, this.value)"
+					styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Cultura:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Cultura"
+					value="#{colheitaController.colheita.cultura}"
+					styleClass="form-control">
+
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Àrea:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Area"
+					value="#{colheitaController.colheita.area}"
+					styleClass="form-control">
+
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Epoca:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Epoca"
+					value="#{colheitaController.colheita.epoca}"
+					styleClass="form-control">
+
+				</p:inputText>
+
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Ciclo:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Ciclo"
+					value="#{colheitaController.colheita.ciclo}"
+					styleClass="form-control">
+
+				</p:inputText>
+
+			</div>
+		</div>
+			
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Umidade:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Umidade"
+					value="#{colheitaController.colheita.umidade}"
+					styleClass="form-control">
+
+				</p:inputText>
+
+			</div>
+		</div>
+		
+
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Valor sc:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Quantidade"
+					value="#{colheitaController.colheita.valor}"
+					onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+
+				<p:commandButton value="Salvar" process="frmCadColheita"
+					id="bt_salvar_Colheita"
+					update="frmCadColheita, :frmCadProducao:tabViewCadProducao:tvCultura:dt_Colheitas,  grmsg"
+					action="#{colheitaController.actsalvar()}"
+					oncomplete="if(!args.validationFailed){PF('dlg_colheita').hide();}"
+					styleClass="btn btn-primary" />
+
+				<p:commandButton value="Cancelar"
+					styleClass="btn btn-danger"
+					update="@this, frmCadColheita" immediate="true"
+					action="#{colheitaController.actnovo()}"
+					oncomplete="PF('dlg_colheita').hide();" />
+
+			</div>
+		</div>
+	</h:form>
+
+
+</ui:component>

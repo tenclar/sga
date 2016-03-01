@@ -1,0 +1,61 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<p:panel >
+		<h:dataTable id="dt_PreparoArea" styleClass="table table-striped"
+			value="#{preparoAreaController.getLista(producaoController.producao)}" var="preparoarea">
+			<h:column headerClass="colbotao">
+				<f:facet name="header">
+					<b:commandButton ajax="true"
+						icon="glyphicon glyphicon-plus" look="primary"
+						value="" update="@this">
+
+					</b:commandButton>
+				</f:facet>
+				<b:commandButton value="" ajax="true" update="@this"
+					icon="glyphicon glyphicon-refresh" look="warning">
+
+
+				</b:commandButton>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data" />
+				</f:facet>
+				<h:outputText value="#{preparoarea}" />
+			</h:column>
+			<h:column id="cldescr">
+				<f:facet name="header">
+					<h:outputText value="Serviço" />
+				</f:facet>
+				<h:outputText value="#{preparoarea}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="H/TA" />
+				</f:facet>
+				<h:outputText value="#{preparoarea}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Área (ha)" />
+				</f:facet>
+				<h:outputText value="#{preparoarea}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor" />
+				</f:facet>
+				<h:outputText value="#{preparoarea}" />
+			</h:column>
+		</h:dataTable>
+	</p:panel>
+
+</ui:component>

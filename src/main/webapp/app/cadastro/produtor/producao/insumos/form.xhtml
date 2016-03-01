@@ -1,0 +1,79 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<h:form id="frmCadInsumoTrato" prependId="false"
+		styleClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Data:</label>
+			<div class="col-lg-3">
+				<p:inputText label="Data"
+					value="#{insumoTratoController.insumoTrato.data_info}"
+					onkeyup="Formatadata(this, event)"
+					onchange="validaDat(this, this.value)"
+					styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+
+			</div>
+		</div>
+		
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Tipo de Insumo:</label>
+			<div class="col-md-2">
+				<p:selectOneMenu
+					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+					styleClass="form-control" required="true"
+					label="Tipo de Adubo"
+					value="#{insumoTratoController.insumoTrato.tipoInsumoTrato}"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Selecione"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{tipoInsumoTratoController.selectItems}" />
+				</p:selectOneMenu>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Quantidade:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Quantidade"
+					value="#{insumoTratoController.insumoTrato.valor}"
+					onkeypress="mascara(this, soNumeros)"
+					styleClass="form-control">
+					
+				</p:inputText>
+<!-- <f:convertNumber pattern="##,##0.00#" /> -->
+			</div>
+		</div>
+		
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+
+				<p:commandButton value="Salvar"
+					process="frmCadInsumoTrato" id="bt_salvar_insumotrato"
+					update="frmCadInsumoTrato, :frmCadProducao:tabViewCadProducao:tvCultura:dt_InsumoTratos,  grmsg"
+					action="#{insumoTratoController.actsalvar()}"
+					oncomplete="if(!args.validationFailed){PF('dlg_insumoTrato').hide();}"
+					styleClass="btn btn-primary" />
+
+				<p:commandButton value="Cancelar"
+					styleClass="btn btn-danger"
+					update="@this, frmCadInsumoTrato" immediate="true"
+					action="#{insumoTratoController.actnovo()}"
+					oncomplete="PF('dlg_insumoTrato').hide();" />
+
+			</div>
+		</div>
+	</h:form>
+
+
+</ui:component>

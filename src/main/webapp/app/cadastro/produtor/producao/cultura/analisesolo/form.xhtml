@@ -1,0 +1,103 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<h:form id="frmCadAnaliseSolo" prependId="false"
+		styleClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Data:</label>
+			<div class="col-lg-3">
+				<p:inputText label="Data"
+					value="#{analiseSoloController.analiseSolo.dataanalise}"
+					onkeyup="Formatadata(this, event)"
+					onchange="validaDat(this, this.value)"
+					styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Local:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Aplicado"
+					value="#{analiseSoloController.analiseSolo.local}"
+					onkeydown="this.value = this.value.toUpperCase();"
+					onkeyup="this.value = this.value.toUpperCase();"
+					styleClass="form-control">
+
+				</p:inputText>
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-2 control-label">Tipo de
+				Adubo:</label>
+			<div class="col-md-2">
+				<p:selectOneMenu
+					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+					styleClass="form-control" required="true"
+					label="Tipo de Adubo"
+					value="#{analiseSoloController.analiseSolo.tipoadubo}"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Selecione"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{tipoAduboController.selectItems}" />
+				</p:selectOneMenu>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Quantidade:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Quantidade"
+					value="#{analiseSoloController.analiseSolo.quantidade}"
+					onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Aplicado:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Aplicado"
+					value="#{analiseSoloController.analiseSolo.aplicado}"
+					onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+
+				<p:commandButton value="Salvar"
+					process="frmCadAnaliseSolo" id="bt_salvar_analisesolo"
+					update="frmCadAnaliseSolo, :frmCadProducao:tabViewCadProducao:tvCultura:dt_AnaliseSolos,  grmsg"
+					action="#{analiseSoloController.actsalvar()}"
+					oncomplete="if(!args.validationFailed){PF('dlg_analisesolo').hide();}"
+					styleClass="btn btn-primary" />
+
+				<p:commandButton value="Cancelar"
+					styleClass="btn btn-danger"
+					update="@this, frmCadAnaliseSolo" immediate="true"
+					action="#{analiseSoloController.actnovo()}"
+					oncomplete="PF('dlg_analisesolo').hide();" />
+
+			</div>
+		</div>
+	</h:form>
+
+
+</ui:component>

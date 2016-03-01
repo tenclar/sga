@@ -1,0 +1,55 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<b:well>
+
+		<h:form id="frmCadOcupacao" prependId="false"
+			styleClass="form-horizontal">
+					<fieldset>
+				<div class="form-group">
+					<label for="inputfullName"
+						class="col-lg-2 control-label">Nome:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{ocupacaoController.ocupacao.name}"
+							styleClass="form-control" id="inputFullName"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Nome do Ocupacao" required="true" />
+						<p:message for="inputFullName" />
+					</div>
+				</div>
+				
+				
+				<p:messages id="msgs" showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="btSalvar" value="Salvar"
+							update="frmCadOcupacao, frmListaOcupacaos, grmsg"
+							oncomplete="if(!args.validationFailed){PF('dlg_ocupacao').hide();}"
+							styleClass="btn btn-primary"
+							action="#{ocupacaoController.actsalvar}" />
+						
+						<p:commandButton id="btCancelar" value="Cancelar"
+							process="@this"
+							update="frmCadOcupacao, frmListaOcupacaos"
+							styleClass="btn btn-danger"
+							oncomplete="PF('dlg_ocupacao').hide();"
+							action="#{ocupacaoController.actvolta}" />
+
+					</div>
+				</div>
+			</fieldset>
+
+			
+		</h:form>
+	
+	</b:well>
+
+</ui:component>

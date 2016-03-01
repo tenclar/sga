@@ -1,0 +1,200 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+
+					<fieldset  >
+
+
+						<div class="form-group">
+							<label class="col-lg-2 control-label">Propriedade:</label>
+							<div class="col-lg-8">
+								<p:inputText readonly="true" label="Propriedade"
+									styleClass="form-control"
+									value="#{producaoController.producao.propriedade.nome}" />
+
+							</div>
+							<!-- 											<div class="col-lg-1"> -->
+							<!-- 												<p:commandButton icon="ui-icon-search" /> -->
+							<!-- 											</div> -->
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2  control-label">Produtor:</label>
+							<div class="col-lg-8">
+								<p:inputText readonly="true"
+									styleClass="form-control" label="Produtor"
+									value="#{producaoController.producao.propriedade.produtor.name}" />
+
+							</div>
+							<!-- 											<div class="col-lg-1"> -->
+							<!-- 												<p:commandButton icon="ui-icon-search" /> -->
+							<!-- 											</div> -->
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">Descrição:</label>
+							<div class="col-md-10">
+								<p:inputTextarea styleClass="form-control" cols="10"
+									rows="5" autoResize="false" label="Descrição"
+									onkeypress="mascara(this, uppercase)"
+									onkeydown="this.value = this.value.toUpperCase();"
+									onkeyup="this.value = this.value.toUpperCase();"
+									required="true"
+									value="#{producaoController.producao.descricao}">
+								</p:inputTextarea>
+
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">Cadeia
+								Produtiva:</label>
+							<div class="col-md-2">
+								<p:selectOneMenu
+									style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+									styleClass="form-control" required="true" label="Cadeia Produtiva"
+									value="#{producaoController.producao.cadeiaprodutiva}"
+									converter="omnifaces.SelectItemsIndexConverter"
+									filter="true" filterMatchMode="startsWith">
+									<f:selectItem  itemLabel="Selecione" noSelectionOption="true"/>
+									<f:selectItems
+										value="#{cadeiaProdutivaController.selectItems}" />
+								</p:selectOneMenu>
+							</div>
+							<label class="col-md-1 control-label">Vegetação:</label>
+							<div class="col-md-2">
+								<p:selectOneMenu style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; "
+									styleClass="form-control" label="Vegetação"
+									value="#{producaoController.producao.vegetacao}"
+									converter="omnifaces.SelectItemsIndexConverter"
+									required="true" filter="true"
+									filterMatchMode="startsWith">
+									<f:selectItem  itemLabel="Selecione" noSelectionOption="true" />
+										<f:selectItems
+										value="#{vegetacaoController.selectItems}" />
+								</p:selectOneMenu>
+
+							</div>
+							<label class="col-md-2 control-label">Org.
+								Social:</label>
+							<div class="col-md-3">
+								<p:selectOneMenu styleClass="form-control"
+									style="margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; "
+									required="true" label="Organização Social"
+									value="#{producaoController.producao.organizacaosocial}"
+									converter="omnifaces.SelectItemsIndexConverter"
+									filter="true" filterMatchMode="startsWith">
+									<f:selectItem  itemLabel="Selecione" noSelectionOption="true" />
+									<f:selectItems
+										value="#{organizacaoSocialController.selectItems}" />
+
+
+								</p:selectOneMenu>
+
+							</div>
+
+
+						</div>
+
+
+
+
+						<div class="form-group">
+
+							<label class="col-md-2 control-label">Área:</label>
+							<div class="col-md-2">
+								<p:inputText styleClass="form-control" label="Área"
+									
+									onkeypress="mascara(this, soNumerosReais)"
+									required="true"
+									value="#{producaoController.producao.area}" >
+									 <f:convertNumber pattern="##,##0.00#"  />
+									</p:inputText>
+
+							</div>
+							<label class="col-md-1 control-label">U.Medida:</label>
+							<div class="col-md-2">
+								<p:selectOneMenu
+									style="margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+									styleClass="form-control" required="true" label="Unidade de Medida"
+									value="#{producaoController.producao.unidademedida}"
+									converter="omnifaces.SelectItemsIndexConverter"
+									filter="true" filterMatchMode="startsWith">
+									<f:selectItem  itemLabel="Selecione" noSelectionOption="true" />
+									<f:selectItems
+										value="#{unidadeMedidaController.selectItems}" />
+
+								</p:selectOneMenu>
+
+							</div>
+							<label class="col-md-2 control-label">Tipo Preparo:</label>
+							<div class="col-md-3">
+								<p:selectOneMenu styleClass="form-control" label="Tipo de Preparo"
+									
+									style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; "
+									required="true"
+									value="#{producaoController.producao.tipopreparoarea}"
+									converter="omnifaces.SelectItemsIndexConverter"
+									filter="true" filterMatchMode="startsWith"
+									>
+									<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+									<f:selectItems value="#{tipoPreparoAreaController.selectItems}" />
+									
+
+								</p:selectOneMenu>
+
+							</div>
+						</div>
+
+
+
+						<div class="form-group">
+							<label class="col-md-2 control-label">Mão de Obra:</label>
+							<div class="col-md-2">
+								<p:selectOneMenu styleClass="form-control" label="Mão de Obra"
+									style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; "
+									value="#{producaoController.producao.maodeobra}"
+									converter="omnifaces.SelectItemsIndexConverter"
+									filter="true" filterMatchMode="startsWith"
+									required="true">
+									<f:selectItem  itemLabel="Selecione" noSelectionOption="true" />
+									<f:selectItems value="#{maoDeObraController.selectItems}" />
+
+								</p:selectOneMenu>
+
+							</div>
+							<label class="col-md-2 control-label">Topografia:</label>
+							<div class="col-md-2">
+									<p:selectOneMenu styleClass="form-control" label="Mão de Obra"
+									style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em; "
+									value="#{producaoController.producao.topografia}"
+									converter="omnifaces.SelectItemsIndexConverter"
+									filter="true" filterMatchMode="startsWith"
+									required="true">
+									<f:selectItem  itemLabel="Selecione" noSelectionOption="true" />
+									<f:selectItems value="#{topografiaController.selectItems}" />
+
+								</p:selectOneMenu>
+							</div>
+							<label class="col-md-2 control-label">Uso do Solo(Anos):</label>
+							<div class="col-md-2">
+								<p:inputText styleClass="form-control"
+									onkeypress="mascara(this, soNumeros)"
+									required="true"
+									value="#{producaoController.producao.tempouso}" />
+
+							</div>
+							
+
+						</div>
+
+					</fieldset>
+					<p:messages showSummary="false" showDetail="true" />
+
+</ui:component>
