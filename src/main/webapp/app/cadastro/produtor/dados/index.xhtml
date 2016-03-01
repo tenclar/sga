@@ -75,6 +75,8 @@
 							<div id="datepicker2" class="input-group date">
 								<p:inputText styleClass="form-control"
 									label="Data de Nascimento"
+									onkeyup="Formatadata(this, event)" 
+									onchange="validaDat(this, this.value)"
 									value="#{produtorController.produtor.datanasc}"
 									required="true" id="inputDataNasc"
 									placeholder="dd/MM/yyyy">

@@ -3,6 +3,7 @@ package br.gov.ac.seap.pga.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ public class AnaliseSolo implements Serializable {
 	
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar datacad;
+	private Calendar datacad = Calendar.getInstance();
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -35,22 +36,27 @@ public class AnaliseSolo implements Serializable {
 	
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar dataanalise;
+	private Date dataanalise;
 	
 	@NotNull
 	private String local;
 	
 	@ManyToOne
 	@JoinColumn(name="producao_id")
-	private Producao producao;
+	private Producao producao = new Producao();
 	
 	
 	@ManyToOne
 	@JoinColumn(name="tipoadubo_id")
-	private TipoAdubo tipoadubo;
+	private TipoAdubo tipoadubo = new TipoAdubo();
 	
 	@NotNull
-	@Column(name = "aplicado", precision = 4, scale = 2) 
+	@Column(name = "quantidae", precision = 10, scale = 2) 
+	private BigDecimal quantidade;
+	
+	
+	@NotNull
+	@Column(name = "aplicado", precision = 10, scale = 2) 
 	private BigDecimal aplicado;
 	
 	
@@ -79,11 +85,11 @@ public class AnaliseSolo implements Serializable {
 		this.user = user;
 	}
 
-	public Calendar getDataanalise() {
+	public Date getDataanalise() {
 		return dataanalise;
 	}
 
-	public void setDataanalise(Calendar dataanalise) {
+	public void setDataanalise(Date dataanalise) {
 		this.dataanalise = dataanalise;
 	}
 
@@ -119,6 +125,39 @@ public class AnaliseSolo implements Serializable {
 
 	public void setTipoadubo(TipoAdubo tipoadubo) {
 		this.tipoadubo = tipoadubo;
+	}
+
+	public BigDecimal getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(BigDecimal quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AnaliseSolo other = (AnaliseSolo) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 	

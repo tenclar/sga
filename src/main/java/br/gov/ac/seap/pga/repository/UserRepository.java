@@ -20,7 +20,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	List<User> findByFullNameLike(String fullname);	
 	List<User> findAll(Sort sort);
 	
-	
 //	@Query("select u from User u where u.firstname = ?")
 //	List<User> findByFirstname(String firstname);
 	

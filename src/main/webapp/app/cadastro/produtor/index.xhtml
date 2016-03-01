@@ -9,9 +9,9 @@
 
 	<ui:define name="content">
 
-		<h2 class="page-header ">
+		<h3 class="page-header">
 			<i class="fa fa-pencil-square-o"></i> Cadastro Produtor
-		</h2>
+		</h3>
 
 
 
@@ -81,17 +81,47 @@
 		</p:dialog>
 
 		<p:dialog header="Nova Produção" widgetVar="dlg_producao"
-		 position="left, top" 
-			modal="true" resizable="false" styleClass="modal-dialog" 
-			 height="620" closable="true">
+			minWidth="600" height="400" modal="true"
+			resizable="false" styleClass="modal-dialog"
+			closable="true">
 			<ui:include src="producao/form.xhtml" />
 
 		</p:dialog>
-	<p:dialog header="Nova Analise de Solo" widgetVar="dlg_analisesolo"
-		 position="left, top" 
+		<p:dialog header="Nova Analise de Solo"
+			widgetVar="dlg_analisesolo" minWidth="600" height="400"
+			modal="true" resizable="false" styleClass="modal-dialog"
+			closable="true">
+			<ui:include src="producao/cultura/analisesolo/form.xhtml" />
+
+		</p:dialog>
+		<p:dialog header="Novo Insumo  e  Tratos Culturais"
+			widgetVar="dlg_insumoTrato" minWidth="600" height="400"
+			modal="true" resizable="false" styleClass="modal-dialog"
+			closable="true">
+			<ui:include src="producao/insumos/form.xhtml" />
+
+		</p:dialog>
+
+		<p:dialog header="Plantio" widgetVar="dlg_plantio"
+			minWidth="600" height="400" modal="true"
+			resizable="false" styleClass="modal-dialog"
+			closable="true">
+			<ui:include src="producao/plantio/form.xhtml" />
+
+		</p:dialog>
+
+		<p:dialog header="Colheita" widgetVar="dlg_colheita"
+			minWidth="600" height="400" modal="true"
+			resizable="false" styleClass="modal-dialog"
+			closable="true">
+			<ui:include src="producao/colheita/form.xhtml" />
+
+		</p:dialog>
+				<p:dialog header="Mecanização" widgetVar="dlg_preparoArea"
+		  minWidth="600" height="400"
 			modal="true" resizable="false" styleClass="modal-dialog" 
-			 height="620" closable="true">
-				<ui:include src="producao/cultura/analisesolo/form.xhtml" />
+			 closable="true">
+				<ui:include src="producao/preparoarea/form.xhtml" />
 
 		</p:dialog>
 

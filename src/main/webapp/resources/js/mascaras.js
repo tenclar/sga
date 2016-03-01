@@ -162,7 +162,7 @@ function validaDat(campo,valor) {
 			erro = true;
 	}
 	if (erro) {
-		alert("\"" + valor + "\" não é uma data válida!!!");
+		alert("\"" + valor + "\" não é uma data válida!!! dd/MM/yyyy");
 		campo.focus();
 		campo.value = "";
 		return false;

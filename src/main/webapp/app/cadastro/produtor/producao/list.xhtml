@@ -6,7 +6,7 @@
 
 
 
-<!-- 	<h:form id="frmPesquisaRegionals" prependId="false" -->
+<!-- 	<h:form id="frmPesquisaProducaos" prependId="false" -->
 <!-- 		styleClass="form-horizontal"> -->
 		<p:focus for="cbArg" />
 		<p:selectOneRadio 
@@ -41,12 +41,12 @@
 	
 	<p:separator />
 	
-		<p:outputPanel id="dtRegionals">
+		<p:outputPanel id="dtProducaos">
 			<h:dataTable styleClass="table table-striped"
-				value="#{dados}" var="regionalMunicipal">
+				value="#{dados}" var="producaoMunicipal">
 				<h:column id="clActions" headerClass="colbotao">
 					<f:facet name="header">
-						<b:commandButton id="btRegionalnovo" ajax="true"
+						<b:commandButton id="btProducaonovo" ajax="true"
 							icon="glyphicon glyphicon-plus" look="primary" value=""
 							
 							oncomplete="PF('dlg_producao').show();PF('panelList_pro').close();"
@@ -68,28 +68,30 @@
 					<f:facet name="header">
 						<h:outputText value="#" />
 					</f:facet>
-					<h:outputText value="#{regionalMunicipal}" />
+					<h:outputText value="#{producao}" />
 				</h:column>
 				<h:column id="cldescr">
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
-					<h:outputText value="#{regionalMunicipal}" />
+					<h:outputText value="#{producao}" />
 				</h:column>
-				<h:column id="clRegional">
+				<h:column id="clProducao">
 					<f:facet name="header">
 						<h:outputText value="Descricao" />
 					</f:facet>
-					<h:outputText value="#{regionalMunicipal}" />
+					<h:outputText value="#{producao}" />
 				</h:column>
 				<h:column id="clUser" rendered="#{p:ifGranted('ROLE_AD')}">
 					<f:facet name="header">
 						<h:outputText value="User" />
 					</f:facet>
-					<h:outputText value="#{regionalMunicipal}" />
+					<h:outputText value="#{producao}" />
 				</h:column>
 
 			</h:dataTable>
+			
+			
 		</p:outputPanel>
 
 

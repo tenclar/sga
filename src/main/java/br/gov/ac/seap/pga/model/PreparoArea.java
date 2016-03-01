@@ -50,9 +50,6 @@ public class PreparoArea implements Serializable {
 	@JoinColumn(name="servico_id")
 	private ServicoMecanizacao servicomecanizacao;
 	
-	@ManyToOne
-	@JoinColumn(name="unidademedida_id")
-	private UnidadeMedida unidademedida;
 	
 		
 	@NotNull	 
@@ -114,13 +111,7 @@ public class PreparoArea implements Serializable {
 		this.servicomecanizacao = servicomecanizacao;
 	}
 
-	public UnidadeMedida getUnidademedida() {
-		return unidademedida;
-	}
 
-	public void setUnidademedida(UnidadeMedida unidademedida) {
-		this.unidademedida = unidademedida;
-	}
 
 	public String getHta() {
 		return hta;

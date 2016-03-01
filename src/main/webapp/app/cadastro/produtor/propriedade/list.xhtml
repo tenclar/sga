@@ -30,20 +30,22 @@
 
 
 	<p:outputPanel id="dtPropriedades">
-		<h:dataTable styleClass="table table-striped"
+		<p:dataTable styleClass="table table-striped"
 			value="#{produtorController.produtor.propriedades}"
 			var="propriedade">
-			<h:column headerClass="colbotao">
+
+
+			<p:column style="width:60px;">
 				<f:facet name="header">
-					<p:commandButton ajax="true" id="bt_add_prop"
-						icon="ui-icon-plus" styleClass="btn btn-primary"
+					<p:commandButton id="bt_add_prop" icon="ui-icon-plus"
+						styleClass="btn btn-primary"
 						update="@this, frmPropriedade" process="@this"
 						action="#{produtorController.actnovoprop()}"
 						oncomplete="PF('dlg_propriedade').show();">
 
 					</p:commandButton>
 				</f:facet>
-				<p:commandButton ajax="true" id="bt_edit_prop"
+				<p:commandButton id="bt_edit_prop"
 					styleClass="btn btn-warning" icon="ui-icon-refresh"
 					update="@this, frmPropriedade" process="@this"
 					oncomplete="PF('dlg_propriedade').show();">
@@ -52,45 +54,59 @@
 
 				</p:commandButton>
 
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Produções" />
-				</f:facet>
-				<p:commandButton id="bt_Prod_novo" icon="ui-icon-plus"
-					styleClass="btn btn-primary"
-					update="@this, :frmCadProducao" process="@this"
-					oncomplete="PF('dlg_producao').show();"
-					action="#{producaoController.actnovo(propriedade)}">
+			</p:column>
+			<p:column headerText="#" style="width:40px;">
+				<p:rowToggler />
+			</p:column>
+			<p:column headerText="Produções" style="width:100px;">
 
-				</p:commandButton>
-				<p:spacer width="10" />
+
 				<h:outputText value="#{propriedade.producoes.size()}" />
-			</h:column>
-			<h:column>
+
+
+			</p:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Nome da Propriedade" />
 				</f:facet>
 				<h:outputText value="#{propriedade.nome}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">
-					<h:outputText value="Ocupacao" />
+					<h:outputText value="Tipo de Ocupação" />
 				</f:facet>
 				<h:outputText value="#{propriedade.ocupacao.name}" />
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">
-					<h:outputText value="UnidadeMedida" />
+					<h:outputText value="Área Total" />
 				</f:facet>
-				<h:outputText value="#{propriedade.unidademedida.nome}" />
-			</h:column>
+				<h:outputText
+					value="#{propriedade.areatotal}(#{propriedade.unidademedida.sigla})" />
+			</p:column>
+			<div></div>
+			<p:rowExpansion>
+
+
+			<ui:include src="../producao/list_include.xhtml" />
 
 
 
-		</h:dataTable>
+			</p:rowExpansion>
+
+
+
+		</p:dataTable>
 	</p:outputPanel>
+	<!-- 						<b:commandButton id="btProducaonovo"  -->
+	<!-- 							ajax="true" -->
+	<!-- 							icon="glyphicon glyphicon-plus"  -->
+	<!-- 							look="primary"  -->
+	<!-- 							value=""							 -->
+	<!-- 							oncomplete="PF('dlg_producao').show();PF('panelList_pro').close();" -->
+	<!-- 						> -->
 
+	<!-- 						</b:commandButton> -->
 
 </ui:component>
 

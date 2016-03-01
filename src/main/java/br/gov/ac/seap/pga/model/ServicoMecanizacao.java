@@ -34,7 +34,7 @@ public class ServicoMecanizacao implements Serializable {
 	
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar datacad;
+	private Calendar datacad = Calendar.getInstance();
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")

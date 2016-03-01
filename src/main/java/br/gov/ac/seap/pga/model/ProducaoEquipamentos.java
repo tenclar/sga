@@ -28,16 +28,20 @@ public class ProducaoEquipamentos implements Serializable {
 
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar datacad;
+	private Calendar datacad = Calendar.getInstance();
+	
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	private Calendar data_info;
+	
+	
+	private String situacao;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
 		
-	@ManyToOne
-	@JoinColumn(name="propriedade_id")
-	private Propriedade propriedade;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="material_id")
@@ -64,12 +68,11 @@ public class ProducaoEquipamentos implements Serializable {
 		this.datacad = datacad;
 	}
 
-	public Propriedade getPropriedade() {
-		return propriedade;
+	public String getSituacao() {
+		return situacao;
 	}
-
-	public void setPropriedade(Propriedade propriedade) {
-		this.propriedade = propriedade;
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 
 	public Material getMaterial() {
@@ -86,6 +89,16 @@ public class ProducaoEquipamentos implements Serializable {
 
 	public void setProducao(Producao producao) {
 		this.producao = producao;
+	}
+	
+	
+
+	public Calendar getData_info() {
+		return data_info;
+	}
+
+	public void setData_info(Calendar data_info) {
+		this.data_info = data_info;
 	}
 
 	public User getUser() {

@@ -1,9 +1,8 @@
 package br.gov.ac.seap.pga.model;
 
 import java.io.Serializable;
-
-
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -53,7 +52,7 @@ public class Producao implements Serializable {
 	
 	
 	@NotNull
-	@Column(name = "area", precision = 4, scale = 2)
+	@Column(name = "area", precision = 10, scale = 2)
 	private BigDecimal area;
 
 
@@ -94,13 +93,16 @@ public class Producao implements Serializable {
 	private CadeiaProdutiva cadeiaprodutiva;
 
 	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<ProducaoEquipamentos> equipamentos;
+	private List<ProducaoEquipamentos> equipamentos = new ArrayList<ProducaoEquipamentos>();
 
 	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<PreparoArea> preparos;
+	private List<PreparoArea> preparos = new ArrayList<PreparoArea>();
 
 	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<AnaliseSolo> analisesolos;
+	private List<AnaliseSolo> analisesolos = new ArrayList<AnaliseSolo>();
+	
+	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<InsumoTrato> insumostratos = new ArrayList<InsumoTrato>();
 
 	public Long getId() {
 		return id;
@@ -240,6 +242,15 @@ public class Producao implements Serializable {
 	
 	
 	
+	
+	public List<InsumoTrato> getInsumostratos() {
+		return insumostratos;
+	}
+
+	public void setInsumostratos(List<InsumoTrato> insumostratos) {
+		this.insumostratos = insumostratos;
+	}
+
 	public Topografia getTopografia() {
 		return topografia;
 	}
@@ -255,6 +266,34 @@ public class Producao implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Producao other = (Producao) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 

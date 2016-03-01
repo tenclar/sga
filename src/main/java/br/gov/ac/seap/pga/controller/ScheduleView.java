@@ -40,6 +40,7 @@ public class ScheduleView implements Serializable {
     @PostConstruct
     public void init() {
         eventModel = new DefaultScheduleModel();
+        
         eventModel.addEvent(new DefaultScheduleEvent("Champions League Match", previousDay8Pm(), previousDay11Pm()));
         eventModel.addEvent(new DefaultScheduleEvent("Birthday Party", today1Pm(), today6Pm()));
         eventModel.addEvent(new DefaultScheduleEvent("Breakfast at Tiffanys", nextDay9Am(), nextDay11Am()));
@@ -90,16 +91,17 @@ public class ScheduleView implements Serializable {
      
     private Date previousDay8Pm() {
         Calendar t = (Calendar) today().clone();
-        t.set(Calendar.AM_PM, Calendar.PM);
+        
+        //t.set(Calendar.AM_PM, Calendar.PM);
         t.set(Calendar.DATE, t.get(Calendar.DATE) - 1);
-        t.set(Calendar.HOUR, 8);
+        t.set(Calendar.HOUR, 20);
          
         return t.getTime();
     }
      
     private Date previousDay11Pm() {
         Calendar t = (Calendar) today().clone();
-        t.set(Calendar.AM_PM, Calendar.PM);
+        //t.set(Calendar.AM_PM, Calendar.PM);
         t.set(Calendar.DATE, t.get(Calendar.DATE) - 1);
         t.set(Calendar.HOUR, 11);
          
@@ -108,8 +110,8 @@ public class ScheduleView implements Serializable {
      
     private Date today1Pm() {
         Calendar t = (Calendar) today().clone();
-        t.set(Calendar.AM_PM, Calendar.PM);
-        t.set(Calendar.HOUR, 1);
+        //t.set(Calendar.AM_PM, Calendar.PM);
+        t.set(Calendar.HOUR, 13);
          
         return t.getTime();
     }
@@ -117,23 +119,23 @@ public class ScheduleView implements Serializable {
     private Date theDayAfter3Pm() {
         Calendar t = (Calendar) today().clone();
         t.set(Calendar.DATE, t.get(Calendar.DATE) + 2);     
-        t.set(Calendar.AM_PM, Calendar.PM);
-        t.set(Calendar.HOUR, 3);
+       // t.set(Calendar.AM_PM, Calendar.PM);
+        t.set(Calendar.HOUR, 15);
          
         return t.getTime();
     }
  
     private Date today6Pm() {
         Calendar t = (Calendar) today().clone(); 
-        t.set(Calendar.AM_PM, Calendar.PM);
-        t.set(Calendar.HOUR, 6);
+      //  t.set(Calendar.AM_PM, Calendar.PM);
+        t.set(Calendar.HOUR, 18);
          
         return t.getTime();
     }
      
     private Date nextDay9Am() {
         Calendar t = (Calendar) today().clone();
-        t.set(Calendar.AM_PM, Calendar.AM);
+       // t.set(Calendar.AM_PM, Calendar.AM);
         t.set(Calendar.DATE, t.get(Calendar.DATE) + 1);
         t.set(Calendar.HOUR, 9);
          
@@ -142,7 +144,7 @@ public class ScheduleView implements Serializable {
      
     private Date nextDay11Am() {
         Calendar t = (Calendar) today().clone();
-        t.set(Calendar.AM_PM, Calendar.AM);
+      //  t.set(Calendar.AM_PM, Calendar.AM);
         t.set(Calendar.DATE, t.get(Calendar.DATE) + 1);
         t.set(Calendar.HOUR, 11);
          
@@ -151,9 +153,9 @@ public class ScheduleView implements Serializable {
      
     private Date fourDaysLater3pm() {
         Calendar t = (Calendar) today().clone(); 
-        t.set(Calendar.AM_PM, Calendar.PM);
+       // t.set(Calendar.AM_PM, Calendar.PM);
         t.set(Calendar.DATE, t.get(Calendar.DATE) + 4);
-        t.set(Calendar.HOUR, 3);
+        t.set(Calendar.HOUR, 15);
          
         return t.getTime();
     }

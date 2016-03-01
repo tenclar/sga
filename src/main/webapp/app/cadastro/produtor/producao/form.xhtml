@@ -23,7 +23,8 @@
 
 						<p:commandButton id="bt_prod_avancar_01"
 							value="Salvar" process="tbCadastro"
-							update="@this, wDados"
+							update="@this, wDados, grmsg"
+							action="#{producaoController.actsalvarNext()}"
 							oncomplete="if(!args.validationFailed){PF('tabViewCadProducao').select(1);}"
 							styleClass="btn btn-primary" />
 
@@ -31,9 +32,9 @@
 
 
 						<p:commandButton id="bt_prod_cancelar_01"
-							value="Cancelar" immediate="true"
+							value="Cancelar" process="@this" update="@this"
 							styleClass="btn btn-danger"
-							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+							oncomplete="PF('dlg_producao').hide();" />
 
 
 					</div>
@@ -68,9 +69,9 @@
 								<p:spacer width="5" />
 
 								<p:commandButton id="bt_prod_cancelar_02"
-									value="Cancelar" immediate="true"
+									value="Cancelar"  process="@this" update="@this"
 									styleClass="btn btn-danger"
-									oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+									oncomplete="PF('dlg_producao').hide();" />
 
 							</div>
 						</div>
@@ -99,9 +100,9 @@
 								<p:spacer width="5" />
 
 								<p:commandButton id="bt_prod_cancelar_03"
-									value="Cancelar" immediate="true"
+									value="Cancelar"  process="@this" update="@this"
 									styleClass="btn btn-danger"
-									oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+									oncomplete="PF('dlg_producao').hide();" />
 
 							</div>
 						</div>
@@ -130,9 +131,9 @@
 								<p:spacer width="5" />
 
 								<p:commandButton id="bt_prod_cancelar_04"
-									value="Cancelar" immediate="true"
+									value="Cancelar" process="@this" update="@this"
 									styleClass="btn btn-danger"
-									oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+									oncomplete="PF('dlg_producao').hide();" />
 
 							</div>
 						</div>
@@ -162,9 +163,9 @@
 								<p:spacer width="5" />
 
 								<p:commandButton id="bt_prod_cancelar_05"
-									value="Cancelar" immediate="true"
+									value="Cancelar" process="@this" update="@this"
 									styleClass="btn btn-danger"
-									oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+									oncomplete="PF('dlg_producao').hide();" />
 
 							</div>
 						</div>
@@ -197,9 +198,9 @@
 						<p:spacer width="5" />
 
 						<p:commandButton id="bt_prod_cancelar_06"
-							value="Cancelar" immediate="true"
+							value="Cancelar" process="@this" update="@this"
 							styleClass="btn btn-danger"
-							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+							oncomplete="PF('dlg_producao').hide();" />
 
 					</div>
 				</div>
@@ -228,9 +229,9 @@
 						<p:spacer width="5" />
 
 						<p:commandButton id="bt_prod_cancelar_07"
-							value="Cancelar" immediate="true"
+							value="Cancelar" process="@this" update="@this"
 							styleClass="btn btn-danger"
-							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
+							oncomplete="PF('dlg_producao').hide();" />
 
 					</div>
 				</div>

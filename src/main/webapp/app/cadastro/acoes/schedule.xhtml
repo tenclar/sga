@@ -6,7 +6,7 @@
 	xmlns:b="http://bootsfaces.net/ui">
 
 
-	<h:form id="shendule">
+	<h:form id="shendule" >
 		<p:growl id="messages" showDetail="true" />
 
 		<script type="text/javascript">
@@ -53,7 +53,7 @@
 	
 			<p:schedule id="schedule"
 				value="#{scheduleView.eventModel}"
-				widgetVar="myschedule" locale="pt" timeZone="GMT+2">
+				widgetVar="myschedule" locale="pt" timeZone="GMT-5" timeFormat=""  >
 
 				<p:ajax event="dateSelect"
 					listener="#{scheduleView.onDateSelect}"
@@ -86,14 +86,14 @@
 			<h:panelGrid id="eventDetails" columns="2">
 				<h:outputLabel for="prod" value="Produtor:" />
 				<h:panelGrid columns="2">
-					<p:inputText id="prod" readonly="true"
+					<p:inputText id="prod" readonly="true" style="height:30px"
 						styleClass="form-control" required="true" />
 					<p:commandButton icon="ui-icon-search" for="prod" />
 				</h:panelGrid>
 				<h:outputLabel for="propriedade" value="Propriedade:" />
 				<h:panelGrid columns="2">
 
-					<p:inputText id="propriedade" readonly="true"
+					<p:inputText id="propriedade" readonly="true" style="height:30px"
 						styleClass="form-control" required="true" />
 					<p:commandButton icon="ui-icon-search"
 						for="propriedade" />
@@ -101,7 +101,7 @@
 				<h:outputLabel for="producao" value="Produção" />
 				<h:panelGrid columns="2">
 
-					<p:inputText id="producao" readonly="true"
+					<p:inputText id="producao" readonly="true" style="height:30px"
 						styleClass="form-control" required="true" />
 					<p:commandButton icon="ui-icon-search" for="producao" />
 				</h:panelGrid>
@@ -115,14 +115,14 @@
 					value="#{scheduleView.event.startDate}"
 					mask="99/99/9999">
 					<f:convertDateTime pattern="dd/MM/yyyy"
-						timeZone="GMT+2" />
+						timeZone="GMT-5" />
 				</p:inputMask>
 
 				<h:outputLabel for="to" value="fim:" />
 				<p:inputMask id="to"
-					value="#{scheduleView.event.endDate}" mask="99/99/9999">
-					<f:convertDateTime pattern="dd/MM/yyyy"
-						timeZone="GMT+2" />
+					value="#{scheduleView.event.endDate}" mask="99/99/9999 99:99">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" 
+						timeZone="GMT-5" />
 				</p:inputMask>
 
 				<h:outputLabel for="allDay" value="Dia Todo:" />

@@ -12,7 +12,7 @@
 		styleClass="form-horizontal">
 
 
-		<p:tabView id="tabVewProdutor">
+		<p:tabView id="tabVewProdutor"  widgetVar="tabVewProdutor" >
 			<p:tab title="Dados Pessoais">
 				<!-- 							 <h4 class="badge">Etapa 1 <span class="light"></span></h4> -->
 				<!--            				 <br/> -->
@@ -22,13 +22,13 @@
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
 						<p:commandButton class="btn btn-danger" value="Cancelar"
-							process="@this" update="@this, frmCadProdutor"
+							process="@this" update="@this, frmCadProdutor, :frmPesquisaProdutores, :frmListaProdutores"
 							action="#{produtorController.actlimpa()}"
 							oncomplete="PF('panelList').show();PF('panelForm').close();" />
 
-						<p:commandButton class="btn btn-primary" value="Avançar"
-							oncomplete="if(!args.validationFailed){PF('panelList').show();PF('panelForm').close();}"
-							process="@this, opDados" update="opDados, frmPesquisaProdutores, grmsg"
+						<p:commandButton class="btn btn-primary" value="Salvar"
+							oncomplete="if(!args.validationFailed){PF('tabVewProdutor').select(1);}"
+							process="@this, opDados" update="opDados, :frmPesquisaProdutores, :frmListaProdutores, grmsg"
 							action="#{produtorController.actsalvar()}" />
 					</div>
 				</div>
@@ -36,10 +36,27 @@
 			</p:tab>
 			<p:tab title="Propriedade">
 				<ui:include src="propriedade/index.xhtml" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+					<p:commandButton class="btn btn-danger" value="Voltar"
+							process="@this" update="@this, frmCadProdutor"							
+							oncomplete="PF('tabVewProdutor').select(0);" />
+							
+						<p:commandButton class="btn btn-danger" value="Cancelar"
+							process="@this" update="@this, frmCadProdutor, :frmPesquisaProdutores, :frmListaProdutores"
+							action="#{produtorController.actlimpa()}"
+							oncomplete="PF('panelList').show();PF('panelForm').close();" />
+
+						<p:commandButton class="btn btn-primary" value="Salvar"
+							oncomplete="if(!args.validationFailed){PF('panelList').show();PF('panelForm').close();}"
+							process="@this" update="frmPesquisaProdutores, grmsg"
+							action="#{produtorController.actsalvar()}" />
+					</div>
+				</div>
 			</p:tab>
-			<p:tab title="Produção">
-				<ui:include src="producao/index.xhtml" />
-			</p:tab>
+<!-- 			<p:tab title="Produção"> -->
+<!-- 				<ui:include src="producao/index.xhtml" /> -->
+<!-- 			</p:tab> -->
 			
 		</p:tabView>
 

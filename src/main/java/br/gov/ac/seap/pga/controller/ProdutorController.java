@@ -5,17 +5,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIForm;
 import javax.faces.model.SelectItem;
 
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
 import br.gov.ac.seap.pga.enumerator.EnumTipoPessoa;
+import br.gov.ac.seap.pga.model.Producao;
 import br.gov.ac.seap.pga.model.Produtor;
 import br.gov.ac.seap.pga.model.Propriedade;
 import br.gov.ac.seap.pga.service.ProdutorService;
@@ -37,6 +36,8 @@ public class ProdutorController extends BaseController {
 	private Produtor produtor;
 
 	private Propriedade propriedade;
+	
+	private Producao producao;
 
 	private List<Produtor> list = null;
 
@@ -68,6 +69,7 @@ public class ProdutorController extends BaseController {
 
 	public void handleSelectPesquisa() {
 		actlimpa();
+		
 		if ("cpf".equals(this.tipopesquisa)) {
 			pesquisacpf = true;
 			pesquisacnpj = false;
@@ -325,6 +327,16 @@ public class ProdutorController extends BaseController {
 
 	public boolean isPesquisanome() {
 		return pesquisanome;
+	}
+	
+	
+
+	public Producao getProducao() {
+		return producao;
+	}
+
+	public void setProducao(Producao producao) {
+		this.producao = producao;
 	}
 
 	public Propriedade getPropriedade() {
