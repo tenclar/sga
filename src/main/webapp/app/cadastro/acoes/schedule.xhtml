@@ -9,7 +9,7 @@
 	<h:form id="shendule" >
 		<p:growl id="messages" showDetail="true" />
 
-		<script type="text/javascript">
+<script type="text/javascript">
     PrimeFaces.locales['pt'] = {
         closeText: 'Fechar',
         prevText: 'voltar',
@@ -37,23 +37,30 @@
 
 		<h3 style="margin-top: 0">Calendário</h3>
 			
-			<p:menubar>
-				<p:submenu label="File" icon="ui-icon-document">
-					<p:submenu label="New" icon="ui-icon-contact">
-						<p:menuitem value="Project" url="#" />
-						<p:menuitem value="Other" url="#" />
-					</p:submenu>
-					<p:menuitem value="Open" url="#" />
-					<p:separator />
-					<p:menuitem value="Quit" url="#" />
-				</p:submenu>
-			</p:menubar>
+<!-- 			<p:menubar> -->
+<!-- 				<p:submenu label="File" icon="ui-icon-document"> -->
+<!-- 					<p:submenu label="New" icon="ui-icon-contact"> -->
+<!-- 						<p:menuitem value="Project" url="#" /> -->
+<!-- 						<p:menuitem value="Other" url="#" /> -->
+<!-- 					</p:submenu> -->
+<!-- 					<p:menuitem value="Open" url="#" /> -->
+<!-- 					<p:separator /> -->
+<!-- 					<p:menuitem value="Quit" url="#" /> -->
+<!-- 				</p:submenu> -->
+<!-- 			</p:menubar> -->
+
+<ui:include src="pesquisa.xhtml" />
 <hr />
-		<h:panelGrid columnClasses="value">
+		<h:panelGrid columnClasses="value" style="width:100%;"   >
 	
 			<p:schedule id="schedule"
 				value="#{scheduleView.eventModel}"
-				widgetVar="myschedule" locale="pt" timeZone="GMT-5" timeFormat=""  >
+				widgetVar="myschedule" 
+				locale="pt" 
+				timeZone="GMT-5" 
+				timeFormat="HH:mm"
+				 axisFormat="HH:mm"
+				slotMinutes="30"    >
 
 				<p:ajax event="dateSelect"
 					listener="#{scheduleView.onDateSelect}"
@@ -113,8 +120,8 @@
 				<h:outputLabel for="from" value="Inicio:" />
 				<p:inputMask id="from"
 					value="#{scheduleView.event.startDate}"
-					mask="99/99/9999">
-					<f:convertDateTime pattern="dd/MM/yyyy"
+					mask="99/99/9999 99:99">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"
 						timeZone="GMT-5" />
 				</p:inputMask>
 

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.gov.ac.seap.pga.model.AnaliseSolo;
+
 import br.gov.ac.seap.pga.model.Plantio;
 import br.gov.ac.seap.pga.model.Producao;
 

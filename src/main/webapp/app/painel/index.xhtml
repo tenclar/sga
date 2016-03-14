@@ -18,11 +18,11 @@
 		<!-- 	<p class="lead">Plataforma de Gestão Agropecuária</p> -->
 
 		<!-- 		<div style="height:500px;width: 100%; "> -->
-		<p:panel>
+		<p:panel style="wdth:100%;">
 			<h:form>
 				<!--         <p:growl id="msgs" showDetail="true" /> -->
 
-				<p:dashboard id="board" model="#{dashboardView.model}" 
+				<p:dashboard id="board" model="#{dashboardView.model}"   
 					>
 					<p:ajax event="reorder" listener="#{dashboardView.handleReorder}"
 						update=":grmsg" />
@@ -45,8 +45,8 @@
 					</p:panel>
 
 					<p:panel id="weather" header="Evolução Anual"  >
-						<h:outputText value="Weather Content" />]
-               <ui:include src="combinate.xhtml" />
+						<h:outputText value="Weather Content" />						
+               				<ui:include src="combinate.xhtml" />
 					</p:panel>
 
 					<p:panel id="politics" header="Cadeias produtivas">
@@ -56,7 +56,7 @@
 					</p:panel>
 				</p:dashboard>
 
-				<div style="clear: both" />
+<!-- 				<div style="clear: both" /> -->
 			</h:form>
 			<!-- </div> -->
 

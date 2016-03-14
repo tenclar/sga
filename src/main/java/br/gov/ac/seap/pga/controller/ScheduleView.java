@@ -92,7 +92,7 @@ public class ScheduleView implements Serializable {
     private Date previousDay8Pm() {
         Calendar t = (Calendar) today().clone();
         
-        //t.set(Calendar.AM_PM, Calendar.PM);
+        t.set(Calendar.AM_PM, Calendar.PM);
         t.set(Calendar.DATE, t.get(Calendar.DATE) - 1);
         t.set(Calendar.HOUR, 20);
          
