@@ -22,7 +22,8 @@
 								action="#{producaoController.actnovo(propriedade)}">
 							</p:commandButton>
 						</f:facet>
-						<p:commandButton icon="ui-icon-refresh" look="warning"
+						<p:commandButton icon="ui-icon-refresh" 
+							styleClass="btn btn-warning"
 							action="#{producaoController.acteditar()}"
 							update="@this, :frmCadProducao" process="@this"
 							oncomplete="PF('dlg_producao').show();">

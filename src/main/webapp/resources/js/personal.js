@@ -29,3 +29,26 @@ $(function() {
 
 	});
 });
+
+PrimeFaces.locales['pt'] = {
+        closeText: 'Fechar',
+        prevText: 'voltar',
+        nextText: 'proximo',
+        currentText: 'hoje',
+        monthNames: ['janeiro','fevereiro','Março','Abril','Maio','Junho',
+            'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['jan','fev','mar','Abr','Mai','jun',
+            'jul','Ago','set','out','nov','dez'],
+        dayNames: ['domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-Feira','Sexta-feira','Sábado'],
+        dayNamesShort: ['dom','seg','ter','qua','qui','sex','sab'],
+        dayNamesMin: ['do','se','te','qa','qi','sx','sa'],
+        weekHeader: 'Hf',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+        month: 'Mês',
+        week: 'semana',
+        day: 'dia',
+        allDayText : 'dia Inteiro'
+    };

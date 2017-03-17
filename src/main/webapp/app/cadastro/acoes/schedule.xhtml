@@ -5,34 +5,13 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:b="http://bootsfaces.net/ui">
 
+		
 
-	<h:form id="shendule" >
+	
+
+
+	
 		<p:growl id="messages" showDetail="true" />
-
-<script type="text/javascript">
-    PrimeFaces.locales['pt'] = {
-        closeText: 'Fechar',
-        prevText: 'voltar',
-        nextText: 'proximo',
-        currentText: 'hoje',
-        monthNames: ['janeiro','fevereiro','Março','Abril','Maio','Junho',
-            'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-        monthNamesShort: ['jan','fev','mar','Abr','Mai','jun',
-            'jul','Ago','set','out','nov','dez'],
-        dayNames: ['domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-Feira','Sexta-feira','Sábado'],
-        dayNamesShort: ['dom','seg','ter','qua','qui','sex','sab'],
-        dayNamesMin: ['do','se','te','qa','qi','sx','sa'],
-        weekHeader: 'Hf',
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: '',
-        month: 'Mês',
-        week: 'semana',
-        day: 'dia',
-        allDayText : 'dia Inteiro'
-    };
-</script>
 
 
 		<h3 style="margin-top: 0">Calendário</h3>
@@ -50,7 +29,9 @@
 <!-- 			</p:menubar> -->
 
 <ui:include src="pesquisa.xhtml" />
+
 <hr />
+<h:form id="shendule" >
 		<h:panelGrid columnClasses="value" style="width:100%;"   >
 	
 			<p:schedule id="schedule"
@@ -116,19 +97,20 @@
 				<h:outputLabel for="title" value="Titulo:" />
 				<p:inputText id="title"
 					value="#{scheduleView.event.title}" required="true" />
-
+			
 				<h:outputLabel for="from" value="Inicio:" />
-				<p:inputMask id="from"
-					value="#{scheduleView.event.startDate}"
-					mask="99/99/9999 99:99">
-					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"
-						timeZone="GMT-5" />
-				</p:inputMask>
-
+				<p:calendar id="from" 
+					value="#{scheduleView.event.startDate}" navigator="true"
+					mask="99/99/9999 99:99"   pattern="dd/MM/yyyy HH:mm"
+						timeZone="GMT-5"  locale="pt" 
+					>
+					
+				</p:calendar>
+				
 				<h:outputLabel for="to" value="fim:" />
 				<p:inputMask id="to"
 					value="#{scheduleView.event.endDate}" mask="99/99/9999 99:99">
-					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" 
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"  locale="pt"
 						timeZone="GMT-5" />
 				</p:inputMask>
 
@@ -143,31 +125,9 @@
 			</h:panelGrid>
 		</p:dialog>
 	</h:form>
+	
+	
 
-	<script type="text/javascript">
-    PrimeFaces.locales['tr'] = {
-        closeText: 'kapat',
-        prevText: 'geri',
-        nextText: 'ileri',
-        currentText: 'bugün',
-        monthNames: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran',
-            'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
-        monthNamesShort: ['Oca','Şub','Mar','Nis','May','Haz',
-            'Tem','Ağu','Eyl','Eki','Kas','Ara'],
-        dayNames: ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'],
-        dayNamesShort: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
-        dayNamesMin: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
-        weekHeader: 'Hf',
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: '',
-        month: 'Ay',
-        week: 'Hafta',
-        day: 'Gün',
-        allDayText : 'Tüm Gün'
-    };
-</script>
 	<style type="text/css">
 .value {
 	width: 1000px;

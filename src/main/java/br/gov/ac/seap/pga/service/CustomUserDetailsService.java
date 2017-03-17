@@ -25,15 +25,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
 		User user = null;
 		try {
-			return this.userRepository.findByUsername(arg0);
+			user = this.userRepository.findByUsername(arg0);
+			return user;	
 
 		} catch (UsernameNotFoundException e) {
 			user = null;
+			return user;
 		} catch (DataAccessException e) {
 			user = null;
-
-			return user;
+			return user;	
 		}
-		return user;
+		
 	}
 }

@@ -13,8 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,6 +30,8 @@ import org.springframework.security.core.userdetails.UserDetails;
  * 
  */
 @Entity
+@NamedEntityGraph(name = "User.detail",
+attributeNodes = @NamedAttributeNode("authorities"))
 @Table(name="user")
 public class User implements UserDetails, Serializable {
 	private static final long serialVersionUID = 1L;
@@ -38,8 +42,7 @@ public class User implements UserDetails, Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
-	private String cpf;
+	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datacad = new Date();
@@ -52,12 +55,14 @@ public class User implements UserDetails, Serializable {
 
 	@Column(name="full_name")
 	private String fullName;
+	
+	private String cpf;
 
 	@NotNull
 	private String username;
 
 	@ManyToOne
-	@JoinColumn(name="setor_id")
+	@JoinColumn(name="setor_id")	
 	private Setor setor = new Setor();
 
 	@NotNull
@@ -71,7 +76,7 @@ public class User implements UserDetails, Serializable {
 
 
 	//bi-directional many-to-many association to Permission
-	@ManyToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 			name="user_authority"
 			, joinColumns={
@@ -81,8 +86,25 @@ public class User implements UserDetails, Serializable {
 				@JoinColumn(name="authority_id")
 				}
 			)
-	private List<Authority> authorities = new ArrayList<Authority>();
+	
+	
+//	@OneToMany( fetch = FetchType.LAZY, cascade= {CascadeType.REFRESH, CascadeType.PERSIST} , orphanRemoval= true )	
+//	@Fetch(value = FetchMode.JOIN)
+//	@JoinColumn(name="setor_id")
+	
+//	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE},orphanRemoval=true)	
+//	@JoinTable(
+//			name="user_authority"
+//			, joinColumns={
+//				@JoinColumn(name="user_id")
+//				}
+//			, inverseJoinColumns={
+//				@JoinColumn(name="authority_id")
+//				}
+//			)
+	private List<Authority> authorities ;
 
+	
 	public User() {
 	}
 
@@ -94,8 +116,10 @@ public class User implements UserDetails, Serializable {
 		this.id = id;
 	}
 
+	
+
 	public String getCpf() {
-		return this.cpf;
+		return cpf;
 	}
 
 	public void setCpf(String cpf) {
@@ -137,7 +161,7 @@ public class User implements UserDetails, Serializable {
 		return this.fullName;
 	}
 
-	public void setFullName(String fullName) {
+	public void setfullName(String fullName) {
 		this.fullName = fullName;
 	}
 	

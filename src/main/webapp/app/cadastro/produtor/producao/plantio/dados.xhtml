@@ -12,8 +12,9 @@
 			<h:column headerClass="colbotao">
 				<f:facet name="header">
 					<p:commandButton process="@this"
-						update="@this, :frmCadPlantio" icon="ui-icon-plus"
-						styleClass="btn btn-warning"
+						update="@this, :frmCadPlantio" 
+						icon="ui-icon-plus"
+						styleClass="btn btn-primary"
 						oncomplete="PF('dlg_plantio').show();"
 						action="#{plantioController.actnovo(producaoController.producao)}">
 

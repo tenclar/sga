@@ -49,7 +49,7 @@
 					<b:commandButton value="" ajax="true"
 						update="@this, frmCadEstado"
 						icon="glyphicon glyphicon-refresh" look="warning"
-						action="#{estadoController.editar()}"
+						action="#{estadoController.acteditar()}"
 						oncomplete="PF('dlg_estado').show();PF('dlg_estado').hide()">
 						<f:setPropertyActionListener value="#{estado}"
 							target="#{estadoController.estado}" />

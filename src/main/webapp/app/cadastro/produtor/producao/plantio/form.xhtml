@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:b="http://bootsfaces.net/ui">
 
-
+<b:well  >
 	<h:form id="frmCadPlantio" prependId="false"
 		styleClass="form-horizontal">
 
@@ -13,6 +13,7 @@
 			<label class="col-lg-2 control-label">Data:</label>
 			<div class="col-lg-3">
 				<p:inputText label="Data"
+				    maxlength="10"
 					value="#{plantioController.plantio.data_info}"
 					onkeyup="Formatadata(this, event)"
 					onchange="validaDat(this, this.value)"
@@ -103,5 +104,5 @@
 		</div>
 	</h:form>
 
-
+</b:well>
 </ui:component>

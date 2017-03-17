@@ -11,50 +11,46 @@
 						   http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
   
-
-
+<!-- 	<bean id="entityManagerFactory"	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
+<!--         <property name="persistenceProviderClass" value="org.hibernate.jpa.HibernatePersistenceProvider"/>  -->
+<!--     </bean> -->
      
-    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />    
+<!--     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />	 -->
     
-	<bean id="entityManagerFactory"		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceProviderClass" value="org.hibernate.jpa.HibernatePersistenceProvider"/>   
+<!--     <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager" /> -->
+    
+<!--     <tx:annotation-driven transaction-manager="transactionManager"/> -->
+    
+  
+    
+    
+    
 
-    </bean>
-    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager" />
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-    
-    <!-- Spring Data -->
-    <jpa:repositories base-package="br.gov.ac.seap.pga.repository" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
-    
+
+
       <!-- JPA Configurations -->
-<!--     <jee:jndi-lookup id="myContactDataSource" jndi-name="java:jboss/datasources/pgaDS"  -->
-<!--     lookup-on-startup="true"       proxy-interface="javax.sql.DataSource"/> -->
+    <jee:jndi-lookup id="myContactDataSource" 
+    			jndi-name="java:jboss/datasources/pgaDS" 
+    			lookup-on-startup="true" 
+    			proxy-interface="javax.sql.DataSource" />
     
-    
-    <!--         <property name="dataSource" ref="myContactDataSource"/>     -->
-<!--            <property name="persistenceUnitName" value="pgaPU"/> -->
-    
-     
-	<!--      <tx:jta-transaction-manager/> -->	
-	<!--     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>        -->
-     
-    
-    
-    <!--                     <property name="dataSource" ref="myContactDataSource"/> -->
-<!--    <property name="persistenceUnitName" value="pgaPU"/> -->
-<!--          <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />     -->
+    <bean id="transactionManager" 
+    	  class="org.springframework.orm.jpa.JpaTransactionManager" />
+    	  
+      <tx:annotation-driven transaction-manager="transactionManager"/>
+	 	
+<!-- 	 <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/> -->
+	  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	  		<property name="persistenceProviderClass" value="org.hibernate.jpa.HibernatePersistenceProvider"/>
+          	<property name="dataSource" ref="myContactDataSource"/>
+   			<property name="persistenceUnitName" value="pgaPU"/>
+   			<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />    
+    </bean>   			
+	
  
-    
-      <!-- Hack for JBoss something until full compliance is reached -->
-<!--      <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"> -->
-<!--       <property name="persistenceUnitName" value="primestrap"/> -->
-<!--     </bean> -->
-<!--      <tx:jta-transaction-manager/> -->
-    
-<!--     Let's access the JTA transaction manager of the application server -->
-<!--     <bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager"> -->
-<!--         <property name="transactionManagerName" value="java:/TransactionManager"/> -->
-<!--         <property name="userTransactionName" value="UserTransaction"/> -->
-<!--     </bean> -->
+
+
+      <!-- Spring Data -->
+    <jpa:repositories base-package="br.gov.ac.seap.pga.repository" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
                       
 </beans>

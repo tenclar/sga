@@ -8,6 +8,10 @@
 
 
 	<application>
+	  <locale-config>
+            <default-locale>pt_BR</default-locale>
+        </locale-config>
+        
 		<message-bundle>Messages</message-bundle>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 

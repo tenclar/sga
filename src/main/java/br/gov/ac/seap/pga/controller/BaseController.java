@@ -35,10 +35,11 @@ public class BaseController implements Serializable {
 			Authentication authentication = scontext.getAuthentication();
 			if (authentication instanceof Authentication) {
 				// usersec.setLogin(((User)authentication.getPrincipal()).getUsername());
-
+				
 				username = (((User) authentication.getPrincipal()).getUsername());
-				this.userLogin = this.userService.findByUsername(username);
-				System.out.println("Autenticação login: " + ((User) authentication.getPrincipal()).getUsername());
+				//this.userLogin = this.userService.findByUsername(username);
+				this.userLogin = (User) authentication.getPrincipal();
+				//System.out.println("Autenticação login: " + ((User) authentication.getPrincipal()).getUsername());
 
 			}
 		}
@@ -65,7 +66,7 @@ public class BaseController implements Serializable {
 
 	public User getUserLogin() {
 
-		this.login4();
+		this.login();
 		return userLogin;
 	}
 	
