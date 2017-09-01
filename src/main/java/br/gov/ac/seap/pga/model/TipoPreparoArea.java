@@ -37,13 +37,9 @@ public class TipoPreparoArea implements Serializable {
 	private User user;
 		
 	
-	
-	@NotNull	
-	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")	
 	private String name;
 	
-	@NotNull	
-	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")	
+			
 	@Column(columnDefinition="TEXT")
 	private String descricao;
 	

@@ -9,6 +9,7 @@ import javax.faces.component.UIForm;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
@@ -24,7 +25,7 @@ import br.gov.ac.seap.pga.util.FacesUtils;
 
 @Controller
 @ManagedBean
-@ViewScoped
+@Scope("view")
 public class EnderecoController extends BaseController {
 
 	/**
@@ -52,7 +53,7 @@ public class EnderecoController extends BaseController {
 	private List<Cidade> listaselectcidade;
 	private List<Bairro> listaselectbairro;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -130,35 +131,35 @@ public class EnderecoController extends BaseController {
 	}
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 
 			this.endereco.setUser(getUserLogin());
 			this.enderecoService.save(endereco);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlimpa();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 		}
 
 	}
 	
 	public void actsalvarLogradouro() {
-		facesUtils = new FacesUtils();
+		
 		try {
 
 			this.endereco.setUser(getUserLogin());
 			this.enderecoService.save(endereco);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlimpa();
 			this.actpesquisa();
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 		}
 
 	}
@@ -195,7 +196,7 @@ public class EnderecoController extends BaseController {
 	}
 
 	public void actlimpa() {
-		// facesUtils = new FacesUtils();
+		// 
 		this.endereco = new Endereco();
 		this.estadoselect = new Estado();
 		this.cidadeselect = new Cidade();
@@ -205,7 +206,7 @@ public class EnderecoController extends BaseController {
 
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -215,7 +216,7 @@ public class EnderecoController extends BaseController {
 	}
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		actlimpa();
 		try {
 
@@ -227,7 +228,7 @@ public class EnderecoController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("search.not.found"));
+			FacesUtils.erro(FacesUtils.mensages("search.not.found"));
 		}
 
 	}

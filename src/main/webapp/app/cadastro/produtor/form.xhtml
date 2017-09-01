@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 
-
+<div class="container">
 
 	<!--      <div class="well bs-component"> -->
 	<h:form id="frmCadProdutor" prependId="false"
@@ -23,13 +23,13 @@
 					<div class="col-lg-10 col-lg-offset-2">
 						<p:commandButton class="btn btn-danger" value="Cancelar"
 							process="@this" update="@this, frmCadProdutor, :frmPesquisaProdutores, :frmListaProdutores"
-							action="#{produtorController.actlimpa()}"
+							action="#{produtorController.actlimpa}"
 							oncomplete="PF('panelList').show();PF('panelForm').close();" />
 
 						<p:commandButton class="btn btn-primary" value="Salvar"
 							oncomplete="if(!args.validationFailed){PF('tabVewProdutor').select(1);}"
 							process="@this, opDados" update="opDados, :frmPesquisaProdutores, :frmListaProdutores, grmsg"
-							action="#{produtorController.actsalvar()}" />
+							action="#{produtorController.actsalvar}" />
 					</div>
 				</div>
 
@@ -44,13 +44,13 @@
 							
 						<p:commandButton class="btn btn-danger" value="Cancelar"
 							process="@this" update="@this, frmCadProdutor, :frmPesquisaProdutores, :frmListaProdutores"
-							action="#{produtorController.actlimpa()}"
+							action="#{produtorController.actlimpa}"
 							oncomplete="PF('panelList').show();PF('panelForm').close();" />
 
 						<p:commandButton class="btn btn-primary" value="Salvar"
 							oncomplete="if(!args.validationFailed){PF('panelList').show();PF('panelForm').close();}"
 							process="@this" update="frmPesquisaProdutores, grmsg"
-							action="#{produtorController.actsalvar()}" />
+							action="#{produtorController.actsalvar}" />
 					</div>
 				</div>
 			</p:tab>
@@ -92,5 +92,6 @@
 
 	</h:form>
 	<!-- 	</div> -->
+	</div>
 
 </ui:component>

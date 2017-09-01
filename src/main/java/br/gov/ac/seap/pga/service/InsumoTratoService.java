@@ -21,6 +21,9 @@ public class InsumoTratoService {
 	public InsumoTrato findById(Long id){
 		return this.insumoTratoRepository.findById(id);
 	}
+	public InsumoTrato findOne(Long id){
+		return this.insumoTratoRepository.findOne(id);
+	}
 	
 	
 //	public List<InsumoTrato> findListByNomeLike(String arg0){
@@ -34,8 +37,8 @@ public class InsumoTratoService {
 //	}
 //	
 //	
-	public List<InsumoTrato> findByProducao(Producao p) {
-		return this.insumoTratoRepository.findByProducaoOrderByIdDesc(p);
+	public List<InsumoTrato> findByProducao(Long p) {
+		return this.insumoTratoRepository.findByProducaoIdOrderByIdDesc(p);
 	}
 
 	public List<InsumoTrato> findAll() {

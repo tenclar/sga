@@ -3,13 +3,14 @@ package br.gov.ac.seap.pga.repository;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import br.gov.ac.seap.pga.model.Producao;
 
 @Repository
-public interface ProducaoRepository extends CrudRepository<Producao, Integer> {
+public interface ProducaoRepository extends CrudRepository<Producao, Long> {
 
 
 	Producao findById(Long arg0);
@@ -17,6 +18,19 @@ public interface ProducaoRepository extends CrudRepository<Producao, Integer> {
 	
 	List<Producao> findByDescricaoLike(String arg0);
 	List<Producao> findAll(Sort sort);
+	
+	@Query("select p from Producao p order by p.id desc")
+	List<Producao> findAllByQuery();
+	
+	List<Producao> findByPropriedadeId(Long arg0);
+	
+	List<Producao> findByPropriedadeProdutorNameLike(String arg0);
+
+
+	List<Producao> findByPropriedadeNomeLike(String arg0);
+
+
+	List<Producao> findByPropriedadeProdutorCpf(String argumento);
 	
 	
 	

@@ -10,8 +10,10 @@
 			value="#{producaoEquipamentosController.getLista(producaoController.producao)}" var="equip">
 			<h:column headerClass="colbotao">
 				<f:facet name="header">
-					<b:commandButton ajax="true"
-						icon="glyphicon glyphicon-plus" look="primary"
+					<b:commandButton 
+						ajax="true"
+						action="#{producaoEquipamentosController.actnovo(producaoController.producao)}"
+						icon="glyphicon glyphicon-plus" look="primary" oncomplete="PF('dlg_Equipamentos').show();"
 						value="" update="@this">
 
 					</b:commandButton>
@@ -24,7 +26,9 @@
 				<f:facet name="header">
 					<h:outputText value="Data" />
 				</f:facet>
-				<h:outputText value="#{equip.data_info}" />
+				<h:outputText value="#{equip.data_info}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
 			</h:column>
 			<h:column id="cldescr">
 				<f:facet name="header">

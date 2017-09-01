@@ -7,17 +7,18 @@
 
 
 	<p:panel header="Insumos e Tratos Culturais">
-
-		<h:dataTable  id="dt_InsumoTratos" styleClass="table table-striped"
+		<p:outputPanel id="dt_InsumoTratos"  >
+		<h:dataTable   styleClass="table table-striped"
 			value="#{insumoTratoController.getLista(producaoController.producao)}"
 			var="insumo">
 			<h:column headerClass="colbotao">
 				<f:facet name="header">
 					<p:commandButton process="@this"
+						action="#{insumoTratoController.actnovo(producaoController.producao)}"	
 						update="@this, :frmCadInsumoTrato" icon="ui-icon-plus"
-						styleClass="btn btn-warning"
+						styleClass="btn btn-primary"
 						oncomplete="PF('dlg_insumoTrato').show();"
-						action="#{insumoTratoController.actnovo(producaoController.producao)}">
+						>
 
 					</p:commandButton>
 				</f:facet>
@@ -35,7 +36,9 @@
 				<f:facet name="header">
 					<h:outputText value="Data" />
 				</f:facet>
-				<h:outputText value="#{insumo.data_info}" />
+				<h:outputText value="#{insumo.data_info}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
 			</h:column>
 			<h:column>
 				<f:facet name="header">
@@ -47,12 +50,16 @@
 				<f:facet name="header">
 					<h:outputText value="Quantidade" />
 				</f:facet>
-				<h:outputText value="#{insumo.valor}" />
+				<h:outputText value="#{insumo.valor}" >
+				<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
 			</h:column>
 
 
 
 		</h:dataTable>
+		<p:messages showDetail="true" />
+		</p:outputPanel>
 	</p:panel>
 
 </ui:component>

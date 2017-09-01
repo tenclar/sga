@@ -8,11 +8,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.model.Setor;
 import br.gov.ac.seap.pga.service.SetorService;
 @Controller
+@Scope("view")
 public class SetorController extends BaseController  {
 	
 	

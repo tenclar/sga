@@ -2,6 +2,7 @@ package br.gov.ac.seap.pga.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ public class InsumoTrato implements Serializable {
 	private Long id;
 	
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar datacad = Calendar.getInstance();
 	
 	
@@ -35,10 +36,8 @@ public class InsumoTrato implements Serializable {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	
-	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar data_info;
+	private Date data_info;
 	
 	@ManyToOne
 	@JoinColumn(name="producao_id")
@@ -49,8 +48,8 @@ public class InsumoTrato implements Serializable {
 	private TipoInsumoTrato tipoInsumoTrato;
 
 	
-	@NotNull
-	@Column(name = "valor", precision = 4, scale = 2) 
+	@NotNull	
+	@Column(name = "valor", precision = 10, scale = 2) 
 	private BigDecimal valor;
 
 
@@ -84,12 +83,12 @@ public class InsumoTrato implements Serializable {
 	}
 
 
-	public Calendar getData_info() {
+	public Date getData_info() {
 		return data_info;
 	}
 
 
-	public void setData_info(Calendar data_info) {
+	public void setData_info(Date data_info) {
 		this.data_info = data_info;
 	}
 

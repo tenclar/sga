@@ -28,10 +28,14 @@ public class PatrimonioService {
 		return this.patrimonioRepository.findByNameLike(arg0);
 	}
 	
+	public List<Patrimonio> findBytombamentoLike(String arg0){
+		arg0 = "%"+arg0+"%";
+		return this.patrimonioRepository.findBytombamentoLike(arg0);
+	}
 	
 	public List<Patrimonio> findListByDescription(String arg0){
 		arg0 = "%"+arg0+"%";
-		return this.patrimonioRepository.findByDescriptionLike(arg0);
+		return this.patrimonioRepository.findByDescricaoLike(arg0);
 	}
 	
 	

@@ -23,6 +23,10 @@ public class AnaliseSoloService {
 		return this.analiseSoloRepository.findById(id);
 	}
 	
+	public AnaliseSolo findOne(Long id){
+		return this.analiseSoloRepository.findOne(id);
+	}
+	
 //	
 //	public List<AnaliseSolo> findListByNomeLike(String arg0){
 //		arg0 = "%"+arg0+"%";
@@ -41,8 +45,8 @@ public class AnaliseSoloService {
 		return this.analiseSoloRepository.findAll(this.sortByIdDesc());
 	}
 	
-	public List<AnaliseSolo> findByProducao(Producao p) {
-		return this.analiseSoloRepository.findByProducaoOrderByIdDesc(p);
+	public List<AnaliseSolo> findByProducao(Long p) {
+		return this.analiseSoloRepository.findByProducaoIdOrderByIdDesc(p);
 	}
 	
 	

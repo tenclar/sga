@@ -21,14 +21,27 @@ public class ProducaoService {
 	public Producao findById(Long id){
 		return this.producaoRepository.findById(id);
 	}
-
+	public Producao findOne(Long id){
+		return this.producaoRepository.findOne(id);
+	}
 	
 	public List<Producao> findListByDescriptionLike(String arg0){
 		arg0 = "%"+arg0+"%";
 		return this.producaoRepository.findByDescricaoLike(arg0);
 	}
 	
-
+	public List<Producao> findListByProdutorLike(String arg0){
+		arg0 = "%"+arg0+"%";
+		return this.producaoRepository.findByPropriedadeProdutorNameLike(arg0);
+	}
+	public List<Producao> findListByPropriedadeLike(String arg0){
+		arg0 = "%"+arg0+"%";
+		return this.producaoRepository.findByPropriedadeNomeLike(arg0);
+	}
+	
+	public List<Producao> findListByPropriedadeId(Long id) {
+		return this.producaoRepository.findByPropriedadeId(id);
+	}
 	public List<Producao> findAll() {
 		return this.producaoRepository.findAll(this.sortByIdDesc());
 	}
@@ -42,5 +55,11 @@ public class ProducaoService {
 
 	public void save(Producao producao) {
 		this.producaoRepository.save(producao);
+	}
+
+
+	public List<Producao> findListByCpf(String argumento) {
+		
+		return this.producaoRepository.findByPropriedadeProdutorCpf(argumento);
 	}
 }

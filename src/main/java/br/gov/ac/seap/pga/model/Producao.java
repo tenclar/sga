@@ -1,5 +1,6 @@
 package br.gov.ac.seap.pga.model;
 
+import java.beans.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,60 +26,53 @@ import javax.validation.constraints.NotNull;
 
 import br.gov.ac.seap.pga.enumerator.EnumState;
 
-
 @Entity
-@Table(name="producao")
+@Table(name = "producao")
 public class Producao implements Serializable {
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Calendar datacad = Calendar.getInstance();
-	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 
-	@NotNull
-	private String descricao;	
+	@Temporal(TemporalType.DATE)
+	private Calendar datacad = Calendar.getInstance();
 
+	@ManyToOne
+	@JoinColumn(name = "cadeiaprodutiva_id")
+	private CadeiaProdutiva cadeiaprodutiva;
 
-	private int tempouso;
-	
-	
-	
-	@NotNull
 	@Column(name = "area", precision = 10, scale = 2)
-	private BigDecimal area;
-
-
+	private double area;
 	@Enumerated(EnumType.STRING)
-	private  EnumState status = EnumState.ATIVO;
-	
+	private EnumState status = EnumState.ATIVO;
+
+	private String descricao;
+	private int tempouso;
+
 	@ManyToOne
-	@JoinColumn(name="topografia_id")
+	@JoinColumn(name = "topografia_id")
 	private Topografia topografia;
-	
+
 	@ManyToOne
-	@JoinColumn(name="maodeobra_id")
+	@JoinColumn(name = "maodeobra_id")
 	private MaoDeObra maodeobra;
-	
+
 	@ManyToOne
-	@JoinColumn(name="tipopreparoarea_id")
+	@JoinColumn(name = "tipopreparoarea_id")
 	private TipoPreparoArea tipopreparoarea;
 
 	@ManyToOne
-	@JoinColumn(name="vegetacao_id")
+	@JoinColumn(name = "vegetacao_id")
 	private Vegetacao vegetacao;
-	
-	
+
 	@ManyToOne
-	@JoinColumn(name="organizacaosocial_id")
-	private OrganizacaoSocial organizacaosocial;	
+	@JoinColumn(name = "organizacaosocial_id")
+	private OrganizacaoSocial organizacaosocial;
 
 	@ManyToOne
 	@JoinColumn(name = "unidademedida_id")
@@ -88,10 +82,6 @@ public class Producao implements Serializable {
 	@JoinColumn(name = "propriedade_id")
 	private Propriedade propriedade;
 
-	@ManyToOne
-	@JoinColumn(name = "cadeiaprodutiva_id")
-	private CadeiaProdutiva cadeiaprodutiva;
-
 	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ProducaoEquipamentos> equipamentos = new ArrayList<ProducaoEquipamentos>();
 
@@ -100,9 +90,15 @@ public class Producao implements Serializable {
 
 	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<AnaliseSolo> analisesolos = new ArrayList<AnaliseSolo>();
-	
+
+	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<CadeiaLeite> cadeialeites = new ArrayList<CadeiaLeite>();
+
 	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<InsumoTrato> insumostratos = new ArrayList<InsumoTrato>();
+
+	@OneToMany(mappedBy = "producao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ProducaoFomento> producaoFomento;
 
 	public Long getId() {
 		return id;
@@ -128,17 +124,13 @@ public class Producao implements Serializable {
 		this.descricao = descricao;
 	}
 
-
-
-	public BigDecimal getArea() {
+	public double getArea() {
 		return area;
 	}
 
-	public void setArea(BigDecimal area) {
+	public void setArea(double area) {
 		this.area = area;
 	}
-
-	
 
 	public EnumState getStatus() {
 		return status;
@@ -155,8 +147,6 @@ public class Producao implements Serializable {
 	public void setTipopreparoarea(TipoPreparoArea tipopreparoarea) {
 		this.tipopreparoarea = tipopreparoarea;
 	}
-
-
 
 	public MaoDeObra getMaodeobra() {
 		return maodeobra;
@@ -189,8 +179,6 @@ public class Producao implements Serializable {
 	public void setOrganizacaosocial(OrganizacaoSocial organizacaosocial) {
 		this.organizacaosocial = organizacaosocial;
 	}
-
-
 
 	public UnidadeMedida getUnidademedida() {
 		return unidademedida;
@@ -239,10 +227,7 @@ public class Producao implements Serializable {
 	public void setAnalisesolos(List<AnaliseSolo> analisesolos) {
 		this.analisesolos = analisesolos;
 	}
-	
-	
-	
-	
+
 	public List<InsumoTrato> getInsumostratos() {
 		return insumostratos;
 	}
@@ -262,12 +247,66 @@ public class Producao implements Serializable {
 	public User getUser() {
 		return user;
 	}
-	
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	
+	public List<CadeiaLeite> getCadeialeites() {
+		return cadeialeites;
+	}
+
+	public void setCadeialeites(List<CadeiaLeite> cadeialeites) {
+		this.cadeialeites = cadeialeites;
+	}
+
+	public List<ProducaoFomento> getProducaoFomento() {
+		return producaoFomento;
+	}
+
+	public void setProducaoFomento(List<ProducaoFomento> producaoFomento) {
+		this.producaoFomento = producaoFomento;
+	}
+
+	/*
+	 * CADEIA PRODUTIVA DE LEITE
+	 */
+	@Transient
+	public double getTotalLeiteProducaoMensal() {
+		double total = 0;
+		for (CadeiaLeite c : cadeialeites) {
+			total += c.getProducaoMensal();
+		}
+		return total;
+	}
+
+	@Transient
+	public double getTotalLeiteProducaoDiaria() {
+		double total = 0;
+		for (CadeiaLeite c : cadeialeites) {
+			total += c.getProducaodiaria();
+		}
+		return total;
+	}
+
+	@Transient
+	public double getTotalLeiteProducaoHa() {
+		double total = 0;
+		for (CadeiaLeite c : cadeialeites) {
+			total += c.getProducaoHa();
+		}
+		return total;
+	}
+
+	@Transient
+	public double getTotalLeiteProducaoMedia() {
+		double total = 0;
+		for (CadeiaLeite c : cadeialeites) {
+			total += c.getProducaoMedia();
+		}
+		return total;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -292,9 +331,5 @@ public class Producao implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }

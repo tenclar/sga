@@ -72,35 +72,35 @@
 						<label for="inputDataNasc"
 							class="col-lg-2 control-label">Dt.Nasc:</label>
 						<div class="col-lg-11">
-							<div id="datepicker2" class="input-group date">
-								<p:inputText styleClass="form-control"
+<!-- 							<div id="datepicker2" class="input-group date"> -->
+								<p:calendar styleClass="form-control"
 									label="Data de Nascimento"
 									onkeyup="Formatadata(this, event)" 
 									onchange="validaDat(this, this.value)"
 									value="#{produtorController.produtor.datanasc}"
-									required="true" id="inputDataNasc"
-									placeholder="dd/MM/yyyy">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</p:inputText>
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-th" /></span>
+									required="true" id="inputDataNasc" locale="pt"
+									placeholder="dia / mês /ano" mask="true"
+									pattern="dd/MM/yyyy" />
+								
+<!-- 								<span class="input-group-addon"><i -->
+<!-- 									class="glyphicon glyphicon-th" /></span> -->
 
 							</div>
 							<p:message for="inputDataNasc" />
 							<script type="text/javascript">
 
-$(function() {
-	$("#datepicker2").datepicker({
-	    format: "dd/mm/yyyy",
-	    todayBtn: "linked",
-	    language: "pt-BR",
-	    autoclose: true,
-	    todayHighlight: true
+// 								$(function() {
+// 									$("#datepicker2").datepicker({
+// 	    								format: "dd/mm/yyyy",
+// 	    								todayBtn: "linked",
+// 	    								language: "pt-BR",
+// 	    								autoclose: true,
+// 	    								todayHighlight: true
 
-	});
-});
-</script>
-						</div>
+// 									});
+// 								});
+							</script>
+<!-- 						</div> -->
 					</div>
 
 					<div class="form-group col-lg-4">

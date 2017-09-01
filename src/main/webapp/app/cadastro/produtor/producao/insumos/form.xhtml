@@ -5,32 +5,33 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:b="http://bootsfaces.net/ui">
 
-
+	<b:well>
 	<h:form id="frmCadInsumoTrato" prependId="false"
 		styleClass="form-horizontal">
 
 		<div class="form-group">
-			<label class="col-lg-2 control-label">Data:</label>
+			<label class="col-lg-3 control-label">Data:</label>
 			<div class="col-lg-3">
-				<p:inputText label="Data"
+				<p:inputMask mask="99/99/9999"  id="insumoData" label="Data"  maxlength="10"
 					value="#{insumoTratoController.insumoTrato.data_info}"
 					onkeyup="Formatadata(this, event)"
 					onchange="validaDat(this, this.value)"
 					styleClass="form-control">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:inputText>
-
+				</p:inputMask>
+			<p:message for="insumoData" showDetail="true" />
 			</div>
 		</div>
 		
 
 		<div class="form-group">
-			<label class="col-md-2 control-label">Tipo de Insumo:</label>
+			<label class="col-md-3 control-label">Tipo de Insumo:</label>
 			<div class="col-md-2">
 				<p:selectOneMenu
+					id="selectTipoInsumo"
 					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
 					styleClass="form-control" required="true"
-					label="Tipo de Adubo"
+					label="Tipo de Insumo"
 					value="#{insumoTratoController.insumoTrato.tipoInsumoTrato}"
 					converter="omnifaces.SelectItemsIndexConverter"
 					filter="true" filterMatchMode="startsWith">
@@ -39,18 +40,20 @@
 					<f:selectItems
 						value="#{tipoInsumoTratoController.selectItems}" />
 				</p:selectOneMenu>
+				<p:message for="selectTipoInsumo" showDetail="true" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-lg-2 control-label">Quantidade:</label>
-			<div class="col-lg-8">
+			<label class="col-lg-3 control-label">Quantidade:</label>
+			<div class="col-lg-7">
 				<p:inputText label="Quantidade"
+					id="qtdinsumo"
 					value="#{insumoTratoController.insumoTrato.valor}"
-					onkeypress="mascara(this, soNumeros)"
+					onkeypress="mascara(this, soNumerosReais)"
 					styleClass="form-control">
-					
+					<f:convertNumber pattern="##,##0.00#" />
 				</p:inputText>
-<!-- <f:convertNumber pattern="##,##0.00#" /> -->
+			<p:message for="qtdinsumo"  showDetail="true" />
 			</div>
 		</div>
 		
@@ -61,19 +64,20 @@
 				<p:commandButton value="Salvar"
 					process="frmCadInsumoTrato" id="bt_salvar_insumotrato"
 					update="frmCadInsumoTrato, :frmCadProducao:tabViewCadProducao:tvCultura:dt_InsumoTratos,  grmsg"
-					action="#{insumoTratoController.actsalvar()}"
+					action="#{insumoTratoController.actsalvar}"
 					oncomplete="if(!args.validationFailed){PF('dlg_insumoTrato').hide();}"
 					styleClass="btn btn-primary" />
 
 				<p:commandButton value="Cancelar"
 					styleClass="btn btn-danger"
-					update="@this, frmCadInsumoTrato" immediate="true"
-					action="#{insumoTratoController.actnovo()}"
+					update="@this, :frmCadProducao:tabViewCadProducao:tvCultura:dt_InsumoTratos" 
+					action="#{insumoTratoController.actlimpa}"
 					oncomplete="PF('dlg_insumoTrato').hide();" />
 
 			</div>
 		</div>
+	
 	</h:form>
-
+</b:well>
 
 </ui:component>

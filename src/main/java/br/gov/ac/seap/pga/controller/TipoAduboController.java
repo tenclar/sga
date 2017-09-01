@@ -33,7 +33,7 @@ public class TipoAduboController extends BaseController {
 
 	private List<TipoAdubo> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -56,17 +56,17 @@ public class TipoAduboController extends BaseController {
 	
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			
 			this.tipoAduboService.save(tipoAdubo);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlimpa();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -102,12 +102,12 @@ public class TipoAduboController extends BaseController {
 	}
 
 	public void actlimpa() {
-		facesUtils = new FacesUtils();
+		
 		this.tipoAdubo = new TipoAdubo();
 		//this.argumento = new String();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -120,7 +120,7 @@ public class TipoAduboController extends BaseController {
 
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		actlimpa();
 		try {
 
@@ -135,7 +135,7 @@ public class TipoAduboController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.aviso(facesUtils.mensages("search.not.found") + e.getMessage());
+			FacesUtils.aviso(FacesUtils.mensages("search.not.found") + e.getMessage());
 		}finally{
 			
 		}

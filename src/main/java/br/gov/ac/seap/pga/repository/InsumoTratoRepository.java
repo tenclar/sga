@@ -10,12 +10,12 @@ import br.gov.ac.seap.pga.model.InsumoTrato;
 import br.gov.ac.seap.pga.model.Producao;
 
 @Repository
-public interface InsumoTratoRepository extends CrudRepository<InsumoTrato, Integer> {
+public interface InsumoTratoRepository extends CrudRepository<InsumoTrato, Long> {
 
 
 	InsumoTrato findById(Long arg0);	
 		
-	List<InsumoTrato> findByProducaoOrderByIdDesc(Producao arg0);	
+	List<InsumoTrato> findByProducaoIdOrderByIdDesc(Long arg0);	
 	List<InsumoTrato> findAll(Sort sort);
 	
 	

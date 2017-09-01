@@ -10,12 +10,12 @@ import br.gov.ac.seap.pga.model.AnaliseSolo;
 import br.gov.ac.seap.pga.model.Producao;
 
 @Repository
-public interface AnaliseSoloRepository extends CrudRepository<AnaliseSolo, Integer> {
+public interface AnaliseSoloRepository extends CrudRepository<AnaliseSolo, Long> {
 
 
 	AnaliseSolo findById(Long arg0);	
 		
-	List<AnaliseSolo> findByProducaoOrderByIdDesc(Producao arg0);	
+	List<AnaliseSolo> findByProducaoIdOrderByIdDesc(Long arg0);	
 	List<AnaliseSolo> findAll(Sort sort);
 	
 	

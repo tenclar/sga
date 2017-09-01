@@ -38,11 +38,10 @@ public class TipoAdubo implements Serializable {
 	
 	
 	@NotNull	
-	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")	
+		
 	private String name;
 	
 	@NotNull	
-	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")	
 	@Column(columnDefinition="TEXT")
 	private String descricao;
 	

@@ -10,12 +10,12 @@ import br.gov.ac.seap.pga.model.PreparoArea;
 import br.gov.ac.seap.pga.model.Producao;
 
 @Repository
-public interface PreparoAreaRepository extends CrudRepository<PreparoArea, Integer> {
+public interface PreparoAreaRepository extends CrudRepository<PreparoArea, Long> {
 
 
 	PreparoArea findById(Long arg0);	
 		
-	List<PreparoArea> findByProducaoOrderByIdDesc(Producao arg0);	
+	List<PreparoArea> findByProducaoIdOrderByIdDesc(Long arg0);	
 	List<PreparoArea> findAll(Sort sort);
 	
 	

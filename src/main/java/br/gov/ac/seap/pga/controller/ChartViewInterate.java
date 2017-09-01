@@ -13,8 +13,10 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
+import org.springframework.context.annotation.Scope;
 
 @ManagedBean
+@Scope("view")
 public class ChartViewInterate implements Serializable {
 
 	/**
@@ -47,14 +49,14 @@ public class ChartViewInterate implements Serializable {
     private void createBarModel() {
         barModel = initBarModel();
          
-        barModel.setTitle("Bar Chart");
+        barModel.setTitle("Gráfico em Barras");
         barModel.setLegendPosition("ne");
          
         Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Gender");
+        xAxis.setLabel("Melancia");
          
         Axis yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Births");
+        yAxis.setLabel("Mandioca");
         yAxis.setMin(0);
         yAxis.setMax(200);
     }
@@ -63,20 +65,20 @@ public class ChartViewInterate implements Serializable {
         BarChartModel model = new BarChartModel();
  
         ChartSeries boys = new ChartSeries();
-        boys.setLabel("Boys");
-        boys.set("2004", 120);
-        boys.set("2005", 100);
-        boys.set("2006", 44);
-        boys.set("2007", 150);
-        boys.set("2008", 25);
+        boys.setLabel("Banana");
+        boys.set("2015", 120);
+        boys.set("2015", 100);
+        boys.set("2016", 44);
+        boys.set("2016", 150);
+        boys.set("2017", 25);
  
         ChartSeries girls = new ChartSeries();
-        girls.setLabel("Girls");
-        girls.set("2004", 52);
-        girls.set("2005", 60);
-        girls.set("2006", 110);
-        girls.set("2007", 135);
-        girls.set("2008", 120);
+        girls.setLabel("Café");
+        girls.set("2015", 52);
+        girls.set("2015", 60);
+        girls.set("2016", 110);
+        girls.set("2016", 135);
+        girls.set("2017", 120);
  
         model.addSeries(boys);
         model.addSeries(girls);
@@ -91,12 +93,12 @@ public class ChartViewInterate implements Serializable {
     private void createPieModel1() {
         pieModel1 = new PieChartModel();
          
-        pieModel1.set("Brand 1", 540);
-        pieModel1.set("Brand 2", 325);
-        pieModel1.set("Brand 3", 702);
-        pieModel1.set("Brand 4", 421);
+        pieModel1.set("Café 1", 540);
+        pieModel1.set("Melancia 2", 325);
+        pieModel1.set("Mandioca 3", 702);
+        pieModel1.set("Milho", 421);
          
-        pieModel1.setTitle("Simple Pie");
+        pieModel1.setTitle("Gráfico em Pizza");
         pieModel1.setLegendPosition("w");
     }
  

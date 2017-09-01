@@ -27,7 +27,7 @@ public class AnaliseSolo implements Serializable {
 	private Long id;
 	
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar datacad = Calendar.getInstance();
 	
 	@ManyToOne

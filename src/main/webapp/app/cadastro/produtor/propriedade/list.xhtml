@@ -30,21 +30,30 @@
 
 
 	<p:outputPanel id="dtPropriedades">
-		<p:dataTable styleClass="table table-striped"
+		<p:dataTable styleClass="table table-striped" 
 			value="#{produtorController.produtor.propriedades}"
 			var="propriedade">
-
-
-			<p:column style="width:60px;">
-				<f:facet name="header">
-					<p:commandButton id="bt_add_prop" icon="ui-icon-plus"
+			<p:columnGroup  type="header">
+			<p:row>
+				 <p:column style="width:80px;"  >
+				 <f:facet name="header">				
+				 	<p:commandButton id="bt_add_prop" icon="ui-icon-plus"
 						styleClass="btn btn-primary"
 						update="@this, frmPropriedade" process="@this"
 						action="#{produtorController.actnovoprop()}"
 						oncomplete="PF('dlg_propriedade').show();">
-
 					</p:commandButton>
-				</f:facet>
+					</f:facet>
+				  </p:column>
+					<p:column  style="width:100px;" colspan="2" headerText="Produções" />
+					<p:column   headerText="Propriedade" />
+					<p:column   headerText="Tipo Ocupação" />
+					<p:column   headerText="àrea Total" />
+			</p:row>
+				
+		</p:columnGroup>
+			<p:column style="text-align: center;" >
+				
 				<p:commandButton id="bt_edit_prop"
 					styleClass="btn btn-warning" icon="ui-icon-refresh"
 					update="@this, frmPropriedade" process="@this"
@@ -55,15 +64,11 @@
 				</p:commandButton>
 
 			</p:column>
-			<p:column headerText="#" style="width:40px;">
-				<p:rowToggler />
+			<p:column  >
+				<p:rowToggler  />
 			</p:column>
-			<p:column headerText="Produções" style="width:100px;">
-
-
+			<p:column  >
 				<h:outputText value="#{propriedade.producoes.size()}" />
-
-
 			</p:column>
 			<p:column>
 				<f:facet name="header">
@@ -84,7 +89,7 @@
 				<h:outputText
 					value="#{propriedade.areatotal}(#{propriedade.unidademedida.sigla})" />
 			</p:column>
-			<div></div>
+			
 			<p:rowExpansion>
 
 

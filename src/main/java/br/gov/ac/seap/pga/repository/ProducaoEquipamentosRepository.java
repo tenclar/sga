@@ -10,12 +10,12 @@ import br.gov.ac.seap.pga.model.ProducaoEquipamentos;
 import br.gov.ac.seap.pga.model.Producao;
 
 @Repository
-public interface ProducaoEquipamentosRepository extends CrudRepository<ProducaoEquipamentos, Integer> {
+public interface ProducaoEquipamentosRepository extends CrudRepository<ProducaoEquipamentos, Long> {
 
 
 	ProducaoEquipamentos findById(Long arg0);	
 		
-	List<ProducaoEquipamentos> findByProducaoOrderByIdDesc(Producao arg0);	
+	List<ProducaoEquipamentos> findByProducaoIdOrderByIdDesc(Long arg0);	
 	List<ProducaoEquipamentos> findAll(Sort sort);
 	
 	

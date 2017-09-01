@@ -1,10 +1,9 @@
 package br.gov.ac.seap.pga.model;
 
 import java.io.Serializable;
-
-
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,17 +29,14 @@ public class PreparoArea implements Serializable {
 	
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Calendar datacad;
+	private Calendar datacad = Calendar.getInstance();
 	
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
-	
-	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Calendar data_info;
+		
+	private Date data_info;
 	
 	@ManyToOne
 	@JoinColumn(name="producao_id")
@@ -50,10 +46,9 @@ public class PreparoArea implements Serializable {
 	@JoinColumn(name="servico_id")
 	private ServicoMecanizacao servicomecanizacao;
 	
-	
 		
 	@NotNull	 
-	private String hta;
+	private BigDecimal hta;
 	
 	@NotNull
 	@Column(name = "area", precision = 4, scale = 2) 
@@ -87,11 +82,11 @@ public class PreparoArea implements Serializable {
 		this.user = user;
 	}
 
-	public Calendar getData_info() {
+	public Date getData_info() {
 		return data_info;
 	}
 
-	public void setData_info(Calendar data_info) {
+	public void setData_info(Date data_info) {
 		this.data_info = data_info;
 	}
 
@@ -113,11 +108,10 @@ public class PreparoArea implements Serializable {
 
 
 
-	public String getHta() {
+	public BigDecimal getHta() {
 		return hta;
 	}
-
-	public void setHta(String hta) {
+	public void setHta(BigDecimal hta) {
 		this.hta = hta;
 	}
 

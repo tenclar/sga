@@ -23,6 +23,10 @@ public class PreparoAreaService {
 		return this.preparoAreaRepository.findById(id);
 	}
 	
+	public PreparoArea findOne(Long id){
+		return this.preparoAreaRepository.findOne(id);
+	}
+	
 //	
 //	public List<PreparoArea> findListByNomeLike(String arg0){
 //		arg0 = "%"+arg0+"%";
@@ -41,8 +45,8 @@ public class PreparoAreaService {
 		return this.preparoAreaRepository.findAll(this.sortByIdDesc());
 	}
 	
-	public List<PreparoArea> findByProducao(Producao p) {
-		return this.preparoAreaRepository.findByProducaoOrderByIdDesc(p);
+	public List<PreparoArea> findByProducao(Long p) {
+		return this.preparoAreaRepository.findByProducaoIdOrderByIdDesc(p);
 	}
 	
 	

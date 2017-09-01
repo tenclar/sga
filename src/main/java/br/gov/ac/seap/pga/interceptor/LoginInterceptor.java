@@ -14,8 +14,8 @@ import br.gov.ac.seap.pga.service.UserService;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-	@Autowired
-	private UserService userService;
+	//@Autowired
+	//private UserService userService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
@@ -25,8 +25,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			String username = auth.getName();
-			user = this.userService.findByUsername(username);
+			//String username = auth.getName();
+			//user = this.userService.findByUsername(username);
+			user = ((User) auth.getPrincipal());
 			session.setAttribute("user", user);
 		}
         

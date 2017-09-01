@@ -5,20 +5,21 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:b="http://bootsfaces.net/ui">
 
-
-	<h:form id="frmCadAnaliseSolo" prependId="false"
+ <b:well   >
+	<h:form id="frmCadAnaliseSolo" prependId="false" style="color:#000;"
 		styleClass="form-horizontal">
 
 		<div class="form-group">
 			<label class="col-lg-2 control-label">Data:</label>
 			<div class="col-lg-3">
-				<p:inputText label="Data"
+				<p:inputMask mask="99/99/9999" 
+					label="Data"
 					value="#{analiseSoloController.analiseSolo.dataanalise}"
 					onkeyup="Formatadata(this, event)"
 					onchange="validaDat(this, this.value)"
 					styleClass="form-control">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:inputText>
+				</p:inputMask>
 
 			</div>
 		</div>
@@ -98,6 +99,6 @@
 			</div>
 		</div>
 	</h:form>
-
+</b:well>
 
 </ui:component>

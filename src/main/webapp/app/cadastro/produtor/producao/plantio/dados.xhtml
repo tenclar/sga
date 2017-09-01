@@ -8,24 +8,25 @@
 
 		<h:dataTable id="dt_Plantios" styleClass="table table-striped"
 		
-			value="#{plantioController.getLista(producaoController.producao)}" var="plantio">
+			value="#{plantioColheitaController.getLista(producaoController.producao)}" var="plantio">
 			<h:column headerClass="colbotao">
 				<f:facet name="header">
 					<p:commandButton process="@this"
-						update="@this, :frmCadPlantio" icon="ui-icon-plus"
-						styleClass="btn btn-warning"
+						update="@this, :frmCadPlantio" 
+						icon="ui-icon-plus"
+						styleClass="btn btn-primary"
 						oncomplete="PF('dlg_plantio').show();"
-						action="#{plantioController.actnovo(producaoController.producao)}">
+						action="#{plantioColheitaController.actnovo(producaoController.producao)}">
 
 					</p:commandButton>
 				</f:facet>
 				<p:commandButton process="@this"
 					update="@this, :frmCadPlantio"
 					oncomplete="PF('dlg_analisesolo').show();"
-					action="#{plantioController.acteditar()}"
+					action="#{plantioColheitaController.acteditar()}"
 					styleClass="btn btn-warning" icon="ui-icon-refresh">
 					<f:setPropertyActionListener value="#{plantio}"
-						target="#{plantioController.plantio}" />
+						target="#{plantioColheitaController.plantioColheita}" />
 
 				</p:commandButton>
 			</h:column>
@@ -33,13 +34,15 @@
 				<f:facet name="header">
 					<h:outputText value="Data" />
 				</f:facet>
-				<h:outputText value="#{plantio.data_info}" />
+				<h:outputText value="#{plantio.dataPlantio}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
 			</h:column>
 			<h:column >
 				<f:facet name="header">
 					<h:outputText value="Cultura" />
 				</f:facet>
-				<h:outputText value="#{plantio.cultura}" />
+				<h:outputText value="#{plantio.culturaPlantio}" />
 			</h:column>	
 			<h:column>	
 				<f:facet name="header">
@@ -51,7 +54,9 @@
 				<f:facet name="header">
 					<h:outputText value="Area(ha)" />
 				</f:facet>
-				<h:outputText value="#{plantio.area}" />
+				<h:outputText value="#{plantio.areaPlantio}" >
+				<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
 			</h:column>
 			<h:column>
 				<f:facet name="header">
@@ -61,9 +66,11 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="Valor Sc" />
+					<h:outputText value="Valor Saca" />
 				</f:facet>
-				<h:outputText value="#{plantio.valor}" />
+				<h:outputText value="#{plantio.valor}" >
+					<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
 			</h:column>
 			
 		</h:dataTable>

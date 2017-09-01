@@ -4,10 +4,9 @@
                 xmlns:p="http://primefaces.org/ui"  
                 xmlns:sec="http://www.springframework.org/security/tags"
                 >
+             
                 
-                
-                
-   <div class="navbar navbar-inverse navbar-fixed-top" style="z-index: 1001">
+   <div class="navbar navbar-inverse navbar-fixed-top"  role="navigation" style="z-index: 1001">
       <div class="container">
         <div class="navbar-header">
           <a href="${request.contextPath}/app/" class="navbar-brand">PGA</a>
@@ -30,21 +29,27 @@
                 <li><a href="#{request.contextPath}/app/cadastro/regional/">Regional Municipal</a></li>
                 <li><a href="#{request.contextPath}/app/cadastro/regionalestadual/">Regional Estadual</a></li>       
                 <li class="divider"></li>  
-                <li><a href="#{request.contextPath}/app/cadastro/orgsocial/">Organização Social</a></li>                
+                                
                 <li><a href="#{request.contextPath}/app/cadastro/cadeiaprod/">Cadeia Produtiva</a></li>
-                <li><a href="#{request.contextPath}/app/cadastro/unmedida/">Unidade de Medida</a></li> 
-                <li><a href="#{request.contextPath}/app/cadastro/ocupacao/">Tipo de Ocupação</a></li>                
-                <li class="divider"></li>  
-                <li><a href="#{request.contextPath}/app/cadastro/formento/">Categoria Formento</a></li>
+                                
+                <li class="divider"></li>
                 <li><a href="#{request.contextPath}/app/cadastro/recurso/">Recurso</a></li>
                 <li><a href="#{request.contextPath}/app/cadastro/patrimonio/">Patrimônio</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/fomento/">Fomento</a></li>
                 <li><a href="#{request.contextPath}/app/cadastro/material/">Material</a></li>
                 <li><a href="#{request.contextPath}/app/cadastro/categoriamaterial/">Categoria Material</a></li>
+                
+                <li class="divider"></li>
+                <li><a href="#{request.contextPath}/app/cadastro/servicomecanizacao/">Serviços Mecanização</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/orgsocial/">Organizações Sociais</a></li>                
                 <li><a href="#{request.contextPath}/app/cadastro/tipopreparoarea/">Tipo Preparo Área</a></li>
-                <li><a href="#{request.contextPath}/app/cadastro/vegetacao/">Vegetação</a></li>
-                <li><a href="#{request.contextPath}/app/cadastro/maodeobra/">Mão de Obra</a></li>
-                <li><a href="#{request.contextPath}/app/cadastro/topografia/">Topografia</a></li>
-                <li><a href="#{request.contextPath}/app/cadastro/tipoadubo/">Tipo de Adubo</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/vegetacao/">Vegetações</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/maodeobra/">Mão de Obras</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/topografia/">Topografias</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/tipoadubo/">Adubos</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/tipoinsumo/">Insumos</a></li>                 
+                <li><a href="#{request.contextPath}/app/cadastro/ocupacao/">Ocupações</a></li>
+                <li><a href="#{request.contextPath}/app/cadastro/unmedida/">Unidades de Medida</a></li>
                 
 <!--                 <li><a href="#">Example 2</a></li> -->
 <!--                 <li><a href="#">Example 3</a></li> -->
@@ -54,22 +59,44 @@
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Expediente <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-              <li><a href="${request.contextPath}/app/cadastro/acoes/">Ações</a></li>
-<!--               <li><a href="${request.contextPath}/app/cadastro/producao/">Produção</a></li> -->
-              	<li class="divider"></li>     
                 <li><a href="${request.contextPath}/app/cadastro/produtor/">Produtor</a></li>
-<!--                 <li><a href="${request.contextPath}/app/cadastro/propriedade/">Propriedade</a></li> -->
-<!--                 <li><a href="#">Formento</a></li> -->
+                <li><a href="${request.contextPath}/app/expediente/propriedade/">Propriedade</a></li>
+                <li><a href="${request.contextPath}/app/expediente/producao/">Produção</a></li>  
+
+              
+              	<li class="divider"></li>     
+              	<li><a href="${request.contextPath}/app/expediente/acoes/">Ações</a></li>
+				
+				<h:panelGroup  rendered="#{p:ifGranted('ROLE_ADMIN')}" >
                 <li class="divider"></li>  
-                <li><a href="${request.contextPath}/app/painel/">Painel</a></li>
-                <li><a href="${request.contextPath}/app/painel/">Evolução Meta</a></li>
+                <li><a href="${request.contextPath}/app/painel/">Painel Gráfico</a></li>
+                <li><a href="${request.contextPath}/app/mapa/">Mapa de Produção</a></li>
+				<!--    <li><a href="${request.contextPath}/app/expediente/meta">Evolução Meta</a></li> -->
+				</h:panelGroup>
               </ul>
             </li>
              <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Relatórios <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="${request.contextPath}/app/relatorios/">Produção período</a></li>
-                <li><a href="#">Produtor investimento</a></li>
+              	<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtores</a>
+					<ul class="dropdown-menu">
+						<li><a href="${request.contextPath}/app/relatorios/produtor/lista">Lista</a></li>
+						<li><a href="${request.contextPath}/app/relatorios/produtor/formulario">Ficha de Cadastro</a></li>						
+					</ul>
+				</li>
+             	 <h:panelGroup  rendered="#{p:ifGranted('ROLE_ADMIN')}" >
+             		<li class="divider"></li>
+             		<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadeia Produtiva Leite</a>
+						<ul class="dropdown-menu">
+							<li><a href="${request.contextPath}/app/relatorios/leite/">Lista - Produção período</a></li>
+							<li><a href="">Gráficos</a></li>						
+						</ul>
+					</li>
+					</h:panelGroup>
+                <li><a href="${request.contextPath}/app/relatorios/producao/">Produção período</a></li>
+                <li class="divider"></li>
+                
+                
 
               </ul>
           	</li>
@@ -81,8 +108,8 @@
               <ul class="dropdown-menu" aria-labelledby="themes">
                 <li><a href="#{request.contextPath}/app/admin/usuario/">Usuário</a></li>
                 <li><a href="#{request.contextPath}/app/admin/authority/">Permissões</a></li>                 
-                  <li><a href="#{request.contextPath}/app/admin/setor/">Setor</a></li>
-                  <li><a href="#">Configurações</a></li>
+                <li><a href="#{request.contextPath}/app/admin/setor/">Setor</a></li>
+                <li><a href="#">Configurações</a></li>
               </ul>
             </li>
             </h:panelGroup>

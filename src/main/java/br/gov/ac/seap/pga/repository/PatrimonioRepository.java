@@ -14,7 +14,7 @@ public interface PatrimonioRepository extends CrudRepository<Patrimonio, Integer
 
 
 	Patrimonio findById(Long arg0);	
-	List<Patrimonio> findByDescriptionLike(String arg0);
+	List<Patrimonio> findByDescricaoLike(String arg0);
 	List<Patrimonio> findByMaterial(Material arg0);
 	List<Patrimonio> findBytombamentoLike(String arg0);		
 	List<Patrimonio> findByNameLike(String arg0);	

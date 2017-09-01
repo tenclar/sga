@@ -5,50 +5,48 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:b="http://bootsfaces.net/ui">
 
-
+<b:well  >
 	<h:form id="frmCadPlantio" prependId="false"
 		styleClass="form-horizontal">
 
 		<div class="form-group">
 			<label class="col-lg-2 control-label">Data:</label>
 			<div class="col-lg-3">
-				<p:inputText label="Data"
-					value="#{plantioController.plantio.data_info}"
+				<p:inputText
+					id="platioData" 
+					label="Data"
+				    maxlength="10"
+					value="#{plantioColheitaController.plantioColheita.dataPlantio}"
 					onkeyup="Formatadata(this, event)"
 					onchange="validaDat(this, this.value)"
+					required="true"
 					styleClass="form-control">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</p:inputText>
-
+				<p:message for="platioData" showDetail="true" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-lg-2 control-label">Cultura:</label>
 			<div class="col-lg-8">
-				<p:inputText label="Cultura"
-					value="#{plantioController.plantio.cultura}"
+				<p:inputText
+					id="insumosCultura"
+					label="Cultura"
+					required="true"
+					value="#{plantioColheitaController.plantioColheita.culturaPlantio}"
 					styleClass="form-control">
 
 				</p:inputText>
+				<p:message for="insumosCultura" showDetail="true" />	
 
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-lg-2 control-label">Variedade:</label>
+			<label class="col-lg-2 control-label">Fabricante:</label>
 			<div class="col-lg-8">
-				<p:inputText label="Cultura"
-					value="#{plantioController.plantio.variedade}"
-					styleClass="form-control">
-
-				</p:inputText>
-
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-lg-2 control-label">Àrea:</label>
-			<div class="col-lg-8">
-				<p:inputText label="Cultura"
-					value="#{plantioController.plantio.area}"
+				<p:inputText label="Fabricante"
+					value="#{plantioColheitaController.plantioColheita.fabricante}"
+					required="true"
 					styleClass="form-control">
 
 				</p:inputText>
@@ -59,26 +57,60 @@
 			<label class="col-lg-2 control-label">Ciclo:</label>
 			<div class="col-lg-8">
 				<p:inputText label="Cultura"
-					value="#{plantioController.plantio.ciclo}"
+					value="#{plantioColheitaController.plantioColheita.ciclo}"
+					required="true"
 					styleClass="form-control">
 
 				</p:inputText>
 
 			</div>
 		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Variedade:</label>
+			<div class="col-lg-8">
+				<p:inputText
+					id="plantioCutura" 
+					label="Cultura"
+					value="#{plantioColheitaController.plantioColheita.variedade}"
+					required="true"
+					styleClass="form-control">
+				
+				</p:inputText>
+			<p:message for="plantioCutura" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Àrea:</label>
+			<div class="col-lg-8">
+				<p:inputText
+					id="plantiuarea" 
+					label="Cultura"
+					value="#{plantioColheitaController.plantioColheita.areaPlantio}"
+					onkeypress="mascara(this, soNumerosReais)"
+					required="true"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />	
+				</p:inputText>
+				<p:message for="plantiuarea" showDetail="true" />
+			</div>
+		</div>
+		
 
 
 
 		<div class="form-group">
-			<label class="col-lg-2 control-label">Valor sc:</label>
+			<label class="col-lg-2 control-label">Valor saca:</label>
 			<div class="col-lg-8">
-				<p:inputText label="Quantidade"
-					value="#{plantioController.plantio.valor}"
+				<p:inputText 
+					id="valorsaca"
+					label="Valor Saca"
+					value="#{plantioColheitaController.plantioColheita.valor}"
 					onkeypress="mascara(this, soNumerosReais)"
+					required="true"
 					styleClass="form-control">
 					<f:convertNumber pattern="##,##0.00#" />
 				</p:inputText>
-
+				<p:message for="valorsaca" showDetail="true" />
 			</div>
 		</div>
 
@@ -89,19 +121,19 @@
 				<p:commandButton value="Salvar" process="frmCadPlantio"
 					id="bt_salvar_Plantio"
 					update="frmCadPlantio, :frmCadProducao:tabViewCadProducao:tvCultura:dt_Plantios,  grmsg"
-					action="#{plantioController.actsalvar()}"
+					action="#{plantioColheitaController.actsalvar}"
 					oncomplete="if(!args.validationFailed){PF('dlg_plantio').hide();}"
 					styleClass="btn btn-primary" />
 
 				<p:commandButton value="Cancelar"
 					styleClass="btn btn-danger"
-					update="@this, frmCadPlantio" immediate="true"
-					action="#{plantioController.actnovo()}"
+					update="@this, :frmCadProducao:tabViewCadProducao:tvCultura:dt_Plantios"  process="@this"
+					action="#{plantioColheitaController.actlimpa}"
 					oncomplete="PF('dlg_plantio').hide();" />
 
 			</div>
 		</div>
 	</h:form>
 
-
+</b:well>
 </ui:component>

@@ -9,6 +9,7 @@ import javax.faces.component.UIForm;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
@@ -18,7 +19,7 @@ import br.gov.ac.seap.pga.util.FacesUtils;
 
 @Controller
 @ManagedBean
-@ViewScoped
+@Scope("view")
 public class RegionalMunicipalController extends BaseController {
 
 	/**
@@ -33,7 +34,7 @@ public class RegionalMunicipalController extends BaseController {
 
 	private List<RegionalMunicipal> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -56,17 +57,17 @@ public class RegionalMunicipalController extends BaseController {
 	
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			regionalMunicipal.setUser(getUser());
 			this.regionalMunicipalService.save(regionalMunicipal);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlista();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -102,12 +103,12 @@ public class RegionalMunicipalController extends BaseController {
 	}
 
 	public void  actlimpa() {
-		facesUtils = new FacesUtils();
+		
 		this.regionalMunicipal = new RegionalMunicipal();
 		//this.argumento = new String();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -120,7 +121,7 @@ public class RegionalMunicipalController extends BaseController {
 
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		actlimpa();
 		try {
 
@@ -135,7 +136,7 @@ public class RegionalMunicipalController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("search.not.found") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("search.not.found") + e.getMessage());
 		}
 
 	}

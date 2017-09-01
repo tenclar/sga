@@ -81,21 +81,21 @@
 		</p:dialog>
 
 		<p:dialog header="Nova Produção" widgetVar="dlg_producao"
-			minWidth="600" height="400" modal="true"
-			resizable="false" styleClass="modal-dialog"
+			minWidth="630" modal="true" minHeight="600"
+			resizable="true" styleClass="modal-dialog"
 			closable="true">
 			<ui:include src="producao/form.xhtml" />
 
 		</p:dialog>
 		<p:dialog header="Nova Analise de Solo"
-			widgetVar="dlg_analisesolo" minWidth="600" height="400"
+			widgetVar="dlg_analisesolo" width="600" height="400"
 			modal="true" resizable="false" styleClass="modal-dialog"
 			closable="true">
 			<ui:include src="producao/cultura/analisesolo/form.xhtml" />
 
 		</p:dialog>
 		<p:dialog header="Novo Insumo  e  Tratos Culturais"
-			widgetVar="dlg_insumoTrato" minWidth="600" height="400"
+			widgetVar="dlg_insumoTrato" width="600" maxHeight="400"
 			modal="true" resizable="false" styleClass="modal-dialog"
 			closable="true">
 			<ui:include src="producao/insumos/form.xhtml" />
@@ -103,7 +103,7 @@
 		</p:dialog>
 
 		<p:dialog header="Plantio" widgetVar="dlg_plantio"
-			minWidth="600" height="400" modal="true"
+			width="600" minHeight="400" modal="true"
 			resizable="false" styleClass="modal-dialog"
 			closable="true">
 			<ui:include src="producao/plantio/form.xhtml" />
@@ -111,17 +111,25 @@
 		</p:dialog>
 
 		<p:dialog header="Colheita" widgetVar="dlg_colheita"
-			minWidth="600" height="400" modal="true"
+			width="600" minHeight="400" modal="true"
 			resizable="false" styleClass="modal-dialog"
 			closable="true">
 			<ui:include src="producao/colheita/form.xhtml" />
 
 		</p:dialog>
-				<p:dialog header="Mecanização" widgetVar="dlg_preparoArea"
-		  minWidth="600" height="400"
-			modal="true" resizable="false" styleClass="modal-dialog" 
-			 closable="true">
-				<ui:include src="producao/preparoarea/form.xhtml" />
+		<p:dialog header="Serviço" widgetVar="dlg_preparoArea"
+			width="600"  modal="true" resizable="false"
+			styleClass="modal-dialog" closable="true">
+			<ui:include src="producao/preparoarea/form.xhtml" />
+
+		</p:dialog>
+
+
+		<p:dialog header="Equipamentos"
+			widgetVar="dlg_Equipamentos" width="600" minHeight="400"
+			modal="true" resizable="false" styleClass="modal-dialog"
+			closable="true">
+			<ui:include src="producao/equipamentos/form.xhtml" />
 
 		</p:dialog>
 

@@ -9,6 +9,7 @@ import javax.faces.component.UIForm;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
@@ -18,7 +19,7 @@ import br.gov.ac.seap.pga.util.FacesUtils;
 
 @Controller
 @ManagedBean
-@ViewScoped
+@Scope("view")
 public class RegionalEstadualController extends BaseController {
 
 	/**
@@ -33,7 +34,7 @@ public class RegionalEstadualController extends BaseController {
 
 	private List<RegionalEstadual> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -56,17 +57,17 @@ public class RegionalEstadualController extends BaseController {
 	
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			regionalEstadual.setUser(getUser());
 			this.regionalEstadualService.save(regionalEstadual);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlista();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -102,11 +103,11 @@ public class RegionalEstadualController extends BaseController {
 	}
 
 	public void  actlimpa() {
-		facesUtils = new FacesUtils();
+		
 		this.regionalEstadual = new RegionalEstadual();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -119,7 +120,7 @@ public class RegionalEstadualController extends BaseController {
 
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		actlimpa();
 		try {
 
@@ -134,7 +135,7 @@ public class RegionalEstadualController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("search.not.found") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("search.not.found") + e.getMessage());
 		}
 
 	}

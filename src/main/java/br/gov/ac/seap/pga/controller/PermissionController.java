@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.model.Authority;
@@ -16,6 +17,7 @@ import br.gov.ac.seap.pga.service.AuthorityService;
 
 @Controller
 @ManagedBean
+@Scope("view")
 public class PermissionController   {
 	
 

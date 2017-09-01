@@ -1,0 +1,113 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<b:well>
+	<h:form id="frmCadPreparoArea" prependId="false"
+		styleClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Data:</label>
+			<div class="col-lg-3">
+				<p:inputText label="Data"
+					id="inputDatapArea"
+					maxlength="10"
+					value="#{preparoAreaController.preparoArea.data_info}"
+					onkeyup="Formatadata(this, event)"
+					onchange="validaDat(this, this.value)"
+					styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+				<p:message for="inputDatapArea" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Tipo de Serviço:</label>
+			<div class="col-lg-7">
+				<p:selectOneMenu
+					id="selTipoAdubo"
+					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+					styleClass="form-control" required="true"
+					label="Tipo de Adubo"
+					value="#{preparoAreaController.preparoArea.servicomecanizacao}"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Selecione"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{servicoMecanizacaoController.selectItems}" />
+				</p:selectOneMenu>
+				<p:message for="selTipoAdubo" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Área:</label>
+			<div class="col-lg-8">
+				<p:inputText label="área"
+					id="inputpArea"
+					value="#{preparoAreaController.preparoArea.area}"
+						onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+				<p:message for="inputpArea" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">H/TA:</label>
+			<div class="col-lg-8">
+				<p:inputText label="H/TA"
+					id="inputhta"
+					value="#{preparoAreaController.preparoArea.hta}"
+						onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+				<p:message for="inputhta" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Valor:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Valor"
+					id="inputValor"
+					value="#{preparoAreaController.preparoArea.valor}"
+						onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+				<p:message for="inputValor" showDetail="true" />
+			</div>
+		</div>
+
+		
+		
+
+		
+		
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+
+				<p:commandButton value="Salvar"
+					process="frmCadPreparoArea" id="bt_salvar_PreparoArea"
+					update="frmCadPreparoArea, :frmCadProducao:tabViewCadProducao:dt_PreparoArea,  grmsg"
+					action="#{preparoAreaController.actsalvar()}"
+					oncomplete="if(!args.validationFailed){PF('dlg_preparoArea').hide();}"
+					styleClass="btn btn-primary" />
+
+				<p:commandButton value="Cancelar"
+					styleClass="btn btn-danger" process="@this"
+					update="@this, frmCadPreparoArea, :frmCadProducao:tabViewCadProducao:dt_PreparoArea" 					
+					 oncomplete="PF('dlg_preparoArea').hide();"
+					 />
+
+			</div>
+		</div>
+	</h:form>
+</b:well>
+
+</ui:component>

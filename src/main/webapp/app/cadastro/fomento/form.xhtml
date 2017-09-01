@@ -1,0 +1,64 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<b:well>
+
+		<h:form id="frmCadcategoriaFormento" prependId="false"
+			styleClass="form-horizontal">
+					<fieldset>
+				<div class="form-group">
+					<label for="inputfullName"
+						class="col-lg-2 control-label">Nome:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{categoriaFormentoController.categoriaFormento.nome}"
+							styleClass="form-control" id="inputFullName"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Nome do categoria Formento" required="true" />
+						<p:message for="inputFullName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputDescription" class="col-lg-2 control-label">Descrição:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{categoriaFormentoController.categoriaFormento.description}"
+							styleClass="form-control" id="inputDescription"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Descrição" required="true" />
+						<p:message for="inputDescription" />
+					</div>
+				</div>
+				<p:messages id="msgs" showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="btSalvar" value="Salvar"
+							update="frmCadcategoriaFormento, frmListaCategoriaFormentos, grmsg"
+							oncomplete="if(!args.validationFailed){PF('dlg_categoriaFormento').hide();}"
+							styleClass="btn btn-primary"
+							action="#{categoriaFormentoController.actsalvar}" />
+						
+						<p:commandButton id="btCancelar" value="Cancelar"
+							process="@this"
+							update="frmCadcategoriaFormento, frmListaCategoriaFormentos"
+							styleClass="btn btn-danger"
+							oncomplete="PF('dlg_categoriaFormento').hide();"
+							action="#{categoriaFormentoController.actvolta}" />
+
+					</div>
+				</div>
+			</fieldset>
+
+			
+		</h:form>
+	
+	</b:well>
+
+</ui:component>

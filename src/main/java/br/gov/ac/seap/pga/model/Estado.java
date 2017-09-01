@@ -27,6 +27,7 @@ public class Estado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -65,6 +66,7 @@ public class Estado implements Serializable {
 
 	public String getNome() {
 		return nome;
+		
 	}
 
 	public void setNome(String nome) {
@@ -86,6 +88,8 @@ public class Estado implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -103,6 +107,8 @@ public class Estado implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	
+	
 
 }

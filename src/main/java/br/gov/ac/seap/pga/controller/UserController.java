@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIForm;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
@@ -18,7 +19,7 @@ import br.gov.ac.seap.pga.util.FacesUtils;
 
 @Controller
 @ManagedBean
-@ViewScoped
+@Scope("view")
 public class UserController {
 
 	@Autowired
@@ -31,7 +32,7 @@ public class UserController {
 
 	private List<User> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -87,16 +88,16 @@ public class UserController {
 	}
 
 	public void salvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			this.userService.save(user);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			limpa();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -120,11 +121,11 @@ public class UserController {
 	}
 
 	private void limpa() {
-		facesUtils = new FacesUtils();
+		
 		this.user = new User();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void volta() {
@@ -144,7 +145,7 @@ public class UserController {
 	}
 
 	public void pesquisa() {
-		facesUtils = new FacesUtils();
+		
 		limpa();
 		try {
 
@@ -159,7 +160,7 @@ public class UserController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("search.not.found") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("search.not.found") + e.getMessage());
 		}
 
 	}

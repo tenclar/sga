@@ -32,7 +32,11 @@ public class CidadeService {
 		
 		return this.cidadeRepository.findByEstadoOrderByIdDesc(arg0);
 	}
-	
+
+	public List<Cidade> findListByEstadoId(Long arg0){
+		
+		return this.cidadeRepository.findByEstadoIdOrderByIdDesc(arg0);
+	}
 	
 	
 

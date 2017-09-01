@@ -34,7 +34,7 @@ public class CadeiaProdutivaController extends BaseController {
 
 	private List<CadeiaProdutiva> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -57,17 +57,17 @@ public class CadeiaProdutivaController extends BaseController {
 	
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			
 			this.cadeiaprodutivaService.save(cadeiaprodutiva);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlimpa();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -75,7 +75,9 @@ public class CadeiaProdutivaController extends BaseController {
 	
 	public List<SelectItem> getSelectItems() {
 		List<SelectItem> retorno = new ArrayList<SelectItem>();
-
+		CadeiaProdutiva c = new CadeiaProdutiva();
+		c.setId(0L);
+		c.setName("Selecione");
 		for (CadeiaProdutiva p : this.cadeiaprodutivaService.findAll()) {
 			retorno.add(new SelectItem(p, p.getName()));
 
@@ -103,12 +105,12 @@ public class CadeiaProdutivaController extends BaseController {
 	}
 
 	public void actlimpa() {
-		facesUtils = new FacesUtils();
+		
 		this.cadeiaprodutiva = new CadeiaProdutiva();
 		//this.argumento = new String();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -121,7 +123,7 @@ public class CadeiaProdutivaController extends BaseController {
 
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		actlimpa();
 		try {
 
@@ -138,7 +140,7 @@ public class CadeiaProdutivaController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.aviso(facesUtils.mensages("search.not.found") + e.getMessage());
+			FacesUtils.aviso(FacesUtils.mensages("search.not.found") + e.getMessage());
 		}finally{
 			
 		}

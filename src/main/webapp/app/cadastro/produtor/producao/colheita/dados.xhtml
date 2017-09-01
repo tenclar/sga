@@ -7,10 +7,11 @@
 	<p:panel header="Colheita">
 
 		<h:dataTable id="dt_Colheitas" styleClass="table table-striped"
-			value="#{colheitaController.getLista(producaoController.producao)}" var="colheita">
+			value="#{plantioColheitaController.getLista(producaoController.producao)}" var="colheita">
 			<h:column headerClass="colbotao">
 				<f:facet name="header">
-					<p:commandButton process="@this"
+					<p:commandButton						 
+						process="@this"
 						update="@this, :frmCadColheita" icon="ui-icon-plus"
 						styleClass="btn btn-warning"
 						oncomplete="PF('dlg_colheita').show();"
@@ -20,11 +21,11 @@
 				</f:facet>
 				<p:commandButton process="@this"
 					update="@this, :frmCadColheita"
-					oncomplete="PF('dlg_analisesolo').show();"
+					oncomplete="PF('dlg_colheita').show();"
 					action="#{colheitaController.acteditar()}"
 					styleClass="btn btn-warning" icon="ui-icon-refresh">
 					<f:setPropertyActionListener value="#{colheita}"
-						target="#{colheitaController.colheita}" />
+						target="#{colheitaController.plantioColheita}" />
 
 				</p:commandButton>
 			</h:column>
@@ -32,19 +33,23 @@
 				<f:facet name="header">
 					<h:outputText value="Data" />
 				</f:facet>
-				<h:outputText value="#{colheita.data_info}" />
+				<h:outputText value="#{colheita.dataColheita}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
 			</h:column>
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Area(ha)" />
 				</f:facet>
-				<h:outputText value="#{colheita.area}" />
+				<h:outputText value="#{colheita.areaColheita}" >
+				<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
 			</h:column>
 			<h:column >
 				<f:facet name="header">
 					<h:outputText value="Cultura" />
 				</f:facet>
-				<h:outputText value="#{colheita.cultura}" />
+				<h:outputText value="#{colheita.culturaColheita}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
@@ -71,13 +76,8 @@
 				</f:facet>
 				<h:outputText value="#{colheita.umidade}" />
 			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Valor" />
-				</f:facet>
-				<h:outputText value="#{colheita.valor}" />
-			</h:column>
+			
 		</h:dataTable>
 	</p:panel>
-
+		<p:messages showDetail="true" />
 </ui:component>

@@ -9,6 +9,7 @@ import javax.faces.component.UIForm;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.model.Bairro;
@@ -23,7 +24,7 @@ import br.gov.ac.seap.pga.util.FacesUtils;
 
 @Controller
 @ManagedBean
-@ViewScoped
+@Scope("view")
 public class PesquisaEnderecoController extends BaseController {
 
 	/**
@@ -57,7 +58,7 @@ public class PesquisaEnderecoController extends BaseController {
 
 	private List<Bairro> listaselectbairro = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private UIForm form;
 
@@ -70,15 +71,15 @@ public class PesquisaEnderecoController extends BaseController {
 	}
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 
 			this.estadoService.save(estado);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error")
+			FacesUtils.erro(FacesUtils.mensages("message.save.error")
 					+ e.getMessage());
 			System.out.println(e.getMessage());
 		}
@@ -180,7 +181,7 @@ public class PesquisaEnderecoController extends BaseController {
 	}
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 
 		
 		try {
@@ -198,10 +199,9 @@ public class PesquisaEnderecoController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("search.not.found")
-					+ e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("search.not.found")	+ e.getMessage());
 		}
-		//
+
 	}
 
 	public String getTipopesquisa() {

@@ -23,6 +23,11 @@ public class ProducaoEquipamentosService {
 		return this.producaoEquipamentosRepository.findById(id);
 	}
 	
+
+	public ProducaoEquipamentos findOne(Long id){
+		return this.producaoEquipamentosRepository.findOne(id);
+	}
+	
 //	
 //	public List<ProducaoEquipamentos> findListByNomeLike(String arg0){
 //		arg0 = "%"+arg0+"%";
@@ -41,8 +46,8 @@ public class ProducaoEquipamentosService {
 		return this.producaoEquipamentosRepository.findAll(this.sortByIdDesc());
 	}
 	
-	public List<ProducaoEquipamentos> findByProducao(Producao p) {
-		return this.producaoEquipamentosRepository.findByProducaoOrderByIdDesc(p);
+	public List<ProducaoEquipamentos> findByProducao(Long p) {
+		return this.producaoEquipamentosRepository.findByProducaoIdOrderByIdDesc(p);
 	}
 	
 	

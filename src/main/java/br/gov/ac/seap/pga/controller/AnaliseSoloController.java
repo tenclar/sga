@@ -31,18 +31,13 @@ public class AnaliseSoloController extends BaseController {
 	@Autowired
 	private AnaliseSoloService analiseSoloService;
 
-	@Autowired
-	private ProducaoService producaoService;
+
 
 	private AnaliseSolo analiseSolo;
 
 	private List<AnaliseSolo> list = null;
 
-	private FacesUtils facesUtils;
-
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
-
-	private UIForm form;
 
 	private String argumento;
 
@@ -53,25 +48,24 @@ public class AnaliseSoloController extends BaseController {
 	}
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 
 			this.analiseSoloService.save(analiseSolo);
-
-			facesUtils.info(facesUtils.mensages("message.save.success"));
-
 			this.actlimpa();
-
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
+			
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error"));
+			
 		}
 
 	}
 
 	public void actsalvarnext() {
 		this.analiseSoloService.save(analiseSolo);
-		facesUtils.info(facesUtils.mensages("message.save.success"));
+		FacesUtils.info(FacesUtils.mensages("message.save.success"));
 	}
 
 	public void actnovo() {
@@ -90,9 +84,7 @@ public class AnaliseSoloController extends BaseController {
 		this.setActionstate(EnumActionState.FORM);
 	}
 
-	public void acteditar(AnaliseSolo a) {
-
-	}
+	
 
 	public void actlista() {
 		list = this.analiseSoloService.findAll();
@@ -100,12 +92,12 @@ public class AnaliseSoloController extends BaseController {
 	}
 
 	public void actlimpa() {
-		facesUtils = new FacesUtils();
-		this.analiseSolo = new AnaliseSolo();
+		
+		this.analiseSolo = null;
 		// this.argumento = new String();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+
 	}
 
 	public void actvolta() {
@@ -118,9 +110,8 @@ public class AnaliseSoloController extends BaseController {
 		DataModel<AnaliseSolo> dmLista = null;
 		if (p != null) {
 			if (p.getId() != null) {
-				//System.out.println("id producao: " + p.getId());
-				Producao prod = this.producaoService.findById(p.getId());
-				List<AnaliseSolo> lista = this.analiseSoloService.findByProducao(prod);
+			
+				List<AnaliseSolo> lista = this.analiseSoloService.findByProducao(p.getId());
 				if (lista != null) {
 					dmLista = new ListDataModel<AnaliseSolo>(lista);
 				}
@@ -129,29 +120,7 @@ public class AnaliseSoloController extends BaseController {
 		return dmLista;
 	}
 
-	// public void actpesquisa() {
-	// facesUtils = new FacesUtils();
-	// actlimpa();
-	// try {
-	//
-	// if ("nome".equals(this.tipopesquisa)) {
-	// \ this.list = this.analiseSoloService.findListByNomeLike(argumento);
-	// }
-	// if ("description".equals(this.tipopesquisa)) {
-	// this.list = this.analiseSoloService.findListByDescriptionLike(argumento);
-	// }
-	//
-	// if (list.isEmpty()) {
-	// throw new Exception();
-	// }
-	// } catch (Exception e) {
-	// facesUtils.aviso(facesUtils.mensages("search.not.found") +
-	// e.getMessage());
-	// }finally{
-	//
-	// }
-	//
-	// }
+
 
 	public String getTipopesquisa() {
 		return tipopesquisa;
@@ -186,13 +155,7 @@ public class AnaliseSoloController extends BaseController {
 		this.actionstate = actionstate;
 	}
 
-	public UIForm getForm() {
-		return form;
-	}
 
-	public void setForm(UIForm form) {
-		this.form = form;
-	}
 
 	public String getArgumento() {
 		return argumento;

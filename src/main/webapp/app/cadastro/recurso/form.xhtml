@@ -40,14 +40,14 @@
 					<div class="col-lg-10 col-lg-offset-2">
 
 						<p:commandButton id="btSalvar" value="Salvar"
-							update="frmCadRecurso, frmListaRecursos, grmsg"
+							update="frmCadRecurso, frmPesquisaRecursos, frmListaRecursos, grmsg"
 							oncomplete="if(!args.validationFailed){PF('dlg_recurso').hide();}"
 							styleClass="btn btn-primary"
 							action="#{recursoController.actsalvar}" />
 						
 						<p:commandButton id="btCancelar" value="Cancelar"
 							process="@this"
-							update="frmCadRecurso, frmListaRecursos"
+							update="frmCadRecurso, frmPesquisaRecursos, frmListaRecursos"
 							styleClass="btn btn-danger"
 							oncomplete="PF('dlg_recurso').hide();"
 							action="#{recursoController.actvolta}" />

@@ -25,12 +25,12 @@ import org.primefaces.context.RequestContext;
 
 //@Component
 //@Scope("request")
-public class FacesUtils implements  Serializable {
+public abstract class FacesUtils implements  Serializable {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;	
-	private  RequestContext requestContext = RequestContext.getCurrentInstance();    
+	private static final RequestContext requestContext = RequestContext.getCurrentInstance();    
 	
 	
 
@@ -42,33 +42,33 @@ public class FacesUtils implements  Serializable {
 //    }
 	
 	
-  public  String mensages(String mensagem) {
+  public static  String mensages(String mensagem) {
   		
     String retorno = ResourceBundle.getBundle(FacesContext.getCurrentInstance().getApplication().getMessageBundle()).getString(mensagem);
   	  return retorno;
   }
 	
-    public void addCallback(String param, boolean var){
+    public static void addCallback(String param, boolean var){
         requestContext.addCallbackParam(param, var);
     }
     
-    public  void info(String mensagem) {
+    public  static void info(String mensagem) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", mensagem));
     }
 
-    public  void aviso(String mensagem) {
+    public static void aviso(String mensagem) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atenção", mensagem));
     }
 
-    public  void erro(String mensagem) {
+    public static void erro(String mensagem) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro", mensagem));
     }
 
-    public  void fatal(String mensagem) {
+    public static void fatal(String mensagem) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Fatal", mensagem));
     }
     
-    public void cleanSubmittedValues(UIComponent component) {
+    public static void cleanSubmittedValues(UIComponent component) {
 		if (component instanceof EditableValueHolder) {
 			EditableValueHolder evh = (EditableValueHolder) component;
 			evh.setSubmittedValue(null);

@@ -10,13 +10,14 @@ import br.gov.ac.seap.pga.model.Cidade;
 import br.gov.ac.seap.pga.model.Estado;
 
 @Repository
-public interface CidadeRepository extends CrudRepository<Cidade, Integer> {
+public interface CidadeRepository extends CrudRepository<Cidade, Long> {
 
 
 	Cidade findById(Long arg0);		
 	List<Cidade> findByEstadoOrderByIdDesc(Estado arg0);	
 	List<Cidade> findByNomeLike(String arg0);	
 	List<Cidade> findAll(Sort sort);
+	List<Cidade> findByEstadoIdOrderByIdDesc(Long arg0);
 	
 	
 //	@Query("select u from Cidade u where u.firstname = ?")

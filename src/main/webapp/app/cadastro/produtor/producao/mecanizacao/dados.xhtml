@@ -1,0 +1,79 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<p:panel >
+		<h:dataTable id="dt_PreparoArea" styleClass="table table-striped"
+			value="#{preparoAreaController.getLista(producaoController.producao)}" var="preparoarea">
+			<h:column headerClass="colbotao">
+				<f:facet name="header">
+					<b:commandButton  value=""
+						ajax="true"
+						action="#{preparoAreaController.actnovo(producaoController.producao)}"
+						update="@this, frmCadPreparoArea"
+						icon="glyphicon glyphicon-plus"						
+						styleClass="btn btn-primary" 
+						oncomplete="PF('dlg_preparoArea').show();"
+						
+						>
+
+					</b:commandButton>
+				</f:facet>
+				<b:commandButton value="" 
+					ajax="true"
+					oncomplete="PF('dlg_preparoArea').show();"					
+					action="#{preparoAreaController.acteditar()}"
+					update="@this, frmCadPreparoArea"
+					icon="glyphicon glyphicon-refresh" look="warning">
+					<f:setPropertyActionListener value="#{preparoarea}" target="#{preparoAreaController.preparoArea}" />
+
+				</b:commandButton>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data" />
+				</f:facet>
+				<h:outputText value="#{preparoarea.data_info}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column id="cldescr">
+				<f:facet name="header">
+					<h:outputText value="Serviço" />
+				</f:facet>
+				<h:outputText value="#{preparoarea.servicomecanizacao.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="H/TA" />
+				</f:facet>
+				<h:outputText value="#{preparoarea.hta}" >
+				<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Área (ha)" />
+				</f:facet>
+				<h:outputText value="#{preparoarea.area}" >
+				<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor" />
+				</f:facet>
+				<h:outputText value="#{preparoarea.valor}" >
+				<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+	</p:panel>
+
+</ui:component>

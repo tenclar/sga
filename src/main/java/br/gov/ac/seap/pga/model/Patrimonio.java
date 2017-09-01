@@ -41,32 +41,14 @@ public class Patrimonio implements Serializable {
 	@JoinColumn(name="material_id")
 	private Material material;
 	
-	@NotNull
-	private String description;
-	
-	@NotNull
-	private String tombamento;
-	
-	private Double quantidade;
-	
-	
-	@NotNull
-	private String tipo;
-	
-	@ManyToOne
-	@JoinColumn(name="unidademedida_id")
-	private UnidadeMedida unidademedida;
-	
-	
-	
+	private String tombamento;	
 
-	
-	@NotNull	
-	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")	
+	private String tipo;
+			
+		
 	private String name;
 	
-	@NotNull	
-	@Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")	
+		
 	@Column(columnDefinition="TEXT")
 	private String descricao;
 	
@@ -110,13 +92,7 @@ public class Patrimonio implements Serializable {
 	
 	
 	
-	public Double getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Double quantidade) {
-		this.quantidade = quantidade;
-	}
+	
 
 	public String getTipo() {
 		return tipo;
@@ -126,21 +102,9 @@ public class Patrimonio implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public UnidadeMedida getUnidademedida() {
-		return unidademedida;
-	}
 
-	public void setUnidademedida(UnidadeMedida unidademedida) {
-		this.unidademedida = unidademedida;
-	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
 
 	public String getTombamento() {
 		return tombamento;

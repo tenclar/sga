@@ -38,7 +38,7 @@ public class PreparoAreaController extends BaseController {
 
 	private List<PreparoArea> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -51,19 +51,24 @@ public class PreparoAreaController extends BaseController {
 	public PreparoAreaController() {
 
 	}
+	
+	
+	
+	
+	
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 
 			this.preparoAreaService.save(preparoArea);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlimpa();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -71,7 +76,7 @@ public class PreparoAreaController extends BaseController {
 
 	public void actsalvarnext() {
 		this.preparoAreaService.save(preparoArea);
-		facesUtils.info(facesUtils.mensages("message.save.success"));
+		FacesUtils.info(FacesUtils.mensages("message.save.success"));
 	}
 
 	public void actnovo() {
@@ -100,12 +105,12 @@ public class PreparoAreaController extends BaseController {
 	}
 
 	public void actlimpa() {
-		facesUtils = new FacesUtils();
+		
 		this.preparoArea = new PreparoArea();
 		// this.argumento = new String();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -119,8 +124,8 @@ public class PreparoAreaController extends BaseController {
 		if (p != null) {
 			if (p.getId() != null) {
 				//System.out.println("id producao: " + p.getId());
-				Producao prod = this.producaoService.findById(p.getId());
-				List<PreparoArea> lista = this.preparoAreaService.findByProducao(prod);
+				//Producao prod = this.producaoService.findById(p.getId());
+				List<PreparoArea> lista = this.preparoAreaService.findByProducao(p.getId());
 				if (lista != null) {
 					dmLista = new ListDataModel<PreparoArea>(lista);
 				}
@@ -130,7 +135,7 @@ public class PreparoAreaController extends BaseController {
 	}
 
 	// public void actpesquisa() {
-	// facesUtils = new FacesUtils();
+	// 
 	// actlimpa();
 	// try {
 	//
@@ -145,7 +150,7 @@ public class PreparoAreaController extends BaseController {
 	// throw new Exception();
 	// }
 	// } catch (Exception e) {
-	// facesUtils.aviso(facesUtils.mensages("search.not.found") +
+	// FacesUtils.aviso(FacesUtils.mensages("search.not.found") +
 	// e.getMessage());
 	// }finally{
 	//

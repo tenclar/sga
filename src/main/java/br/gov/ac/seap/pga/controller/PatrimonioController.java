@@ -9,6 +9,7 @@ import javax.faces.component.UIForm;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
@@ -18,7 +19,7 @@ import br.gov.ac.seap.pga.util.FacesUtils;
 
 @Controller
 @ManagedBean
-@ViewScoped
+@Scope("view")
 public class PatrimonioController extends BaseController {
 
 	/**
@@ -33,7 +34,7 @@ public class PatrimonioController extends BaseController {
 
 	private List<Patrimonio> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -56,17 +57,17 @@ public class PatrimonioController extends BaseController {
 	
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			
 			this.patrimonioService.save(patrimonio);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
-			this.actlimpa();
+			this.actvolta();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -83,7 +84,8 @@ public class PatrimonioController extends BaseController {
 	}
 	
 	public void actnovo() {
-		this.patrimonio = new Patrimonio();
+		this.actlimpa();
+		this.argumento = null;
 		
 		this.patrimonio.setUser(super.getUserLogin());
 
@@ -102,12 +104,12 @@ public class PatrimonioController extends BaseController {
 	}
 
 	public void actlimpa() {
-		facesUtils = new FacesUtils();
+		
 		this.patrimonio = new Patrimonio();
 		//this.argumento = new String();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -120,14 +122,17 @@ public class PatrimonioController extends BaseController {
 
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		actlimpa();
 		try {
 
 			if ("nome".equals(this.tipopesquisa)) {
 				this.list = this.patrimonioService.findListByNomeLike(argumento);
 			}
-			if ("description".equals(this.tipopesquisa)) {
+			if ("tombamento".equals(this.tipopesquisa)) {
+				this.list = this.patrimonioService.findBytombamentoLike(argumento);
+			}
+			if ("descricao".equals(this.tipopesquisa)) {
 				this.list = this.patrimonioService.findListByDescription(argumento);
 			}
 
@@ -135,7 +140,7 @@ public class PatrimonioController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.aviso(facesUtils.mensages("search.not.found") + e.getMessage());
+			FacesUtils.aviso(FacesUtils.mensages("search.not.found") + e.getMessage());
 		}finally{
 			
 		}

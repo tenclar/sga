@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
+import br.gov.ac.seap.pga.model.ServicoMecanizacao;
 import br.gov.ac.seap.pga.model.TipoPreparoArea;
 import br.gov.ac.seap.pga.service.TipoPreparoAreaService;
 import br.gov.ac.seap.pga.util.FacesUtils;
@@ -33,7 +34,7 @@ public class TipoPreparoAreaController extends BaseController {
 
 	private List<TipoPreparoArea> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -56,17 +57,17 @@ public class TipoPreparoAreaController extends BaseController {
 	
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			
 			this.tipoPreparoAreaService.save(tipoPreparoArea);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlimpa();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -102,12 +103,12 @@ public class TipoPreparoAreaController extends BaseController {
 	}
 
 	public void actlimpa() {
-		facesUtils = new FacesUtils();
+		
 		this.tipoPreparoArea = new TipoPreparoArea();
 		//this.argumento = new String();
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -120,7 +121,7 @@ public class TipoPreparoAreaController extends BaseController {
 
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		actlimpa();
 		try {
 
@@ -135,7 +136,7 @@ public class TipoPreparoAreaController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.aviso(facesUtils.mensages("search.not.found") + e.getMessage());
+			FacesUtils.aviso(FacesUtils.mensages("search.not.found") + e.getMessage());
 		}finally{
 			
 		}

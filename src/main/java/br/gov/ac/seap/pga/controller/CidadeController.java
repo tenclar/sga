@@ -9,7 +9,9 @@ import javax.faces.component.UIForm;
 import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import br.gov.ac.seap.pga.enumerator.EnumActionState;
 import br.gov.ac.seap.pga.model.Cidade;
@@ -17,10 +19,9 @@ import br.gov.ac.seap.pga.model.Authority;
 import br.gov.ac.seap.pga.service.CidadeService;
 import br.gov.ac.seap.pga.util.FacesUtils;
 
-
+@Controller
 @ManagedBean
-@ViewScoped
-@Component
+@Scope("view")
 public class CidadeController extends BaseController {
 
 	/**
@@ -35,7 +36,7 @@ public class CidadeController extends BaseController {
 
 	private List<Cidade> list;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -65,16 +66,16 @@ public class CidadeController extends BaseController {
 	
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			this.cidadeService.save(cidade);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlista();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 		}
 
 	}
@@ -114,7 +115,7 @@ public class CidadeController extends BaseController {
 		this.list = null;
 		this.argumento = new String();
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -127,7 +128,7 @@ public class CidadeController extends BaseController {
 
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		
 		try {
 
@@ -144,7 +145,7 @@ public class CidadeController extends BaseController {
 			}
 			
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("search.not.found") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("search.not.found") + e.getMessage());
 		}
 
 	}

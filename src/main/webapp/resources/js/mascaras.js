@@ -175,10 +175,10 @@ function validaDat(campo,valor) {
 
 function uppercase(v)
 {
-	
-	  v = v.value.toUpperCase();
+	var valor;
+	  valor = v.toUpperCase();
 	   
- return v;
+ return valor;
 }
                 
 

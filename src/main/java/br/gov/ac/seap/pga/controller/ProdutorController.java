@@ -41,7 +41,7 @@ public class ProdutorController extends BaseController {
 
 	private List<Produtor> list = null;
 
-	private FacesUtils facesUtils;
+	
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -130,19 +130,19 @@ public class ProdutorController extends BaseController {
 	}
 
 	public void actSalvarNew() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			if (this.produtorService.findByCpf(this.produtor.getCpf()) == null) {
 				this.duplicado = false;
 
 			} else {
 				this.duplicado = true;
-				facesUtils.aviso("Inclusão não efetudada  CPF / CNPJ: " + this.produtor.getCpf() + " Já Existe no cadatro ");
+				FacesUtils.aviso("Inclusão não efetudada  CPF / CNPJ: " + this.produtor.getCpf() + " Já Existe no cadatro ");
 			}
 			
 			//RequestContext rc = RequestContext.getCurrentInstance();
 			//rc.addCallbackParam("duplicado", duplicado);
-			facesUtils.addCallback("duplicado", duplicado);
+			FacesUtils.addCallback("duplicado", duplicado);
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -151,34 +151,34 @@ public class ProdutorController extends BaseController {
 	}
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 
 			this.produtorService.save(produtor);
 
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 			this.actlista();
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
 	}
 
 	public void actaddprop() {
-		facesUtils = new FacesUtils();
+		
 		try {
 			
 			this.produtor.getPropriedades().add(propriedade);
 			this.produtorService.save(produtor);
-			facesUtils.info(facesUtils.mensages("message.save.success"));
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));
 
 		
 
 		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error") + e.getMessage());
 			System.out.println(e.getMessage());
 		}
 
@@ -217,12 +217,12 @@ public class ProdutorController extends BaseController {
 	}
 
 	public void actlimpa() {
-		facesUtils = new FacesUtils();
+		
 		this.novocadastro = false;
-		this.produtor = new Produtor();
+		this.produtor = null;
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		// FacesUtils.cleanSubmittedValues(form);
 	}
 
 	public void actvolta() {
@@ -232,7 +232,7 @@ public class ProdutorController extends BaseController {
 	}
 
 	public void actpesquisa() {
-		facesUtils = new FacesUtils();
+		
 		actlimpa();
 		try {
 
@@ -251,7 +251,7 @@ public class ProdutorController extends BaseController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			facesUtils.aviso(facesUtils.mensages("search.not.found"));
+			FacesUtils.aviso(FacesUtils.mensages("search.not.found"));
 		}
 
 	}

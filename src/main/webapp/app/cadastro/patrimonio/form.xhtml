@@ -12,41 +12,7 @@
 		<h:form id="frmCadPatrimonio" prependId="false"
 			styleClass="form-horizontal">
 					<fieldset>
-				<div class="form-group">
-					<label for="inputfullName"
-						class="col-lg-2 control-label">Nome:</label>
-					<div class="col-lg-10">
-						<p:inputText value="#{patrimonioController.patrimonio.name}"
-							styleClass="form-control" id="inputFullName"
-							onkeydown="this.value = this.value.toUpperCase();"
-							onkeyup="this.value = this.value.toUpperCase();"
-							placeholder="Nome do Patrimonio" required="true" />
-						<p:message for="inputFullName" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputDescription" class="col-lg-2 control-label">Descrição:</label>
-					<div class="col-lg-10">
-						<p:inputText value="#{patrimonioController.patrimonio.descricao}"
-							styleClass="form-control" id="inputDescription"
-							onkeydown="this.value = this.value.toUpperCase();"
-							onkeyup="this.value = this.value.toUpperCase();"
-							placeholder="Descrição" required="true" />
-						<p:message for="inputDescription" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputTombamento" class="col-lg-2 control-label">Tombamento:</label>
-					<div class="col-lg-10">
-						<p:inputText value="#{patrimonioController.patrimonio.tombamento}"
-							styleClass="form-control" id="inputTombamento"
-							onkeydown="this.value = this.value.toUpperCase();"
-							onkeyup="this.value = this.value.toUpperCase();"
-							placeholder="somente números" required="true" />
-						<p:message for="inputTombamento" />
-					</div>
-				</div>
-				
+					
 				<div class="form-group" >
 					<label for="inputMaterial" class="col-lg-2 control-label">Material:</label>
 					<div class="col-lg-10">
@@ -66,25 +32,64 @@
 					</div>
 
 				</div>
+				<div class="form-group">
+					<label for="inputTombamento" class="col-lg-2 control-label">Número Patrimônio:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{patrimonioController.patrimonio.tombamento}"
+							styleClass="form-control" id="inputTombamento"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="somente números" required="true" />
+						<p:message for="inputTombamento" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputfullName"
+						class="col-lg-2 control-label">Nome:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{patrimonioController.patrimonio.name}"
+							styleClass="form-control" id="inputFullName"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Nome do Patrimonio" required="true" />
+						<p:message for="inputFullName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputDescription" class="col-lg-2 control-label">Descrição:</label>
+					<div class="col-lg-10">
+						<p:inputTextarea rows="10" cols="15" value="#{patrimonioController.patrimonio.descricao}"
+							styleClass="form-control" id="inputDescription"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Descrição" required="true" >
+							</p:inputTextarea>
+						<p:message for="inputDescription" />
+					</div>
+				</div>
 				
 				<div class="form-group" >
-					<label for="inputUnidadeMedida" class="col-lg-2 control-label">Unidade de Medida:</label>
+					<label for="inputTipo" class="col-lg-2 control-label">Tipo:</label>
 					<div class="col-lg-10">
 						<p:selectOneMenu class="form-control" style="width:100%; padding: 3px;"
-							value="#{patrimonioController.patrimonio.unidademedida}" 
+							value="#{patrimonioController.patrimonio.tipo}" 
 							styleClass="form-control"
 							converter="omnifaces.SelectItemsIndexConverter" 			
 						  filter="true" filterMatchMode="startsWith"	
-							id="inputUnidadeMedida" >
+							id="inputTipo" >
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
-							<f:selectItems value="#{unidadeMedidaController.selectItems}"     />
-							
-						</p:selectOneMenu>						
-						<p:message for="inputUnidadeMedida" />
+							<f:selectItem itemLabel="PERMANENTE" itemValue="PERMANTENTE" />
+							<f:selectItem itemLabel="CONSUMO" itemValue="CONSUMO" />
+						</p:selectOneMenu>
+						
+						
+						<p:message for="inputTipo" />
 					</div>
 
 				</div>
 				
+				
+			
 				<p:messages id="msgs" showDetail="true" />
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
@@ -97,7 +102,7 @@
 						
 						<p:commandButton id="btCancelar" value="Cancelar"
 							process="@this"
-							update="frmCadPatrimonio, frmListaPatrimonios"
+							update="frmCadPatrimonio, frmPesquisaPatrimonios, frmListaPatrimonios"
 							styleClass="btn btn-danger"
 							oncomplete="PF('dlg_patrimonio').hide();"
 							action="#{patrimonioController.actvolta}" />

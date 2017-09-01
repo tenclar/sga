@@ -206,8 +206,8 @@
 				</div>
 
 			</p:tab>
-			<p:tab title="Preparo da Área">
-				<ui:include src="preparoarea/dados.xhtml" />
+			<p:tab title="Preparo da Área - Mecanização">
+				<ui:include src="mecanizacao/dados.xhtml" />
 				
 			
 				<p:messages showDetail="true" />
@@ -222,16 +222,19 @@
 						<p:spacer width="5" />
 
 						<p:commandButton id="bt_prod_prox_07" value="Salvar"
-							ajax="true" update="@this"
+							ajax="true" update="@this, :frmCadProdutor:tabVewProdutor:dtPropriedades,grmsg"
+							action="#{producaoController.actsalvar}"
 							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();"
 							styleClass="btn btn-primary" />
 
 						<p:spacer width="5" />
 
 						<p:commandButton id="bt_prod_cancelar_07"
-							value="Cancelar" process="@this" update="@this"
+							value="Cancelar" 
+							process="@this" update="@this, :frmCadProdutor:tabVewProdutor:dtPropriedades, grmsg"
+							action="#{producaoController.actlimpa}"
 							styleClass="btn btn-danger"
-							oncomplete="PF('dlg_producao').hide();" />
+							oncomplete="PF('dlg_producao').hide();PF('panelList_pro').show();" />
 
 					</div>
 				</div>

@@ -2,6 +2,7 @@ package br.gov.ac.seap.pga.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,9 +31,8 @@ public class ProducaoEquipamentos implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Calendar datacad = Calendar.getInstance();
 	
-	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Calendar data_info;
+	@NotNull	
+	private Date data_info;
 	
 	
 	private String situacao;
@@ -93,11 +93,11 @@ public class ProducaoEquipamentos implements Serializable {
 	
 	
 
-	public Calendar getData_info() {
+	public Date getData_info() {
 		return data_info;
 	}
 
-	public void setData_info(Calendar data_info) {
+	public void setData_info(Date data_info) {
 		this.data_info = data_info;
 	}
 

@@ -15,11 +15,12 @@
 			<h:column headerClass="colbotao">
 				<f:facet name="header">
 					<p:commandButton 
+						action="#{analiseSoloController.actnovo(producaoController.producao)}"
 						process="@this"	update="@this, :frmCadAnaliseSolo"
-						icon="ui-icon-plus"		
-						styleClass="btn btn-warning" 			
+						icon="ui-icon-plus"								
+						styleClass="btn btn-primary" 			
 						oncomplete="PF('dlg_analisesolo').show();"
-						action="#{analiseSoloController.actnovo(producaoController.producao)}" >
+						 >
 
 					</p:commandButton>
 					

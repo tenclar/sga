@@ -29,16 +29,11 @@ public class InsumoTratoController extends BaseController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	private InsumoTratoService insumoTratoService;
-
-	@Autowired
-	private ProducaoService producaoService;
+	private InsumoTratoService insumoTratoService;	
 
 	private InsumoTrato insumoTrato;
 
 	private List<InsumoTrato> list = null;
-
-	private FacesUtils facesUtils;
 
 	private EnumActionState actionstate = EnumActionState.PESQUISA;
 
@@ -48,30 +43,26 @@ public class InsumoTratoController extends BaseController {
 
 	private String tipopesquisa = "nome";
 
-	public InsumoTratoController() {
 
-	}
 
 	public void actsalvar() {
-		facesUtils = new FacesUtils();
+		
 		try {
 
 			this.insumoTratoService.save(insumoTrato);
-
-			facesUtils.info(facesUtils.mensages("message.save.success"));
-
 			this.actlimpa();
+			FacesUtils.info(FacesUtils.mensages("message.save.success"));		
 
-		} catch (Exception e) {
-			facesUtils.erro(facesUtils.mensages("message.save.error") + e.getMessage());
+		} catch (Exception e) {			
 			System.out.println(e.getMessage());
+			FacesUtils.erro(FacesUtils.mensages("message.save.error"));
 		}
 
 	}
 
 	public void actsalvarnext() {
 		this.insumoTratoService.save(insumoTrato);
-		facesUtils.info(facesUtils.mensages("message.save.success"));
+		FacesUtils.info(FacesUtils.mensages("message.save.success"));
 	}
 
 	public void actnovo() {
@@ -90,9 +81,7 @@ public class InsumoTratoController extends BaseController {
 		this.setActionstate(EnumActionState.FORM);
 	}
 
-	public void acteditar(InsumoTrato a) {
-
-	}
+	
 
 	public void actlista() {
 		list = this.insumoTratoService.findAll();
@@ -100,27 +89,24 @@ public class InsumoTratoController extends BaseController {
 	}
 
 	public void actlimpa() {
-		facesUtils = new FacesUtils();
-		this.insumoTrato = new InsumoTrato();
-		// this.argumento = new String();
+		
+		this.insumoTrato = null;	
 		this.list = null;
 
-		// facesUtils.cleanSubmittedValues(form);
+		
 	}
 
 	public void actvolta() {
 		actlimpa();
 		actlista();
-		// this.setActionstate(EnumActionState.PESQUISA);
+
 	}
 
 	public DataModel<InsumoTrato> getLista(Producao p) {
 		DataModel<InsumoTrato> dmLista = null;
 		if (p != null) {
 			if (p.getId() != null) {
-				//System.out.println("id producao: " + p.getId());
-				Producao prod = this.producaoService.findById(p.getId());
-				List<InsumoTrato> lista = this.insumoTratoService.findByProducao(prod);
+				List<InsumoTrato> lista = this.insumoTratoService.findByProducao(p.getId());
 				if (lista != null) {
 					dmLista = new ListDataModel<InsumoTrato>(lista);
 				}
@@ -129,29 +115,7 @@ public class InsumoTratoController extends BaseController {
 		return dmLista;
 	}
 
-	// public void actpesquisa() {
-	// facesUtils = new FacesUtils();
-	// actlimpa();
-	// try {
-	//
-	// if ("nome".equals(this.tipopesquisa)) {
-	// \ this.list = this.insumoTratoService.findListByNomeLike(argumento);
-	// }
-	// if ("description".equals(this.tipopesquisa)) {
-	// this.list = this.insumoTratoService.findListByDescriptionLike(argumento);
-	// }
-	//
-	// if (list.isEmpty()) {
-	// throw new Exception();
-	// }
-	// } catch (Exception e) {
-	// facesUtils.aviso(facesUtils.mensages("search.not.found") +
-	// e.getMessage());
-	// }finally{
-	//
-	// }
-	//
-	// }
+
 
 	public String getTipopesquisa() {
 		return tipopesquisa;
