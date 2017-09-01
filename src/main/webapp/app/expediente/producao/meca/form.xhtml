@@ -1,0 +1,93 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<b:well>
+	<h:form id="frmCadMecanizacao" prependId="false"
+		styleClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-lg-4 control-label">Data:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Data"
+				maxlength="10"
+					value="#{producaoEquipamentosController.producaoEquipamentos.data_info}"
+					onkeyup="Formatadata(this, event)"
+					onchange="validaDat(this, this.value)"
+					styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-4 control-label">Tipo de Equipamento:</label>
+			<div class="col-lg-8">
+				<p:selectOneMenu
+					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+					styleClass="form-control" required="true"
+					label="Tipo de Adubo"
+					value="#{producaoEquipamentosController.producaoEquipamentos.material}"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Selecione"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{materialController.selectItems}" />
+						
+				</p:selectOneMenu>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-4 control-label">E/N:</label>
+			<div class="col-md-8">
+				<p:selectOneMenu
+					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+					styleClass="form-control" required="true"
+					label="Existente / Necessário"
+					value="#{producaoEquipamentosController.producaoEquipamentos.situacao}"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Selecione"
+						noSelectionOption="true" />
+					<f:selectItem itemLabel="EXISTENTE"
+						itemValue="E" />
+						<f:selectItem itemLabel="NECESSÁRIO"
+						itemValue="N" />
+					
+						
+				</p:selectOneMenu>
+			</div>
+		</div>
+
+		
+		
+
+		
+		
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+
+				<p:commandButton value="Salvar"
+					process="frmCadProducaoEquipamentos" id="bt_salvar_mecanizacao"
+					update="frmCadProducaoEquipamentos, :frmCadProducao:tvDadosProducao:dt_Mecanizacao,  grmsg"
+					action="#{producaoEquipamentosController.actsalvar()}"
+					oncomplete="if(!args.validationFailed){PF('dlg_Equipamentos').hide();}"
+					styleClass="btn btn-primary" />
+
+				<p:commandButton value="Cancelar"
+					styleClass="btn btn-danger"
+					update="@this, frmCadProducaoEquipamentos" immediate="true"
+					action="#{producaoEquipamentosController.actnovo()}"
+					oncomplete="PF('dlg_Equipamentos').hide();" />
+
+			</div>
+		</div>
+	</h:form>
+</b:well>
+
+</ui:component>

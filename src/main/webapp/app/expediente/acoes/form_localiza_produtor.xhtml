@@ -1,0 +1,129 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+
+<p:panel>
+		<h:form id="frmLocProdutores" prependId="false" 
+			styleClass="form-horizontal">
+		
+			<p:selectOneRadio
+				value="#{produtorController.tipopesquisa}"
+				style="width:30%;">
+				<f:selectItem itemValue="cpf" itemLabel="CPF" />
+				<f:selectItem itemValue="cnpj" itemLabel="CNPJ" />
+				<f:selectItem itemValue="nome" itemLabel="Nome" />
+
+				<p:ajax
+					listener="#{produtorController.handleSelectPesquisa}"
+					update="opLocTipo" />
+
+			</p:selectOneRadio>
+
+			<p:outputPanel id="opLocTipo">
+
+				<p:inputText id="cbLocNome" label="Nome" autocomplete="off"
+					style="width:70%;" required="true"
+					onkeydown="this.value = this.value.toUpperCase();"
+					onkeyup="this.value = this.value.toUpperCase();"
+					value="#{produtorController.argumento}"
+					rendered="#{produtorController.pesquisanome}" />
+
+				<p:inputText id="arLocCpf" label="Campo CPF"
+					autocomplete="off" style="width:30%;"
+					onkeyup="this.value = this.value.toUpperCase();"
+					required="true" maxlength="11"
+					onkeypress="mascara(this, soNumeros)"
+					value="#{produtorController.argumento}"
+					rendered="#{produtorController.pesquisacpf}">
+					<f:validator validatorId="cpfvalidator" />
+
+				</p:inputText>
+
+				<p:inputText id="arlocCnpj" label="Campo CNPJ"
+					autocomplete="off" style="width:50%;"
+					onkeyup="this.value = this.value.toUpperCase();"
+					required="true" maxlength="11"
+					onkeypress="mascara(this, soNumeros)"
+					value="#{produtorController.argumento}"
+					rendered="#{produtorController.pesquisacnpj}">
+					<f:validator validatorId="cnpjvalidator" />
+
+				</p:inputText>
+
+				<p:commandButton value="Localizar" icon="ui-icon-search"
+					update="frmLocProdutores, frmLocListProd, mesloc"
+					action="#{produtorController.actpesquisa()}"
+					styleClass="btn btn-success" />
+			</p:outputPanel>
+
+
+
+
+			<p:messages id="mesloc" showDetail="true" />
+			
+			<p:separator />
+
+		</h:form>
+		</p:panel>
+		
+		<h:form id="frmLocListProd" prependId="false">
+			<p:outputPanel id="dtLocProdutores">
+				<h:dataTable value="#{produtorController.list}"
+					styleClass="table table-striped" var="produtor"
+					rowIndexVar="rowIx"
+					>
+					
+					<h:column  headerClass="colbotao">
+					<f:facet name="header">
+						#
+					</f:facet>
+					<p:commandButton value="Selecionar" 
+					class="btn btn-primary"
+						process="@this"
+						update="@this, :frmEvent:pg_prod, :frmEvent:sel_propriedade, :frmEvent:sel_producaoo" title="Selecionar"										
+						oncomplete="PF('dlgfrmlocalizaprodutor').hide(); "
+						action="#{acaoController.selecionaProdutor}"
+						>
+						<f:setPropertyActionListener value="#{produtor}"
+							target="#{acaoController.acao.producao.propriedade.produtor}" />
+					</p:commandButton>
+
+				</h:column>					
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="CPF" />
+						</f:facet>
+						<h:outputText value="#{produtor.cpf}" />
+					</h:column>
+
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="Nome" />
+						</f:facet>
+						<h:outputText value="#{produtor.name}" />
+					</h:column>
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="E-mail" />
+						</f:facet>
+						<h:outputText value="#{produtor.email}" />
+					</h:column>
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="Telefone" />
+						</f:facet>
+						<h:outputText value="#{produtor.phoneNumber}" />
+					</h:column>
+				</h:dataTable>
+			</p:outputPanel>
+		</h:form>
+
+
+</ui:component>
+

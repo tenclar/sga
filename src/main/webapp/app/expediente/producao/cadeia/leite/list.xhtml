@@ -1,0 +1,98 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+	<p:panel header="CadeiaLeite">
+
+		<h:dataTable id="dt_CadeiaLeites" styleClass="table table-striped"
+		
+			value="#{cadeiaLeiteController.getLista(producaoController.producao)}" var="cadeiaLeite">
+			<h:column headerClass="colbotao">
+				<f:facet name="header">
+					<p:commandButton process="@this"
+						update="@this, :frmCadCadeiaLeite" 
+						icon="ui-icon-plus"
+						styleClass="btn btn-primary"
+						oncomplete="PF('dlg_cadeiaLeite').show();"
+						action="#{cadeiaLeiteController.actnovo(producaoController.producao)}">
+
+					</p:commandButton>
+				</f:facet>
+				<p:commandButton process="@this"
+					update="@this, :frmCadCadeiaLeite"
+					oncomplete="PF('dlg_analisesolo').show();"
+					action="#{cadeiaLeiteController.acteditar}"
+					styleClass="btn btn-warning" icon="ui-icon-refresh">
+					<f:setPropertyActionListener value="#{cadeiaLeite}"
+						target="#{cadeiaLeiteController.cadeiaLeite}" />
+
+				</p:commandButton>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data" />
+				</f:facet>
+				<h:outputText value="#{cadeiaLeite.data_info}" >
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</h:column>
+			<h:column >
+				<f:facet name="header">
+					<h:outputText value="Vacas em Soleiras UN" />
+				</f:facet>
+				<h:outputText value="#{cadeiaLeite.solteiras}" />
+			</h:column>	
+			<h:column>	
+				<f:facet name="header">
+					<h:outputText value="Vacas em Lactação (Un)" />
+				</f:facet>
+				<h:outputText value="#{cadeiaLeite.lactacao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor Litro (Lt)" />
+				</f:facet>
+				<h:outputText value="#{cadeiaLeite.valorlitro}" >
+					<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Produção Diária (Lt)" />
+				</f:facet>
+				<h:outputText value="#{cadeiaLeite.producaodiaria}" >
+					<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Média Produção/Animal(Lt)" />
+				</f:facet>
+				<h:outputText value="#{cadeiaLeite.producaoMedia}" >
+					<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Receita Mensal" />
+				</f:facet>
+				<h:outputText value="#{cadeiaLeite.producaoMensal}" >
+					<f:convertNumber pattern="R$##,##0.00#" />
+				</h:outputText>
+			</h:column>
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="Média Produção /Ha" />
+				</f:facet>
+				<h:outputText value="#{cadeiaLeite.producaoHa}" >
+					<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+	</p:panel>
+		
+</ui:component>

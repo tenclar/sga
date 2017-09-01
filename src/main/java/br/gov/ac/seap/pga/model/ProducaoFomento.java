@@ -3,6 +3,7 @@ package br.gov.ac.seap.pga.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,9 +31,15 @@ public class ProducaoFomento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+
+
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar datacad= Calendar.getInstance();
+	
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	private Date dataentrega;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -74,7 +81,13 @@ public class ProducaoFomento implements Serializable {
 		this.id = id;	
 	}
 
+	public Date getDataEntrega() {
+		return dataentrega;
+	}
 
+	public void setDataEntrega(Date dataentrega) {
+		this.dataentrega = dataentrega;
+	}
 
 	
 

@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/default/main.xhtml"
+	>
+	<ui:define name="content">
+	
+	<h1 class="page-header ">
+			<i class="fa fa-pencil-square-o "></i> Propriedade	</h1>
+	
+
+<!-- 			<p:panel  visible="false" widgetVar="panelProp_Form"  closable="true" closeSpeed="10"> -->
+<!-- 				<ui:include src="form.xhtml" /> -->
+<!-- 			</p:panel> -->
+
+
+
+			<p:panel  visible="true"  closable="true" widgetVar="panelProp_List"   closeSpeed="10" >
+				<ui:include src="list.xhtml" />
+			</p:panel>
+
+
+
+
+	<p:dialog widgetVar="dlg_propriedade"
+			header="nova Propriedade" closable="true" modal="true"
+			resizable="false" position="top" width="1000">
+			<ui:include src="form.xhtml" />
+		</p:dialog>
+
+
+		<p:dialog widgetVar="dlg_loc_prop"
+			header="Localizar Endereço" closable="true"
+			resizable="false" position="top" width="1000"
+			height="500">
+			<ui:include src="localidade/index.xhtml" />
+		</p:dialog>
+
+		<p:dialog widgetVar="dlg_logradouro_propriedade"
+			header="Novo Endereço" closable="true" resizable="true"
+			position="top" width="400" minHeight="400">
+			<ui:include
+				src="localidade/endereco/form.xhtml" />
+		</p:dialog>
+		
+		<p:dialog widgetVar="localizaProd" id="dlgLocalizaProd" modal="true" position="center" 
+		header="Localiza Produtor" showEffect="clip" width="900" minHeight="400"
+		hideEffect="clip">
+			<ui:include src="produtor/localiza_produtor.xhtml" />
+		
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+

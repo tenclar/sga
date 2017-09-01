@@ -1,0 +1,171 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div style="font-size: 10pt;"></div>
+
+	<h:form id="frmPesquisaEstados" prependId="false"
+		styleClass="form-horizontal">
+		
+		<div class="panel panel-info">
+		<div class="panel-heading" style="color: #000;">Filtros</div>
+  		<div class="panel-body">
+				
+		
+
+		<!-- 		<div class="form-group"> -->
+		<!-- 			<label for="sel" class="col-lg-1 control-label">Gênero:</label> -->
+		<!-- 			<div class="col-lg-5"> -->
+		<!-- 			<p:selectOneRadio id="sel" -->
+		<!-- 				value="#{estadoController.tipopesquisa}" -->
+		<!-- 				style="width:60%;"> -->
+		<!-- 				<f:selectItem itemValue="AMBOS" itemLabel="AMBOS" /> -->
+		<!-- 				<f:selectItem itemValue="MASCULINO" itemLabel="MASCULINO" /> -->
+		<!-- 				<f:selectItem itemValue="FEMININO" itemLabel="FEMININO" /> -->
+
+		<!-- 			</p:selectOneRadio> -->
+		<!-- 			</div> -->
+		<!-- 		</div> -->
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="sel" class="col-lg-2 control-label">Tipo -->
+<!-- 				de Arquivo:</label> -->
+<!-- 			<div class="col-lg-5"> -->
+<!-- 				<p:outputPanel id="customPanel"		style="margin-bottom:10px"> -->
+<!-- 					<p:selectOneRadio id="customRadio"	 layout="custom"> -->
+<!-- 						<f:selectItem itemLabel="pdf" itemValue="PDF" /> -->
+<!-- 						<f:selectItem itemLabel="excel" itemValue="EXCEL" /> -->
+						
+<!-- 					</p:selectOneRadio> -->
+
+<!-- 					<h:panelGrid columns="3" cellpadding="5"> -->
+<!-- 						<p:radioButton id="opt1" for="customRadio"		itemIndex="0" /> -->
+<!-- 						<h:outputLabel for="opt1" value="pdf" /> -->
+<!-- 						<p:graphicImage  name="img/pdf.png" width="24" /> -->
+						
+
+<!-- 						<p:radioButton id="opt2" for="customRadio"		itemIndex="1" />							 -->
+<!-- 						<h:outputLabel for="opt2" value="excel" /> -->
+<!-- 						<p:graphicImage name="img/excel.png" width="24" />			 -->
+						
+						
+<!-- 					</h:panelGrid> -->
+<!-- 				</p:outputPanel> -->
+
+
+
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<div class="form-group">
+			<label for="inputCadeiaProdutiva"
+				class="col-lg-2 control-label">Cadeia Produtiva:</label>
+			<div class="col-lg-5">
+				<p:selectOneMenu class="form-control"
+					value="#{relatorioProdutorController.cadeiaProdutiva}"
+					style="width:100%; padding: 3px;"
+					styleClass="form-control" filter="true"
+					filterMatchMode="startsWith"
+					converter="omnifaces.SelectItemsIndexConverter"
+					id="inputCadeiaProdutiva">
+								
+					<f:selectItems
+						value="#{relatorioProdutorController.selectItemsCadeiaProdutiva}" />
+				</p:selectOneMenu>
+
+				<p:message for="inputCadeiaProdutiva" />
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="inputCidade" class="col-lg-2 control-label">Cidade:</label>
+			<div class="col-lg-5">
+				<p:selectOneMenu
+					value="#{relatorioProdutorController.cidade}" 
+					class="form-control"
+					style="width:100%; padding: 3px;"
+					styleClass="form-control" filter="true"
+					filterMatchMode="startsWith"
+					converter="omnifaces.SelectItemsIndexConverter"
+					id="inputCidade">				
+
+					<f:selectItems
+						value="#{relatorioProdutorController.selectItemsCidade}" />
+						<p:ajax update="inputBairro" listener="#{relatorioProdutorController.handleCidadeChange}" />
+				</p:selectOneMenu>
+				<p:message for="inputCidade" />
+			</div>
+
+		</div>
+		<div class="form-group">
+			<label for="inputBairro" class="col-lg-2 control-label">Bairro:</label>
+			<div class="col-lg-5">
+				<p:selectOneMenu class="form-control"
+					value="#{relatorioProdutorController.bairro}" 
+					style="width:100%; padding: 3px;"
+					styleClass="form-control" filter="true"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filterMatchMode="startsWith" id="inputBairro">					
+					<f:selectItems
+						value="#{relatorioProdutorController.selectItemsBairro}" />
+				</p:selectOneMenu>
+				<p:message for="inputBairro" />
+			</div>
+
+		</div>
+
+		<div class="form-group">
+			<label for="inputTipoOcupacao"
+				class="col-lg-2 control-label">Tipo Ocupação:</label>
+			<div class="col-lg-5">
+				<p:selectOneMenu class="form-control"
+				 	value="#{relatorioProdutorController.ocupacao}"
+					style="width:100%; padding: 3px;"
+					styleClass="form-control" filter="true"
+					converter="omnifaces.SelectItemsConverter"
+					filterMatchMode="startsWith" id="inputTipoOcupacao">			
+					
+					<f:selectItems
+						value="#{ocupacaoController.selectItems}" />
+				</p:selectOneMenu>
+				<p:message for="inputTipoOcupacao" />
+			</div>
+
+		</div>
+		</div>
+	</div>
+	<div class="panel panel-success">
+		<div class="panel-heading" style="color: #000;">Agrupar por</div>
+  			<div class="panel-body">  		
+  				  <p:selectOneMenu  id="selagrupar"  value="#{relatorioProdutorController.grupo_select}"   filter="true" filterMatchMode="startsWith"   >
+
+				<f:selectItem itemLabel="NENHUM" itemValue="NENHUM"   />	
+                <f:selectItem itemLabel="CIDADE" itemValue="CIDADE"   />
+                <f:selectItem itemLabel="CIDADE - CADEIA PRODUTIVA" itemValue="CADEIAPRODUTIVA"   />
+                <f:selectItem itemLabel="CIDADE - BAIRRO" itemValue="CIDADEBAIRRO"   />
+                <f:selectItem itemLabel="CIDADE - BAIRRO - CADEIA PRODUTIVA" itemValue="CIDADEBAIRROCADEIAPRODUTIVA"   />
+                <f:selectItem itemLabel="CADEIA PRODUTIVA" itemValue="CADEIAPRODUTIVA"   />
+                <f:selectItem itemLabel="CADEIA PRODUTIVA - CIDADE" itemValue="CADEIAPRODUTIVACIDADE"   />                
+                <f:selectItem itemLabel="CADEIA PRODUTIVA - CIDADE - BAIRRO" itemValue="CADEIAPRODUTIVACIDADEBAIRRO"   />
+                
+
+
+            </p:selectOneMenu>
+  		
+  			</div>
+  	</div>
+	
+	
+		<div class="form-group">
+			<div class="col-lg-5">
+				<p:commandButton value="Relatório" icon="ui-icon-print"
+					update="frmPesquisaEstados, frmListaEstados"
+					styleClass="btn btn-success" ajax="false"
+					onclick="this.form.target = '_new'"
+					action="#{relatorioProdutorController.imprimirlistaprodutor}" />
+			</div>
+		</div>
+		<p:messages id="mes" showDetail="true" />
+	</h:form>
+
+</ui:component>

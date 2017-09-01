@@ -1,0 +1,83 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	<b:well>
+
+		<h:form id="frmCadMaterial" prependId="false"
+			styleClass="form-horizontal">
+					<fieldset>
+				<div class="form-group">
+					<label for="inputfullName"
+						class="col-lg-2 control-label">Nome:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{materialController.material.name}"
+							styleClass="form-control" id="inputFullName"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Nome do Material" required="true" />
+						<p:message for="inputFullName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputDescricao" class="col-lg-2 control-label">Descrição:</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{materialController.material.descricao}"
+							styleClass="form-control" id="inputDescricao"
+							onkeydown="this.value = this.value.toUpperCase();"
+							onkeyup="this.value = this.value.toUpperCase();"
+							placeholder="Descrição do material" required="true" />
+						<p:message for="inputDescricao" />
+					</div>
+				</div>
+				<div class="form-group" >
+					<label for="inputCategoria" class="col-lg-2 control-label">Categoria:</label>
+					<div class="col-lg-10">
+						<p:selectOneMenu class="form-control" style="width:100%; padding: 3px;"
+							value="#{materialController.material.categoriaMaterial}" 
+							styleClass="form-control"
+							converter="omnifaces.SelectItemsIndexConverter" 			
+						  filter="true" filterMatchMode="startsWith"	
+							id="inputCategoria" >
+							<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+							<f:selectItems value="#{categoriaMaterialController.selectItems}"     />
+							
+						</p:selectOneMenu>
+						
+						
+						<p:message for="inputCategoria" />
+					</div>
+
+				</div>
+				<p:messages id="msgs" showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="btSalvar" value="Salvar"
+							update="frmCadMaterial, frmListaMaterials, grmsg"
+							oncomplete="if(!args.validationFailed){PF('dlg_material').hide();}"
+							styleClass="btn btn-primary"
+							action="#{materialController.actsalvar}" />
+						
+						<p:commandButton id="btCancelar" value="Cancelar"
+							process="@this"
+							update="frmCadMaterial, frmListaMaterials"
+							styleClass="btn btn-danger"
+							oncomplete="PF('dlg_material').hide();"
+							action="#{materialController.actvolta}" />
+
+					</div>
+				</div>
+			</fieldset>
+
+			
+		</h:form>
+	
+	</b:well>
+
+</ui:component>

@@ -25,7 +25,7 @@
 							value="Salvar" process="tbCadastro"
 							update="@this, wDados, grmsg"
 							action="#{producaoController.actsalvarNext()}"
-							oncomplete="if(!args.validationFailed){PF('tabViewCadProducao').select(1);}"
+							oncomplete="if(!args.validationFailed){PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()+1);}"
 							styleClass="btn btn-primary" />
 
 						<p:spacer width="5" />
@@ -56,14 +56,14 @@
 
 								<p:commandButton id="bt_prod_voltar_02"
 									value="Voltar" ajax="true" update="@this"
-									oncomplete="PF('tabViewCadProducao').select(0);"
+									oncomplete="PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()-1);"
 									styleClass="btn btn-warning" />
 
 								<p:spacer width="5" />
 
 								<p:commandButton id="bt_prod_prox_02" value="Salvar"
 									ajax="true" update="@this"
-									oncomplete="PF('tvCultura').select(1);"
+									oncomplete="PF('tvCultura').select(PF('tvCultura').getActiveIndex()+1);"
 									styleClass="btn btn-primary" />
 
 								<p:spacer width="5" />
@@ -87,14 +87,14 @@
 
 								<p:commandButton id="bt_prod_voltar_03"
 									value="Voltar" ajax="true" update="@this"
-									oncomplete="PF('tvCultura').select(0);"
+									oncomplete="PF('tvCultura').select(PF('tvCultura').getActiveIndex()-1);"
 									styleClass="btn btn-warning" />
 
 								<p:spacer width="5" />
 
 								<p:commandButton id="bt_prod_prox_03" value="Salvar"
 									ajax="true" update="@this"
-									oncomplete="PF('tvCultura').select(2);"
+									oncomplete="PF('tvCultura').select(PF('tvCultura').getActiveIndex()+1);"
 									styleClass="btn btn-primary" />
 
 								<p:spacer width="5" />
@@ -118,14 +118,14 @@
 
 								<p:commandButton id="bt_prod_voltar_04"
 									value="Voltar" ajax="true" update="@this"
-									oncomplete="PF('tvCultura').select(1);"
+									oncomplete="PF('tvCultura').select(PF('tvCultura').getActiveIndex()-1);"
 									styleClass="btn btn-warning" />
 
 								<p:spacer width="5" />
 
 								<p:commandButton id="bt_prod_prox_04" value="Salvar"
 									ajax="true" update="@this"
-									oncomplete="PF('tvCultura').select(3);"
+									oncomplete="PF('tvCultura').select(PF('tvCultura').getActiveIndex()-1);"
 									styleClass="btn btn-primary" />
 
 								<p:spacer width="5" />
@@ -150,14 +150,14 @@
 
 								<p:commandButton id="bt_prod_voltar_05"
 									value="Voltar" ajax="true" update="@this"
-									oncomplete="PF('tvCultura').select(2);"
+									oncomplete="PF('tvCultura').select(PF('tvCultura').getActiveIndex()-1);"
 									styleClass="btn btn-warning" />
 
 								<p:spacer width="5" />
 
 								<p:commandButton id="bt_prod_prox_05" value="Salvar"
 									ajax="true" update="@this"
-									oncomplete="PF('tabViewCadProducao').select(2);"
+									oncomplete="PF('tabViewCadProducao').select(PF('tvCultura').getActiveIndex()+1);"
 									styleClass="btn btn-primary" />
 
 								<p:spacer width="5" />
@@ -185,14 +185,76 @@
 
 						<p:commandButton id="bt_prod_voltar_06" value="Voltar"
 							ajax="true" update="@this"
-							oncomplete="PF('tabViewCadProducao').select(1);"
+							oncomplete="PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()-1);"
 							styleClass="btn btn-primary" />
 
 						<p:spacer width="5" />
 
 						<p:commandButton id="bt_prod_prox_06" value="Salvar"
 							ajax="true" update="@this"
-							oncomplete="PF('tabViewCadProducao').select(3);"
+							oncomplete="PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()+1);"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="bt_prod_cancelar_06"
+							value="Cancelar" process="@this" update="@this"
+							styleClass="btn btn-danger"
+							oncomplete="PF('dlg_producao').hide();" />
+
+					</div>
+				</div>
+
+			</p:tab>
+			<p:tab title="Equipamentos Acricola">
+
+				<ui:include src="equipamentos/dados.xhtml" />
+
+				<p:messages showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="bt_prod_voltar_06" value="Voltar"
+							ajax="true" update="@this"
+							oncomplete="PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()-1);"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="bt_prod_prox_06" value="Salvar"
+							ajax="true" update="@this"
+							oncomplete="PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()+1);"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="bt_prod_cancelar_06"
+							value="Cancelar" process="@this" update="@this"
+							styleClass="btn btn-danger"
+							oncomplete="PF('dlg_producao').hide();" />
+
+					</div>
+				</div>
+
+			</p:tab>
+			<p:tab title="Fomentação">
+
+				<ui:include src="fomento/dados.xhtml" />
+
+				<p:messages showDetail="true" />
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+
+						<p:commandButton id="bt_prod_voltar_06" value="Voltar"
+							ajax="true" update="@this"
+							oncomplete="PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()-1);"
+							styleClass="btn btn-primary" />
+
+						<p:spacer width="5" />
+
+						<p:commandButton id="bt_prod_prox_06" value="Salvar"
+							ajax="true" update="@this"
+							oncomplete="PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()+1);"
 							styleClass="btn btn-primary" />
 
 						<p:spacer width="5" />
@@ -216,7 +278,7 @@
 
 						<p:commandButton id="bt_prod_voltar_07" value="Voltar"
 							ajax="true" update="@this"
-							oncomplete="PF('tabViewCadProducao').select(2);"
+							oncomplete="PF('tabViewCadProducao').select(PF('tabViewCadProducao').getActiveIndex()-1);"
 							styleClass="btn btn-primary" />
 
 						<p:spacer width="5" />

@@ -1,0 +1,82 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+	<p:panel header="Colheita">
+<!-- 				<p:commandButton process="@this" -->
+<!-- 						update="@this, :frmCadColheita " icon="ui-icon-plus" -->
+<!-- 						styleClass="btn btn-warning" -->
+<!-- 						oncomplete="PF(' dlg_colheita ' ).show();" -->
+<!-- 						action=" # { colheitaController.actnovo(producaoController.producao ) }"> -->
+
+<!-- 					</p:commandButton> -->
+		<h:dataTable id="dt_Colheitas" styleClass="table table-striped"
+			value="#{plantioColheitaController.getLista(producaoController.producao)}" var="colheita">
+			<h:column headerClass="colbotao">
+				<f:facet name="header">
+					#
+				</f:facet>
+				<p:commandButton process="@this"
+					update="@this, :frmCadColheita"
+					oncomplete="PF('dlg_colheita').show();"
+					action="#{plantioColheitaController.acteditar()}"
+					styleClass="btn btn-warning" icon="ui-icon-refresh">
+					<f:setPropertyActionListener value="#{colheita}"
+						target="#{plantioColheitaController.plantioColheita}" />
+
+				</p:commandButton>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data" />
+				</f:facet>
+				<h:outputText value="#{colheita.dataColheita}" >
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Area(ha)" />
+				</f:facet>
+				<h:outputText value="#{colheita.areaColheita}" >
+					<f:convertNumber pattern="##,##0.00#" />
+					</h:outputText>
+			</h:column>
+			<h:column >
+				<f:facet name="header">
+					<h:outputText value="Cultura" />
+				</f:facet>
+				<h:outputText value="#{colheita.culturaColheita}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Epoca" />
+				</f:facet>
+				<h:outputText value="#{colheita.epoca}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Estagio Maturidade" />
+				</f:facet>
+				<h:outputText value="#{colheita.estagio}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Destino" />
+				</f:facet>
+				<h:outputText value="#{colheita.destino}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Umidade" />
+				</f:facet>
+				<h:outputText value="#{colheita.umidade}" />
+			</h:column>
+			
+		</h:dataTable>
+	</p:panel>
+
+</ui:component>

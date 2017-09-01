@@ -1,0 +1,87 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<p:panel >
+		<h:dataTable id="dt_Fomento" styleClass="table table-striped"
+			value="#{producaoFomentoController.getLista(producaoController.producao)}" var="producaoFomento">
+			<h:column headerClass="colbotao">
+				<f:facet name="header">
+					<b:commandButton  value=""
+						ajax="true"
+						action="#{producaoFomentoController.actnovo(producaoController.producao)}"
+						update="@this, frmCadFomento"
+						icon="glyphicon glyphicon-plus"						
+						styleClass="btn btn-primary" 
+						oncomplete="PF('dlg_fomento').show();"
+						
+						>
+
+					</b:commandButton>
+				</f:facet>
+				<b:commandButton value="" 
+					ajax="true"
+					oncomplete="PF('dlg_fomento').show();"					
+					action="#{producaoFomentoController.acteditar()}"
+					update="@this, frmCadFomento"
+					icon="glyphicon glyphicon-refresh" look="warning">
+					<f:setPropertyActionListener value="#{producaoFomento}" target="#{producaoFomentoController.producaoFomento}" />
+
+				</b:commandButton>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data entrega" />
+				</f:facet>
+				<h:outputText value="#{producaoFomento.dataEntrega}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column id="cldescr">
+				<f:facet name="header">
+					<h:outputText value="Tipo de Fomento" />
+				</f:facet>
+				<h:outputText value="#{producaoFomento.categoriaFomento.description}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Recurso" />
+				</f:facet>
+				<h:outputText value="#{producaoFomento.recurso.description}" />
+				
+				
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Material" />
+				</f:facet>
+				<h:outputText value="#{producaoFomento.patrimonio.descricao}" />
+				
+				
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Quantidade" />
+				</f:facet>
+				<h:outputText value="#{producaoFomento.quantidade}" >
+				<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor" />
+				</f:facet>
+				<h:outputText value="#{producaoFomento.valor}" >
+				<f:convertNumber pattern="##,##0.00#" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+	</p:panel>
+
+</ui:component>

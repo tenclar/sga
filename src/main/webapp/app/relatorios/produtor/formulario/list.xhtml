@@ -1,0 +1,62 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+
+	
+	
+	
+	<h:form id="frmListaEstados" prependId="false">
+		<p:outputPanel id="dtEstados">
+
+			<p:dataTable id="tbl"  style="margin-bottom:20px" value="#{estadoController.list}" var="estado">
+
+				<f:facet name="header">
+					<h:outputText value="Converções:"></h:outputText>
+					<h:commandLink>
+						<p:graphicImage name="img/excel.png" width="24" />
+						<p:dataExporter type="xls" target="tbl" fileName="relatorio" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage name="img/pdf.png" width="24" />
+						<p:dataExporter type="pdf" target="tbl" fileName="relatorio" />
+					</h:commandLink>
+
+				</f:facet>
+				<p:column id="clHeader">
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:outputText value="#{estado.id}" />
+				</p:column>
+				<p:column id="cldescr">
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{estado.nome}" />
+				</p:column>
+				<p:column id="clEstado">
+					<f:facet name="header">
+						<h:outputText value="Sigla" />
+					</f:facet>
+					<h:outputText value="#{estado.sigla}" />
+				</p:column>
+				<p:column id="clUser" rendered="#{p:ifGranted('ROLE_ADMIN')}">
+					<f:facet name="header">
+						<h:outputText value="User" />
+					</f:facet>
+					<h:outputText value="#{cidade.user.username}" />
+				</p:column>
+
+
+			</p:dataTable>
+		</p:outputPanel>
+	</h:form>
+
+
+</ui:component>
+

@@ -1,0 +1,139 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<b:well>
+	<h:form id="frmCadFomento" prependId="false"
+		styleClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Data Entrega:</label>
+			<div class="col-lg-3">
+				<p:inputText label="Data"
+					id="inputDatapArea"
+					maxlength="10"
+					value="#{producaoFomentoController.producaoFomento.dataEntrega}"
+					onkeyup="Formatadata(this, event)"
+					onchange="validaDat(this, this.value)"
+					styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+				<p:message for="inputDatapArea" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Tipo de Fomento :</label>
+			<div class="col-lg-7">
+				<p:selectOneMenu
+					id="selTipoFomento"
+					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+					styleClass="form-control" required="true"
+					label="Tipo Fomento"
+					value="#{producaoFomentoController.producaoFomento.categoriaFomento}"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Selecione"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{patrimonioController.selectItems}" />
+				</p:selectOneMenu>
+				<p:message for="selTipoFomento" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Tipo Recurso:</label>
+			<div class="col-lg-7">
+				<p:selectOneMenu
+					id="selTipoRecurso"
+					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+					styleClass="form-control" required="true"
+					label="Tipo Fomento"
+					value="#{producaoFomentoController.producaoFomento.recurso}"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Selecione"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{patrimonioController.selectItems}" />
+				</p:selectOneMenu>
+				<p:message for="selTipoRecurso" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Material :</label>
+			<div class="col-lg-7">
+				<p:selectOneMenu
+					id="selTipoPatrimonio"
+					style=" margin-top:0; margin-left:0; padding-left:0.1em; padding-top:0.20em;"
+					styleClass="form-control" required="true"
+					label="Tipo de Adubo"
+					value="#{producaoFomentoController.producaoFomento.patrimonio}"
+					converter="omnifaces.SelectItemsIndexConverter"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Selecione"
+						noSelectionOption="true" />
+					<f:selectItems
+						value="#{patrimonioController.selectItems}" />
+				</p:selectOneMenu>
+				<p:message for="selTipoPatrimonio" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Quantidade:</label>
+			<div class="col-lg-8">
+				<p:inputText label="área"
+					id="inputpArea"
+					value="#{producaoFomentoController.producaoFomento.quantidade}"
+						onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+				<p:message for="inputpArea" showDetail="true" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Valor:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Valor"
+					id="inputValor"
+					value="#{producaoFomentoController.producaoFomento.valor}"
+						onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+				<p:message for="inputValor" showDetail="true" />
+			</div>
+		</div>
+		
+
+		
+		
+
+		
+		
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+
+				<p:commandButton value="Salvar"
+					process="frmCadFomento" id="bt_salvar_Fomento"
+					update="frmCadFomento, :frmCadProducao:tabViewCadProducao:dt_Fomento,  grmsg"
+					action="#{producaoFomentoController.actsalvar()}"
+					oncomplete="if(!args.validationFailed){PF('dlg_producaoFomento').hide();}"
+					styleClass="btn btn-primary" />
+
+				<p:commandButton value="Cancelar"
+					styleClass="btn btn-danger" process="@this"
+					update="@this, frmCadFomento, :frmCadProducao:tabViewCadProducao:dt_Fomento" 					
+					 oncomplete="PF('dlg_producaoFomento').hide();"
+					 />
+
+			</div>
+		</div>
+	</h:form>
+</b:well>
+
+</ui:component>
