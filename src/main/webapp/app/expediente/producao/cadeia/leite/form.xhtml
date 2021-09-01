@@ -1,0 +1,99 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<b:well  >
+	<h:form id="frmCadCadeiaLeite" prependId="false"
+		styleClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-lg-3 control-label">Data:</label>
+			<div class="col-lg-2">
+				<p:inputText label="Data"
+				    maxlength="10"
+					value="#{cadeiaLeiteController.cadeiaLeite.data_info}"
+					onkeyup="Formatadata(this, event)"
+					onchange="validaDat(this, this.value)"
+					styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">Vacas Solteiras:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Cultura"
+					value="#{cadeiaLeiteController.cadeiaLeite.solteiras}"
+					onkeypress="mascara(this, soNumeros)"
+					styleClass="form-control">
+
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">Vacas em Lactação:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Cultura"
+					value="#{cadeiaLeiteController.cadeiaLeite.lactacao}"
+					onkeypress="mascara(this, soNumeros)"
+					styleClass="form-control">
+			
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">Produção Diária (Lt):</label>
+			<div class="col-lg-8">
+				<p:inputText label="Cultura"
+					value="#{cadeiaLeiteController.cadeiaLeite.producaodiaria}"
+					onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+				<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">Valor Litro R$:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Cultura"
+				onkeypress="mascara(this, soNumerosReais)"
+					value="#{cadeiaLeiteController.cadeiaLeite.valorlitro}"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+
+			</div>
+		</div>
+
+
+
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+
+				<p:commandButton value="Salvar" process="frmCadCadeiaLeite"
+					id="bt_salvar_CadeiaLeite"
+					update="frmCadCadeiaLeite, :frmCadProducao:tvDadosProducao:dt_CadeiaLeites, msgs, grmsg"
+					action="#{cadeiaLeiteController.actsalvar}"
+					oncomplete="if(!args.validationFailed){PF('dlg_cadeiaLeite').hide();}"
+					styleClass="btn btn-primary" />
+
+				<p:commandButton value="Cancelar"
+					styleClass="btn btn-danger"
+					update="@this, frmCadCadeiaLeite, :frmCadProducao:tvDadosProducao:dt_CadeiaLeites" 
+					action="#{cadeiaLeiteController.actlimpa}"
+					oncomplete="PF('dlg_cadeiaLeite').hide();" />
+
+			</div>
+		</div>
+	</h:form>
+
+</b:well>
+</ui:component>

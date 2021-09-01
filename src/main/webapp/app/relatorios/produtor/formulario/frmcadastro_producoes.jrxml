@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-08T16:52:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="frmcadastro_producoes" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="42d6cd97-93c3-492c-b69e-b04da00bf589">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="pga_jdbc"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="cGdhLnZlZ2V0YWNhbyAsMjA5LDYwMCxlMGY1Yjc0Ni04NTkzLTQ2ZmMtYjQ5Ny0xYTY3ZDE5ZjBk&#xA;NDg7cGdhLm1hb2Rlb2JyYSAsMjA5LDc5NSwwNjQ0OGFmNS03YmI2LTRkMDEtODUyNy1lMWFmMWE4&#xA;ZDc5YTQ7cGdhLnRvcG9ncmFmaWEgLDIwOSw5OTAsNTU2MzE2NjItYjljOS00Y2NiLWJkYmEtMTY5&#xA;MzZkNGYzYjcyO3BnYS5wcm9kdWNhbyAsMTUsMzY4LDM3YmMyNzYyLWIxYmQtNGQxMC1iYzQ1LTRi&#xA;YmIzYzlmNGJmNztwZ2EuY2FkZWlhX3Byb2R1dGl2YSAsMjA5LDE1LGZmMWM1NWUwLWU3MjMtNGY2&#xA;Zi1iOGFjLTIxZWYwZTE0ZjAwMTtwZ2Eub3JnYW5pemFjYW9zb2NpYWwgLDIwOSwyMTAsZTg4YjBi&#xA;OWQtNTdhNS00Yzg3LTlkMDEtMzJhOTc2NTIzYzk4O3BnYS50aXBvcHJlcGFyb2FyZWEgLDIwOSw0&#xA;MDUsNDY0ODM2ZDgtNTZkZS00OTk3LTlhODMtMTgxZDRjNzZmODYyOw=="/>
+	<parameter name="propriedadeid" class="java.lang.Long" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1l]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT pga.cadeia_produtiva.descricao AS "desccadeiaprodutiva",
+	pga.cadeia_produtiva.name AS "cadeiaprodutiva",
+	pga.cadeia_produtiva.descricao AS "cadeiaprodutivadescricao",
+	pga.producao.area AS "areaproducao",
+	pga.producao.descricao,
+	pga.producao.status,
+	pga.producao.tempouso,
+	pga.organizacaosocial.nome AS "organizacaosocial",
+	pga.tipopreparoarea.name AS "preparoarea",
+	pga.vegetacao.descricao AS "tipovegetacao",
+	pga.maodeobra.name AS "tipomaodeobra",
+	pga.topografia.name AS "tipotopografia"
+FROM pga.producao
+	INNER JOIN pga.cadeia_produtiva ON 
+	 pga.producao.cadeiaprodutiva_id = pga.cadeia_produtiva.id 
+	INNER JOIN pga.organizacaosocial ON 
+	 pga.producao.organizacaosocial_id = pga.organizacaosocial.id 
+	INNER JOIN pga.tipopreparoarea ON 
+	 pga.producao.tipopreparoarea_id = pga.tipopreparoarea.id 
+	INNER JOIN pga.vegetacao ON 
+	 pga.producao.vegetacao_id = pga.vegetacao.id 
+	INNER JOIN pga.maodeobra ON 
+	 pga.producao.maodeobra_id = pga.maodeobra.id 
+	INNER JOIN pga.topografia ON 
+	 pga.producao.topografia_id = pga.topografia.id 
+WHERE 
+	 pga.producao.propriedade_id = $P{propriedadeid}]]>
+	</queryString>
+	<field name="desccadeiaprodutiva" class="java.lang.String"/>
+	<field name="cadeiaprodutiva" class="java.lang.String"/>
+	<field name="cadeiaprodutivadescricao" class="java.lang.String"/>
+	<field name="areaproducao" class="java.math.BigDecimal"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="tempouso" class="java.lang.Integer"/>
+	<field name="organizacaosocial" class="java.lang.String"/>
+	<field name="preparoarea" class="java.lang.String"/>
+	<field name="tipovegetacao" class="java.lang.String"/>
+	<field name="tipomaodeobra" class="java.lang.String"/>
+	<field name="tipotopografia" class="java.lang.String"/>
+	<group name="cadeiaprodutiva">
+		<groupExpression><![CDATA[$F{cadeiaprodutiva}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<textField>
+					<reportElement x="0" y="0" width="555" height="20" uuid="b87c1dab-7791-48cb-b910-93e04b3c84e2">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Cadeia Produtiva de "+ $F{cadeiaprodutivadescricao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="1">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="d4f4c1ed-1f39-4802-ae81-e4f2141fe726">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Produções]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="0" y="23" width="100" height="20" uuid="b555b13e-9933-4988-b259-c5d0cd392fb1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="AtLeast" leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{areaproducao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="23" width="100" height="20" uuid="27c8b48e-e905-4167-bedc-48c98ae2fc3d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="AtLeast" leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="23" width="100" height="20" uuid="a73b6b06-6b37-4d0a-b3c6-d8a4e4be8b28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="AtLeast" leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipotopografia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="23" width="100" height="20" uuid="2274f070-1bfb-4e85-a1e9-585d63dbba6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="AtLeast" leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipovegetacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="23" width="100" height="20" uuid="ef9e8ba3-0052-4295-b355-d8975c63beae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="AtLeast" leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{organizacaosocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="23" width="55" height="20" uuid="46059db3-f02d-41a1-a4f0-6cd0af99289c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="AtLeast" leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="ac9a2a2b-c1aa-4600-a936-42b943a7048f"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Área]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="2" width="100" height="20" uuid="2a970c6b-4ad6-4cd7-adc7-5b1ca61bcd63"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="2" width="100" height="20" uuid="57744cf0-0606-42c1-99f3-94bb512bdff5"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Topografia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="2" width="100" height="20" uuid="0b43fc28-b395-4a3d-b63c-7e220a7c196b"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Vegetação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="2" width="100" height="20" uuid="330427b6-7221-4d8e-9116-4fb65966b256"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Organização Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="2" width="55" height="20" uuid="1444ecb4-a9f0-4fa7-846d-888ee7cea9cb">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[status]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="1" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</pageFooter>
+</jasperReport>

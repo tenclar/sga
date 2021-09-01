@@ -1,0 +1,63 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+	<h:form id="frmTipoPesquisa">
+	<p:panel>
+		<p:selectOneRadio style="width: 20%;"  >
+			<f:selectItem itemLabel="Produtor" />
+			<f:selectItem itemLabel="Colaborador" />
+		</p:selectOneRadio>
+
+<p:separator />
+	<h:panelGrid columns="3" style="width:100%" >
+		<h:outputLabel for="produtor_CPF"  value="Produtor: " />
+		<h:outputLabel value="Propriedade: " />
+		<h:outputLabel value="Produção: " />
+		
+
+		<h:panelGroup>
+		<p:inputText id="produtor_CPF" style="width:80%;" readonly="true"  value="#{produtorController.produtor.cpf} - #{produtorController.produtor.name}" />
+		 <p:commandButton icon="ui-icon-search"  oncomplete="PF('localizaProd').show();" class="btn btn-success" update="dlgLocalizaProd" immediate="true"  />
+		</h:panelGroup>
+		
+		<p:selectOneMenu id="propriedade_select" 
+		    label="Propriedade"
+			style="width:80%;"
+			filter="true" filterMatchMode="startsWith"
+			required="true"
+			converter="omnifaces.SelectItemsIndexConverter">
+			
+			<f:selectItems	 />
+			<p:ajax 
+				
+				/>
+		</p:selectOneMenu>
+
+		<p:selectOneMenu id="producao_select" 
+			label="produção"
+			style="width:80%;"
+			filter="true" filterMatchMode="startsWith"
+			required="true"
+			converter="omnifaces.SelectItemsIndexConverter">
+			
+			<f:selectItems
+				 />
+			<p:ajax 
+				/>
+		</p:selectOneMenu>
+
+		
+
+	</h:panelGrid>
+	</p:panel>
+	</h:form>
+	
+	<ui:include src="localiza_produtor.xhtml" />
+
+</ui:component>
+

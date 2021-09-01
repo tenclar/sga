@@ -1,10 +1,11 @@
 package br.gov.ac.seap.pga.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,9 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,9 +29,10 @@ import org.springframework.security.core.userdetails.UserDetails;
  * The persistent class for the user database table.
  * 
  */
+
+//@NamedEntityGraph(name = "User.detail",
+//attributeNodes = @NamedAttributeNode("authorities"))
 @Entity
-@NamedEntityGraph(name = "User.detail",
-attributeNodes = @NamedAttributeNode("authorities"))
 @Table(name="user")
 public class User implements UserDetails, Serializable {
 	private static final long serialVersionUID = 1L;
@@ -76,23 +77,7 @@ public class User implements UserDetails, Serializable {
 
 
 	//bi-directional many-to-many association to Permission
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinTable(
-			name="user_authority"
-			, joinColumns={
-				@JoinColumn(name="user_id")
-				}
-			, inverseJoinColumns={
-				@JoinColumn(name="authority_id")
-				}
-			)
 	
-	
-//	@OneToMany( fetch = FetchType.LAZY, cascade= {CascadeType.REFRESH, CascadeType.PERSIST} , orphanRemoval= true )	
-//	@Fetch(value = FetchMode.JOIN)
-//	@JoinColumn(name="setor_id")
-	
-//	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE},orphanRemoval=true)	
 //	@JoinTable(
 //			name="user_authority"
 //			, joinColumns={
@@ -102,7 +87,8 @@ public class User implements UserDetails, Serializable {
 //				@JoinColumn(name="authority_id")
 //				}
 //			)
-	private List<Authority> authorities ;
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Authority> authorities= new LinkedList<Authority>();
 
 	
 	public User() {

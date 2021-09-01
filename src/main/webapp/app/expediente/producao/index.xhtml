@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/default/main.xhtml">
+	<ui:define name="content">
+		<h3 class="page-header ">
+			<i class="fa fa-pencil-square-o "></i> Produção
+		</h3>
+
+
+		<!-- 		<p:panel id="panelView" visible="false" widgetVar="panelView"  closable="true"> -->
+		<!-- 				<ui:include src="view.xhtml" /> -->
+		<!-- 			</p:panel>		 -->
+
+		<p:ajaxStatus style="width:16px;height:16px;"
+			id="ajaxStatusPanel">
+			<f:facet name="start">
+				<p:graphicImage name="img/ajax-loader-facebook.gif" />
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+		<p:panel id="panelForm" visible="false"
+			widgetVar="panelForm" closable="true">
+			<ui:include src="form.xhtml" />
+		</p:panel>
+
+
+
+		<p:panel id="panelList" visible="true"
+			widgetVar="panelList" closable="true">
+			<ui:include src="list.xhtml" />
+		</p:panel>
+
+
+
+		<!-- 		caixa de dialogo -->
+
+		<p:dialog widgetVar="dlg_localiza_produtor"
+			styleClass="modal-dialog" modal="true" position="center"
+			header="Localiza Produtor" showEffect="clip" width="900"
+			minHeight="400" hideEffect="clip">
+			<ui:include src="localiza_produtor.xhtml" />
+		</p:dialog>
+		<p:dialog widgetVar="dlg_analisesolo"
+			styleClass="modal-dialog" modal="true" position="center"
+			header="Cadastro Analise de Solo" showEffect="clip"
+			width="900" minHeight="400" hideEffect="clip">
+			<ui:include src="analisesolo/form.xhtml" />
+		</p:dialog>
+		<p:dialog widgetVar="dlg_insumoTrato"
+			styleClass="modal-dialog" modal="true" position="center"
+			header="Cadastro Insumos" showEffect="clip" width="900"
+			minHeight="400" hideEffect="clip">
+			<ui:include src="insumos/form.xhtml" />
+		</p:dialog>
+		<p:dialog widgetVar="dlg_colheita"
+			styleClass="modal-dialog" modal="true" position="center"
+			header="Cadastro colheita" showEffect="clip" width="900"
+			minHeight="400" hideEffect="clip">
+			<ui:include src="colheita/form.xhtml" />
+		</p:dialog>
+		<p:dialog widgetVar="dlg_plantio"
+			styleClass="modal-dialog" modal="true" position="center"
+			header="Cadastro Plantio" showEffect="clip" width="900"
+			minHeight="400" hideEffect="clip">
+			<ui:include src="plantio/form.xhtml" />
+		</p:dialog>
+
+		<p:dialog widgetVar="dlg_Equipamentos"
+			styleClass="modal-dialog" modal="true" position="center"
+			header="Cadastro Equipamento Agricola Produção"
+			showEffect="clip" width="900" minHeight="400"
+			hideEffect="clip">
+			<ui:include src="equipamentos/form.xhtml" />
+		</p:dialog>
+
+
+		<p:dialog widgetVar="dlg_preparoArea"
+			styleClass="modal-dialog" modal="true" position="center"
+			header="Cadastro Preparo àrea" showEffect="clip"
+			width="900" minHeight="400" hideEffect="clip">
+			<ui:include src="preparoarea/form.xhtml" />
+		</p:dialog>
+		
+		<p:dialog widgetVar="dlg_cadeiaLeite"
+			styleClass="modal-dialog" modal="true" position="center"
+			header="Cadastro Preparo àrea" showEffect="clip"
+			width="900" minHeight="400" hideEffect="clip">
+			<ui:include src="cadeia/leite/form.xhtml" />
+		</p:dialog>
+		
+
+
+
+	</ui:define>
+
+
+</ui:composition>
+

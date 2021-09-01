@@ -1,0 +1,75 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+
+
+	<p:panel header="Analise Solo">
+		<h:dataTable id="dt_AnaliseSolos" styleClass="table table-striped"
+			value="#{analiseSoloController.getLista(producaoController.producao)}" var="analisesolos">
+			
+			<h:column headerClass="colbotao">
+				<f:facet name="header">
+					<p:commandButton 
+						process="@this"	update="@this, :frmCadAnaliseSolo"
+						icon="ui-icon-plus"		
+						styleClass="btn btn-primary" 			
+						oncomplete="PF('dlg_analisesolo').show();"
+						action="#{analiseSoloController.actnovo(producaoController.producao)}" >
+
+					</p:commandButton>
+					
+				</f:facet>
+				<p:commandButton process="@this" update="@this, :frmCadAnaliseSolo"
+					oncomplete="PF('dlg_analisesolo').show();" 
+					action="#{analiseSoloController.acteditar()}"
+					styleClass="btn btn-warning" 
+					icon="ui-icon-refresh" >
+				<f:setPropertyActionListener value="#{analisesolos}" target="#{analiseSoloController.analiseSolo}" />
+
+				</p:commandButton>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data" />
+				</f:facet>
+				<h:outputText value="#{analisesolos.dataanalise}" >
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Local" />
+				</f:facet>
+				<h:outputText value="#{analisesolos.local}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Tipo de Adubo" />
+				</f:facet>
+				<h:outputText value="#{analisesolos.tipoadubo.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Quantidade" />
+				</f:facet>
+				<h:outputText value="#{analisesolos.quantidade}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Aplicado" />
+				</f:facet>
+				<h:outputText value="#{analisesolos.aplicado}" />
+			</h:column>
+			
+			
+			
+		</h:dataTable>
+	</p:panel>
+	<p:messages showDetail="true" />
+</ui:component>

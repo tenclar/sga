@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="">
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pga</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+
+		<mapping class="br.gov.ac.seap.pga.model.Acao" />
+		<mapping class="br.gov.ac.seap.pga.model.AnaliseSolo" />
+		<mapping class="br.gov.ac.seap.pga.model.Authority" />
+		<mapping class="br.gov.ac.seap.pga.model.Bairro" />
+		<mapping class="br.gov.ac.seap.pga.model.CadeiaLeite" />
+		<mapping class="br.gov.ac.seap.pga.model.CadeiaProdutiva" />
+		<mapping class="br.gov.ac.seap.pga.model.CategoriaFormento" />
+		<mapping class="br.gov.ac.seap.pga.model.CategoriaMaterial" />
+		<mapping class="br.gov.ac.seap.pga.model.Cidade" />
+		<mapping class="br.gov.ac.seap.pga.model.Colheita" />
+		<mapping class="br.gov.ac.seap.pga.model.Endereco" />
+		<mapping class="br.gov.ac.seap.pga.model.Estado" />
+		<mapping class="br.gov.ac.seap.pga.model.InsumoTrato" />
+		<mapping class="br.gov.ac.seap.pga.model.MaoDeObra" />
+		<mapping class="br.gov.ac.seap.pga.model.Material" />
+		<mapping class="br.gov.ac.seap.pga.model.Ocupacao" />
+		<mapping class="br.gov.ac.seap.pga.model.OrganizacaoSocial" />
+		<mapping class="br.gov.ac.seap.pga.model.Patrimonio" />
+		<mapping class="br.gov.ac.seap.pga.model.Plantio" />
+		<mapping class="br.gov.ac.seap.pga.model.PreparoArea" />
+		<mapping class="br.gov.ac.seap.pga.model.Producao" />
+		<mapping class="br.gov.ac.seap.pga.model.ProducaoEquipamentos" />
+		<mapping class="br.gov.ac.seap.pga.model.ProducaoFormento" />
+		<mapping class="br.gov.ac.seap.pga.model.Produtor" />
+		<mapping class="br.gov.ac.seap.pga.model.Propriedade" />
+		<mapping class="br.gov.ac.seap.pga.model.Recurso" />
+		<mapping class="br.gov.ac.seap.pga.model.RegionalEstadual" />
+		<mapping class="br.gov.ac.seap.pga.model.RegionalMunicipal" />
+		<mapping class="br.gov.ac.seap.pga.model.ServicoMecanizacao" />
+		<mapping class="br.gov.ac.seap.pga.model.Setor" />
+		<mapping class="br.gov.ac.seap.pga.model.TipoAdubo" />
+		<mapping class="br.gov.ac.seap.pga.model.TipoInsumoTrato" />
+		<mapping class="br.gov.ac.seap.pga.model.TipoPreparoArea" />
+		<mapping class="br.gov.ac.seap.pga.model.Topografia" />
+		<mapping class="br.gov.ac.seap.pga.model.UnidadeMedida" />
+		<mapping class="br.gov.ac.seap.pga.model.User" />
+		<mapping class="br.gov.ac.seap.pga.model.Vegetacao" />
+		
+	</session-factory>
+</hibernate-configuration>

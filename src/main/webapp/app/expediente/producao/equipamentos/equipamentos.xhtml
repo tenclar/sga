@@ -1,0 +1,49 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<p:panel header="Equipamentos Agricola ">
+		<h:dataTable id="dt_ProducaoEquipamentos" styleClass="table table-striped"
+			value="#{producaoEquipamentosController.getLista(producaoController.producao)}" var="equip">
+			<h:column headerClass="colbotao">
+				<f:facet name="header">
+					<b:commandButton ajax="true" 
+						action="#{producaoEquipamentosController.actnovo(producaoController.producao)}"
+						icon="glyphicon glyphicon-plus" look="primary" oncomplete="PF('dlg_Equipamentos').show();"
+						value="" update="@this, frmCadProducaoEquipamentos">
+
+					</b:commandButton>
+				</f:facet>
+				<b:commandButton value="" ajax="true" update="@this, frmCadProducaoEquipamentos"
+				action="#{producaoEquipamentosController.acteditar()}"
+					icon="glyphicon glyphicon-refresh" look="warning">
+					<f:setPropertyActionListener value="#{equip}" target="#{producaoEquipamentosController.equip}"></f:setPropertyActionListener>
+				</b:commandButton>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data" />
+				</f:facet>
+				<h:outputText value="#{equip.data_info}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column id="cldescr">
+				<f:facet name="header">
+					<h:outputText value="Equipamento" />
+				</f:facet>
+				<h:outputText value="#{equip.material.name}" title="#{equip.material.descricao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Existente / Necessário" />
+				</f:facet>
+				<h:outputText value="#{equip.situacao}" />
+			</h:column>
+		</h:dataTable>
+	</p:panel>
+
+</ui:component>

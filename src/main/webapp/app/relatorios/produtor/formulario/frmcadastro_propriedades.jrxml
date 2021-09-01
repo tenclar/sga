@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-15T09:17:57 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="frmcadastro_propriedades" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a66b9254-3028-4c09-b034-99508d87d84e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="pga_jdbc"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="produtorid" class="java.lang.Long" isForPrompting="false"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+	pga.propriedade.id,
+	pga.propriedade.areatotal,
+	pga.propriedade.latitude,
+	pga.propriedade.longitude,
+	pga.propriedade.nome,
+	pga.ocupacao.name as "ocupacao",
+	pga.propriedade.produtor_id,
+	pga.endereco.logradouro,
+	pga.endereco.complemento,
+	pga.endereco.cep,
+	pga.bairro.nome as "bairro",
+	pga.bairro.zona ,
+	pga.cidade.nome as "cidade",
+	pga.estado.nome as "estado",
+	pga.estado.sigla as "uf"
+FROM pga.propriedade
+	INNER JOIN pga.endereco ON 
+	 pga.propriedade.endereco_id = pga.endereco.id 
+	INNER JOIN pga.bairro ON 
+	 pga.endereco.bairro_id = pga.bairro.id 
+	INNER JOIN pga.cidade ON 
+	 pga.bairro.cidade_id = pga.cidade.id 
+	INNER JOIN pga.estado ON 
+	 pga.cidade.estado_id = pga.estado.id 
+	INNER JOIN pga.ocupacao ON 
+	 pga.propriedade.ocupacao_id = pga.ocupacao.id 
+WHERE 
+	 pga.propriedade.produtor_id =   $P{produtorid}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="areatotal" class="java.math.BigDecimal"/>
+	<field name="latitude" class="java.lang.String"/>
+	<field name="longitude" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="ocupacao" class="java.lang.String"/>
+	<field name="produtor_id" class="java.lang.Long"/>
+	<field name="logradouro" class="java.lang.String"/>
+	<field name="complemento" class="java.lang.String"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="zona" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="uf" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="b563a833-b675-4159-a2ba-1bf5ee6a2785">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Propriedades]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="75" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="254" height="15" backcolor="#F5F2F2" uuid="0370b757-177f-427f-8d1b-92de896cf44c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="254" y="0" width="100" height="15" backcolor="#F5F2F2" uuid="83b5a1ad-658b-47ee-ab4b-eee9aa6b42f2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Área Total"+$F{areatotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="354" y="0" width="100" height="15" backcolor="#F5F2F2" uuid="8fe69f21-ee24-4940-bb33-a76dc9e9eefe"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Lat:"+$F{latitude}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="454" y="0" width="100" height="15" backcolor="#F5F2F2" uuid="e467b73a-ec1c-438f-9fe7-277d44c2588d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Lon:"+$F{longitude}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="39" width="554" height="35" uuid="0600df46-6237-4fc6-9276-9c55fa184ec0"/>
+				<subreportParameter name="propriedadeid">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["frmcadastro_producoes.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="0" y="15" width="554" height="24" uuid="ffcc2b4d-107e-4089-adc7-e982b7d56658"/>
+				<textFieldExpression><![CDATA["Localização: "+$F{logradouro}+", "+$F{bairro}+", Zona "+$F{zona}+", "+$F{cidade}+"-"+$F{uf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="1" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,155 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<b:well   >
+	<h:form id="frmCadColheita" prependId="false"
+		styleClass="form-horizontal">
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Data:</label>
+			
+			<div class="col-lg-2">
+				<p:inputText label="Data"
+					id="itData_colheita"
+					value="#{colheitaController.colheita.data_info}"
+					onkeyup="Formatadata(this, event)" maxlength="10" required="true"
+					onchange="validaDat(this, this.value)"				
+					styleClass="form-control">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>
+				<p:message for="itData_colheita" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Cultura:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Cultura" required="true"
+					id="itCultura"
+				onkeypress="mascara(this, soNumerosReais)"
+					value="#{colheitaController.colheita.cultura}"
+					styleClass="form-control">				
+				</p:inputText>
+				<p:message for="itCultura"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Àrea:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Area" required="true"
+				
+					id="itarea"
+					value="#{colheitaController.colheita.area}"
+					onkeypress="mascara(this, soNumeros)"
+					styleClass="form-control">
+
+				</p:inputText>
+		<p:message for="itarea"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Epoca:</label>
+			<div class="col-lg-8">
+				<p:inputText  id="itepoca"  label="Epoca" required="true"
+					value="#{colheitaController.colheita.epoca}"
+					styleClass="form-control">
+
+				</p:inputText>
+				
+				<p:message for="itepoca"  />
+
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Ciclo:</label>
+			<div class="col-lg-8">
+				<p:inputText id="itciclo"   label="Ciclo" required="true"
+					value="#{colheitaController.colheita.ciclo}"
+					styleClass="form-control">
+
+				</p:inputText>
+				
+				<p:message for="itciclo"  />
+
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Estágio:</label>
+			<div class="col-lg-8">
+				<p:inputText id="itestagio" label="Estágio"
+					value="#{colheitaController.colheita.estagio}" required="true"
+					styleClass="form-control">
+
+				</p:inputText>
+				
+				<p:message for="itestagio"  />
+
+			</div>
+		</div>
+			
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Umidade:</label>
+			<div class="col-lg-8">
+				<p:inputText id="itumidade" label="Umidade"
+					value="#{colheitaController.colheita.umidade}"
+					styleClass="form-control">
+
+				</p:inputText>
+				<p:message for="itumidade"  />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Destino:</label>
+			<div class="col-lg-8">
+				<p:inputText id="itdestino" label="Destino"
+					value="#{colheitaController.colheita.destino}"
+					styleClass="form-control">
+
+				</p:inputText>
+				<p:message for="itdestino"  />
+			</div>
+		</div>
+		
+
+
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Valor sc:</label>
+			<div class="col-lg-8">
+				<p:inputText label="Quantidade"
+					id="itquantidade"
+					value="#{colheitaController.colheita.valor}"
+					onkeypress="mascara(this, soNumerosReais)"
+					styleClass="form-control">
+					<f:convertNumber pattern="##,##0.00#" />
+				</p:inputText>
+				<p:message for="itquantidade"  />
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+
+				<p:commandButton value="Salvar" process="frmCadColheita"
+					id="bt_salvar_Colheita"
+					update="frmCadColheita, :frmCadProducao:tvDadosProducao:tvCultura:dt_Colheitas , msgs, grmsg"
+					action="#{colheitaController.actsalvar()}"
+					oncomplete="if(!args.validationFailed){PF('dlg_colheita').hide();}"
+					styleClass="btn btn-primary" />
+
+				<p:commandButton value="Cancelar"
+					styleClass="btn btn-danger"
+					update="@this, frmCadColheita" immediate="true"
+					action="#{colheitaController.actnovo()}"
+					oncomplete="PF('dlg_colheita').hide();" />
+
+			</div>
+		</div>
+	</h:form>
+
+</b:well>
+</ui:component>

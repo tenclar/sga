@@ -1,0 +1,160 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<!-- 			<f:selectItem itemValue="cpf" itemLabel="CPF Produtor" /> -->
+<!-- 				<f:selectItem itemValue="cnpj" itemLabel="CNPJ Produtor" /> -->
+<!-- 				<f:selectItem itemValue="cei" itemLabel="CEI Produtor" /> -->
+<!-- 				<f:selectItem itemValue="nomeprodutor"		itemLabel="Nome Produtor" /> -->
+
+	<h:form id="frmPesquisaProducao" prependId="false"
+		styleClass="form-horizontal">
+		<p:panel>
+			<p:focus for="pdnome" />
+			<p:selectOneRadio style="width:60%;"
+			  value="#{producaoController.eTipoPesquisa}" 
+			  converter="omnifaces.SelectItemsIndexConverter" >				
+				<f:selectItems value="#{producaoController.selectItemsTipoPesquisa}"  />
+				<p:ajax update="opTipoPesquisa" listener="#{producaoController.handleSelectPesquisa()}" />
+			</p:selectOneRadio>
+
+
+			<p:outputPanel id="opTipoPesquisa">
+
+			
+
+				<p:inputText id="pdcpf" label="Campo CPF"
+					autocomplete="off" style="width:10%;" required="true"
+					maxlength="11" onkeypress="mascara(this, soNumeros)"
+					value="#{producaoController.argumento}"
+					rendered="#{producaoController.pesquisacpf}">
+					<f:validator validatorId="cpfvalidator" />
+
+				</p:inputText>
+
+				<p:inputText id="pdcnpj" label="Campo CNPJ"
+					autocomplete="off"
+					style="width:20%;"
+					
+					required="true" maxlength="14"
+					onkeypress="mascara(this, soNumeros)"
+					value="#{producaoController.argumento}"
+					rendered="#{producaoController.pesquisacnpj}">
+					<f:validator validatorId="cnpjvalidator" />
+
+				</p:inputText>
+
+				<p:inputText id="pdcei" label="Campo CEI"
+					autocomplete="off"
+					style="width:30%;  text-transform: uppercase;"
+					required="true" maxlength="14"
+					onkeypress="mascara(this, soNumeros)"
+					value="#{producaoController.argumento}"
+					rendered="#{producaoController.pesquisacei}" />				
+				
+				<p:inputText id="pdnome" label="Nome Produtor" autocomplete="off"
+					style="width:40%;  text-transform: uppercase;"
+					required="true"
+					onkeyup="this.value = this.value.toUpperCase();"
+					value="#{producaoController.argumento}"
+					rendered="#{producaoController.pesquisanomeprodutor}" />
+				
+				<p:inputText id="pdnomepropriedade" label="Campo Nome Propriedade"
+					autocomplete="off"
+					style="width:60%;  text-transform: uppercase;"
+					onkeyup="this.value = this.value.toUpperCase();"
+					required="true" maxlength="14"					
+					value="#{producaoController.argumento}"
+					rendered="#{producaoController.pesquisanomepropriedade}" />
+
+
+				
+				<p:commandButton value="Localizar" icon="ui-icon-search"
+					update="frmPesquisaProducao, frmListProducao, msgdetail"
+					action="#{producaoController.actpesquisa()}"
+					styleClass="btn btn-success" />
+
+			</p:outputPanel>
+			
+
+			<p:messages id="msgdetail" showDetail="true" />
+		</p:panel>
+
+	</h:form>
+
+
+	<p:separator />
+	<h:form id="frmListProducao" prependId="false">
+		<p:outputPanel id="dtProducao">
+			<h:dataTable styleClass="table table-striped"
+				value="#{producaoController.list}" var="dados">
+				<h:column id="clActions" headerClass="colbotao">
+					<f:facet name="header">
+						<b:commandButton id="btRegionalnovo" 
+							ajax="true" title="Cadastrar Produção"
+							icon="glyphicon glyphicon-plus" 
+							look="primary"
+							value="" 
+							update="@this, frmCadProducao"
+							action="#{producaoController.actnovo}"
+							oncomplete="PF('panelForm').show();PF('panelList').close();" >
+
+						</b:commandButton>
+					</f:facet>
+					<b:commandButton  ajax="true"
+						update="@this, frmCadProducao" value=""
+						action="#{producaoController.acteditar()}"
+						icon="glyphicon glyphicon-refresh" look="warning"
+						oncomplete="PF('panelForm').show();PF('panelList').close();">
+					<f:setPropertyActionListener value="#{dados}" target="#{producaoController.producao}"></f:setPropertyActionListener>
+
+					</b:commandButton>
+
+				</h:column>
+				<h:column >
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:outputText value="#{dados.id}" />
+				</h:column>
+				<h:column >
+					<f:facet name="header">
+						<h:outputText value="Cadeia Produtiva" />
+					</f:facet>
+					<h:outputText value="#{dados.cadeiaprodutiva.name}" />
+				</h:column>
+				<h:column >
+					<f:facet name="header">
+						<h:outputText value="Produtor" />
+					</f:facet>
+					<h:outputText value="#{dados.propriedade.produtor.name}" />
+				</h:column>
+				<h:column >
+					<f:facet name="header">
+						<h:outputText value="Propriedade" />
+					</f:facet>
+					<h:outputText value="#{dados.propriedade.nome}" />
+				</h:column>
+				<h:column >
+					<f:facet name="header">
+						<h:outputText value="Descricao" />
+					</f:facet>
+					<h:outputText value="#{dados.cadeiaprodutiva.descricao}" />
+				</h:column>
+				<h:column 	rendered="#{p:ifGranted('ROLE_AD')}">
+					<f:facet name="header">
+						<h:outputText value="User" />
+					</f:facet>
+					<h:outputText value="#{dados.user}" />
+				</h:column>
+
+			</h:dataTable>
+		</p:outputPanel>
+	</h:form>
+
+
+</ui:component>
+

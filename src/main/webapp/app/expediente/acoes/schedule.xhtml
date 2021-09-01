@@ -1,0 +1,148 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+		<h3 style="margin-top: 0">Calendário</h3>
+
+<hr />
+<ui:include src="list_pesquisa.xhtml" />
+
+<p:growl  id="messages" showDetail="true"  />
+<h:form   >
+ 
+		<h:panelGrid columnClasses="value" style="width:100%;"   >
+			
+			<p:schedule id="schedule" value="#{acaoController.eventModel}"	widgetVar="myschedule"	locale="pt"	timeZone="GMT-5" 
+				timeFormat="HH:mm" axisFormat="HH:mm" slotMinutes="30" resizable="true" tooltip="true" >
+				<p:ajax event="dateSelect" 	listener="#{acaoController.onDateSelect}"	update="frmEvent"	oncomplete="PF('eventDialog').show();" />
+				<p:ajax event="eventSelect"	listener="#{acaoController.onEventSelect}"	update="frmEvent"	oncomplete="PF('eventDialog').show();" />
+				<p:ajax event="eventMove"	listener="#{acaoController.onEventMove}"	update="messages" />
+				<p:ajax event="eventResize" listener="#{acaoController.onEventResize}"	update="messages" />
+			</p:schedule>
+			
+		</h:panelGrid>
+</h:form>
+		<p:dialog widgetVar="eventDialog" header=" Detalhe Ação"
+			showEffect="clip" hideEffect="clip">
+			
+			<p:ajaxStatus style="width:16px;height:16px;"
+			id="ajaxStatusPanel">
+			<f:facet name="start">
+				<p:graphicImage name="img/ajax-loader-facebook.gif" />
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+			<h:form id="frmEvent"  prependId="false">
+			<h:panelGrid id="eventDetails" columns="2">
+				<h:outputLabel for="prod" value="Produtor:" />
+				<h:panelGrid id="pg_prod" columns="2">
+					<p:inputText id="prod" readonly="true"  style="height:30px" value="#{acaoController.acao.producao.propriedade.produtor.name}"
+						styleClass="form-control" required="true" />
+					<p:commandButton icon="ui-icon-search"  for="prod"  process="@this" update=":frmLocProdutores" oncomplete="PF('dlgfrmlocalizaprodutor').show();" />
+					<h:inputHidden id="prodhiden" requiredMessage="Produtor não selecionado" value="#{acaoController.acao.producao.propriedade.produtor.name}" required="true" />
+					<p:message for="prodhiden" showDetail="true" />	
+				</h:panelGrid>
+				
+				<h:outputLabel for="sel_propriedade" value="Propriedade:" />
+				<h:panelGrid columns="2">
+				<p:selectOneMenu id="sel_propriedade" 
+		    				label="Propriedade"
+							style="width:100%;"
+							styleClass="form-control"
+							filter="true" filterMatchMode="startsWith"
+							required="true"
+							value="#{acaoController.acao.producao.propriedade}"
+							converter="omnifaces.SelectItemsIndexConverter">
+			
+				<f:selectItems value="#{acaoController.selectItemsPropriedade}"	 />
+				<p:ajax  update="@this, sel_producaoo" listener="#{acaoController.handleListaProducao()}"	/>
+				</p:selectOneMenu>
+					
+						<p:message for="sel_propriedade" />
+				</h:panelGrid>
+				<h:outputLabel for="sel_producaoo" value="Produção" />
+				<h:panelGrid columns="2">
+
+					<p:selectOneMenu id="sel_producaoo" 
+		    				label="Produção"
+							style="width:100%;"
+							styleClass="form-control"
+							filter="true" filterMatchMode="startsWith"
+							required="true"
+							value="#{acaoController.acao.producao}"
+							converter="omnifaces.SelectItemsIndexConverter">
+			
+				<f:selectItems  value="#{acaoController.selectItemsProducao}"	 />
+				<p:ajax  update="@this" />
+				</p:selectOneMenu>
+					<p:message for="sel_producaoo" showDetail="true" />					
+				</h:panelGrid>
+				
+				<h:outputLabel for="title" value="Titulo:" />
+				<h:panelGroup>
+				<p:inputText id="title"	value="#{acaoController.acao.titulo}" required="true" />
+				<p:message for="title" />
+				</h:panelGroup>
+				<h:outputLabel for="description" value="Descrição:" />
+				<h:panelGroup>
+				<p:inputText id="description" value="#{acaoController.acao.description}" required="true" />
+				<p:message for="description" />
+				</h:panelGroup>
+				<h:outputLabel for="from" value="Inicio:" />
+				<h:panelGroup>
+				<p:calendar id="from" 
+					value="#{acaoController.acao.inicio}" navigator="true"
+					mask="99/99/9999 99:99"   pattern="dd/MM/yyyy HH:mm"
+						timeZone="GMT-5"  locale="pt" 
+					/>				
+				<p:message for="from" />
+				</h:panelGroup>
+				<h:outputLabel for="to" value="fim:" />
+				<h:panelGroup>
+				<p:inputMask id="to"
+					value="#{acaoController.acao.fim}" mask="99/99/9999 99:99">
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"  locale="pt"
+						timeZone="GMT-5" />
+				</p:inputMask>
+				<p:message for="to" />
+				</h:panelGroup>
+					<h:outputLabel for="status" value="Status:" />
+				<h:selectBooleanCheckbox id="status"
+					value="#{acaoController.acao.status}" />
+
+				<h:outputLabel for="allDay" value="Dia Todo:" />
+				<h:selectBooleanCheckbox id="allDay"
+					value="#{acaoController.acao.diatodo}" />
+
+				<p:commandButton type="reset" value="Reset" styleClass="btn btn-danger" oncomplete="PF('eventDialog').hide();"  />
+				<p:commandButton id="addButton" value="Save"
+					actionListener="#{acaoController.actsalvar}"
+					 update="messages, frmEvent" styleClass="btn btn-primary"
+					oncomplete="if(!args.validationFailed){PF('myschedule').update();PF('eventDialog').hide();}" />
+			</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	
+	
+	
+
+	<style type="text/css">
+.value {
+	width: 1000px;
+}
+</style>
+
+
+
+	<!--         <h3>Locale Support ( Example: Turkish )</h3> -->
+			<!--         <p:schedule id="scheduleLocale" value="# { scheduleView.eventModel}" locale="tr" /> -->
+
+			<!--         <h3>Lazy Schedule</h3> -->
+			<!--         <p:schedule value="# { scheduleView.lazyEventModel }" /> -->
+
+</ui:component>

@@ -8,9 +8,11 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 <!-- 			<non-jta-data-source>java:jboss/datasources/pgaDS</non-jta-data-source> -->
 <!-- 		<jta-data-source>java:jboss/datasources/pgaDS</jta-data-source> -->
+		<class>br.gov.ac.seap.pga.model.Acao</class>
 		<class>br.gov.ac.seap.pga.model.AnaliseSolo</class>
 		<class>br.gov.ac.seap.pga.model.Authority</class>
 		<class>br.gov.ac.seap.pga.model.Bairro</class>
+		<class>br.gov.ac.seap.pga.model.CadeiaLeite</class>
 		<class>br.gov.ac.seap.pga.model.CadeiaProdutiva</class>
 		<class>br.gov.ac.seap.pga.model.CategoriaFormento</class>
 		<class>br.gov.ac.seap.pga.model.CategoriaMaterial</class>
@@ -45,7 +47,7 @@
 		<class>br.gov.ac.seap.pga.model.Vegetacao</class>	
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 <!-- 			<property name="hibernate.transaction.flush_before_completion"	value="true" /> -->

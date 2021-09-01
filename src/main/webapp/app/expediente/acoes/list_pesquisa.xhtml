@@ -1,0 +1,76 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
+
+		<h:form id="frmTipoPesquisa" prependId="false" 		>
+	 
+	  <p:accordionPanel widgetVar="apfiltro"  activeIndex="-1" >
+	  	<p:tab title="▼ Opções de Filtro" titleStyle="background-color: #cacaca;"  >
+	  	<p:panel styleClass="form-horizontal" >
+		
+		
+				<div class="form-group">
+					<label for="sel" class="col-lg-1 control-label">Período:</label>
+					<div class="col-lg-10">
+						<p:outputLabel value="Inicio:" /> <p:calendar locale="pt" /> <p:spacer width="10" /> <p:outputLabel value="fim:" /> <p:calendar locale="pt" />
+					</div>
+				</div>
+		
+
+		<p:separator />
+			<div class="form-group">
+					<label for="sel" class="col-lg-2 control-label">Produtor:</label>
+					<div class="col-lg-8">
+						<p:inputText  style="width:80%;" readonly="true"  value="#{produtorController.produtor.cpf} - #{produtorController.produtor.name}" />
+						<p:commandButton icon="ui-icon-search"  oncomplete="PF('localizaProd').show();" class="btn btn-success" update="dlgLocalizaProd" immediate="true"  />
+					</div>
+					
+			</div>
+			
+			<div class="form-group">
+					<label for="sel" class="col-lg-2 control-label">Propriedade:</label>
+					<div class="col-lg-5">
+						<p:selectOneMenu 
+		    				label="Propriedade"
+							style="width:80%;"
+							filter="true" 
+							filterMatchMode="startsWith"
+							required="true"
+							>			
+								<f:selectItem itemLabel="Todos"/>	
+						</p:selectOneMenu>
+					</div>
+			</div>
+<!-- 			converter="omnifaces.SelectItemsIndexConverter" -->
+			<div class="form-group">
+					<label for="sel" class="col-lg-2 control-label">Proprodução:</label>
+					<div class="col-lg-5">
+			
+				<p:selectOneMenu  
+					label="produção"
+					style="width:80%;"
+					filter="true" filterMatchMode="startsWith"
+					required="true"
+					>	
+					<f:selectItem itemLabel="Todos"/>		
+				
+				</p:selectOneMenu>
+				</div>
+			</div>
+		
+	
+	
+	<p:commandButton icon="ui-icon-search" value="Filtrar"/>
+	</p:panel>
+	</p:tab>
+	</p:accordionPanel>
+	
+	</h:form>
+	<p:spacer height="20" />
+	<ui:include src="list_localiza_produtor.xhtml" />
+
+</ui:component>
+
